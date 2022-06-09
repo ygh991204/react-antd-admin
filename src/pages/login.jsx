@@ -8,7 +8,7 @@ import Config from '@/config'
 import { login } from '@/store/modules/user'
 import { useRouter, useRoute } from '@/router'
 import { Language } from '@/components'
-import Logo from '@/logo.png'
+import Logo from '/static/logo.png'
 
 const LanguageWrapper = styled.div`
   position: fixed;

@@ -11,7 +11,7 @@ import { validateURL } from '@/utils/validate'
 import { wait } from '@/utils'
 
 import { SvgIcon } from '@/components'
-import Logo from '@/logo.png'
+import Logo from '/static/logo.png'
 
 const showRoutes = (routes = []) => {
   return routes.filter(route => {

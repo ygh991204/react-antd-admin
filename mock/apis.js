@@ -1,5 +1,27 @@
-import { createApi, response } from '../utils'
-import { usersDb, menusDb, rolesDb } from '../data/index'
+
+import { usersDb, menusDb, rolesDb } from './_data'
+
+/**
+ *
+ * @param {string} url
+ * @param {'get'|'post'|'delete'|'put'} method
+ * @param {Function} response
+ */
+function createApi(url, method, response) {
+  return {
+    url,
+    method,
+    response
+  }
+}
+
+function response(data, code = 200, msg = '操作') {
+  return {
+    code,
+    data,
+    msg
+  }
+}
 
 const getUserInfoByToken = (headers) => {
   const token = headers['authorization'] ? headers['authorization'].replace('Bearer', '').trim() : ''
@@ -60,7 +82,6 @@ const getUserInfo = createApi('/api/v1/userinfo', 'post', ({ headers }) => {
 /** 菜单 */
 const getMenus = createApi('/api/v1/menus', 'post', ({ headers }) => {
   const user = getUserInfoByToken(headers)
-  console.log(user, anthMenus(menusDb, user.permissions))
   if (user) {
     return response(anthMenus(menusDb, user.permissions))
   } else {
