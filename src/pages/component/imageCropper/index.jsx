@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Card, Space, Button, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { ImageCropper } from '@/components'
-import Logo from '@/logo.png'
+import Logo from '/logo.png'
 
 const { Link } = Typography
 

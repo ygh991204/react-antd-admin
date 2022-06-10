@@ -10,6 +10,9 @@ const middlewares = [thunkMiddleware]
 
 /** 自动加载模块  https://vitejs.cn/guide/features.html#glob-import */
 const modulesFiles = import.meta.globEager('./modules/*.js')
+
+// console.log('模块', modulesFiles)
+
 const reducer = Object.keys(modulesFiles)
   .sort()
   .reduce((modules, modulePath) => {

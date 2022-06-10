@@ -1,7 +1,6 @@
 
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-import { wait } from '@/utils'
 import { getMenus } from '@/api/user'
 import { addRoutes } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
@@ -22,12 +21,11 @@ const loadMenus = async(route, next) => {
  * 守卫，路由组件渲染之前执行
  */
 export const routerBeforeEach = async(route, next) => {
-  await wait(300)
-  const state = store.getState()
   if (getToken()) {
     if (route.path === '/login') {
       next('/')
     } else {
+      const state = store.getState()
       if (state.user.permissions.length === 0) {
         try {
           await store.dispatch(userInfo()).unwrap()

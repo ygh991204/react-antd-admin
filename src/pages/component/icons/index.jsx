@@ -1,4 +1,4 @@
-
+// import ids from 'virtual:svg-icons-names'
 import { Card, Tabs, Typography, Col, Row, notification } from 'antd'
 import { SvgIcon } from '@/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
