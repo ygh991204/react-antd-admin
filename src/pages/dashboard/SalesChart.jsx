@@ -1,6 +1,5 @@
-
-import { Column } from '@ant-design/plots'
 import { Card } from 'antd'
+import { Column } from '@ant-design/plots'
 
 const SalesChart = () => {
   const data = [

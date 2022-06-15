@@ -100,6 +100,13 @@ export const menuRoutes = [
         meta: {
           title: 'menus.componentCharts'
         }
+      },
+      {
+        path: 'basiclist',
+        component: 'component/basicList/index',
+        meta: {
+          title: 'menus.componentBasicList'
+        }
       }
     ]
   },

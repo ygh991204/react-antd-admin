@@ -1,6 +1,6 @@
 
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Alert, Card } from 'antd'
-import { useTranslation } from 'react-i18next'
 
 const Menu2 = () => {
   const { t } = useTranslation()

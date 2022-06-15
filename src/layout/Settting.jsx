@@ -2,9 +2,11 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Drawer, List, Switch } from 'antd'
-import { toogleLogo, toogleTabs } from '@/store/modules/setting'
+
 import { SettingOutlined, CloseOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+
+import { toogleLogo, toogleTabs } from '@/store/modules/setting'
 
 const SettingButton = styled.div`
       transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -35,7 +37,7 @@ const Setting = () => {
       <List.Item extra={<Switch defaultChecked={tabs} checked={tabs} onChange={ (val) => {
         dispatch(toogleTabs(val))
       } }/>}>
-        <List.Item.Meta title='标签栏'/>
+        <List.Item.Meta title='tabs'/>
       </List.Item>
     </Drawer>
   </>

@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
-import { Routes, HashRouter } from 'react-router-dom'
-import { Provider, useSelector } from 'react-redux'
-import { cloneDeep } from 'lodash'
+import { Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { ConfigProvider } from 'antd'
-import store from '@/store'
+import { cloneDeep } from 'lodash'
 
-import { RouterGuard, renderRouter } from './router'
+import { RouterRender } from '@/router'
 
 const App = () => {
   const routes = useSelector((state) => state.routes.routes)
@@ -14,13 +13,9 @@ const App = () => {
     return cloneDeep(routes)
   }, [routes])
   return <>
-    <Provider store={store}>
-      <ConfigProvider locale={antdLang}>
-        <HashRouter>
-          <RouterGuard><Routes>{renderRouter(menuRoutes)}</Routes></RouterGuard>
-        </HashRouter>
-      </ConfigProvider>
-    </Provider>
+    <ConfigProvider locale={antdLang}>
+      <Routes>{RouterRender(menuRoutes)}</Routes>
+    </ConfigProvider>
   </>
 }
 

@@ -10,7 +10,6 @@ module.exports = {
     }
   },
   globals: {
-    // 'import.meta': true
   },
   env: {
     browser: true,

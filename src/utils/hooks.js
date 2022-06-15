@@ -1,35 +1,6 @@
 
-import { useLayoutEffect, useEffect, useState, useCallback } from 'react'
-
-/**
- *
- * @param {Function} fn
- */
-export const useWillMount = (fn) => {
-  useLayoutEffect(() => {
-    fn()
-  }, [])
-}
-
-/**
- *
- * @param {Function} fn
- */
-export const useDidMount = (fn) => {
-  useEffect(() => {
-    fn()
-  }, [])
-}
-
-/**
- *
- * @param {Function} fn
- */
-export const useWillUnmount = (fn) => {
-  useEffect(() => {
-    return fn
-  }, [])
-}
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { isFunction } from './validate'
 
 const getWindowWidth = () => document.body.getBoundingClientRect().width - 1
 
@@ -38,14 +9,45 @@ export const useResize = () => {
   const handleResize = useCallback(() => {
     setWindowWidth(getWindowWidth())
   }, [])
-  useDidMount(() => {
+  useEffect(() => {
     window.addEventListener('resize', handleResize)
-  })
-  useWillUnmount(() => {
-    window.removeEventListener('reset', handleResize)
-  })
+    return () => {
+      window.removeEventListener('reset', handleResize)
+    }
+  }, [])
   return {
     windowWidth
   }
 }
 
+export const useStateSync = (initState) => {
+  const [state, setSate] = useState(initState)
+  const ref = useRef(state)
+  const dispatch = useCallback((setStateAction) => {
+    ref.current = isFunction(setStateAction) ? setStateAction(ref.current) : setStateAction
+    setSate(ref.current)
+  })
+  return [state, dispatch, ref]
+}
+
+/**
+ *
+ * @param {Function} fn
+ */
+export const useSyncCallback = fn => {
+  const [proxyState, setProxyState] = useState({ current: false })
+
+  const Func = useCallback(() => {
+    setProxyState({ current: true })
+  }, [proxyState])
+
+  useEffect(() => {
+    if (proxyState.current === true) setProxyState({ current: false })
+  }, [proxyState])
+
+  useEffect(() => {
+    proxyState.current && fn()
+  })
+
+  return Func
+}

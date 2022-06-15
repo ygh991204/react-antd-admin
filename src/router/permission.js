@@ -5,6 +5,7 @@ import { getMenus } from '@/api/user'
 import { addRoutes } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
 import { formatRoutes } from '@/router/routes'
+import { wait } from '@/utils'
 
 const whiteList = ['/login']
 
@@ -21,6 +22,7 @@ const loadMenus = async(route, next) => {
  * 守卫，路由组件渲染之前执行
  */
 export const routerBeforeEach = async(route, next) => {
+  await wait(300)
   if (getToken()) {
     if (route.path === '/login') {
       next('/')
@@ -49,7 +51,7 @@ export const routerBeforeEach = async(route, next) => {
         query: {
           redirect: route.fullPath
         }
-      })
+      }, false)
     }
   }
 }

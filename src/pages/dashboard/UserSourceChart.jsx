@@ -1,7 +1,6 @@
-
-import { Rose } from '@ant-design/plots'
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Card } from 'antd'
-import { useTranslation } from 'react-i18next'
+import { Rose } from '@ant-design/plots'
 
 const UserSourceChart = () => {
   const { t } = useTranslation()

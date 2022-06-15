@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit'
-import { constantRoutes, formatRoutes } from '@/router/routes'
+import { constantRoutes, formatRoutes } from '@/router'
 
 const getAffixTabRoutes = (routes, tags = []) => {
   return routes.reduce((prev, route) => {
@@ -49,11 +49,17 @@ const tabsSlice = createSlice({
       state.pages = state.pages.filter((v) => {
         return v.meta.affixTab
       })
+    },
+
+    deOtherTabPage(state, { payload }) {
+      state.pages = state.pages.filter((v) => {
+        return v.meta.affixTab || v.path === payload.path
+      })
     }
 
   }
 })
 
-export const { delAllTabPage, delTabsPage, addTabsPage } = tabsSlice.actions
+export const { delAllTabPage, delTabsPage, addTabsPage, deOtherTabPage } = tabsSlice.actions
 
 export default tabsSlice.reducer

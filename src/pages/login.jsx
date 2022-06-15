@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Form, Input, Button, Checkbox, notification } from 'antd'
 import { UserOutlined, LockOutlined, GlobalOutlined } from '@ant-design/icons'
 import styled from 'styled-components'

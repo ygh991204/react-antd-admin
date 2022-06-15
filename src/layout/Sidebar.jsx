@@ -1,7 +1,7 @@
 
 import { useMemo, useState, useLayoutEffect, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Translation } from 'react-i18next'
+import { Translation } from 'react-i18next/react-i18next'
 import { cloneDeep } from 'lodash'
 import { Menu } from 'antd'
 

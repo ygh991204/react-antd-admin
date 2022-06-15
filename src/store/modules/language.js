@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
-import i18n, { getLanguage, setLanguage } from '@/i18n'
+import { getLanguage, setLanguage } from '@/utils/auth'
+import i18n from '@/i18n'
 
 /** dayjs语言 */
 import 'dayjs/locale/zh'

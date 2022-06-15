@@ -1,6 +1,6 @@
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Row, Col, Card, Tooltip } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import { useTranslation } from 'react-i18next'
 
 import SalesCategoryChart from './SalesCategoryChart'
 import UserSourceChart from './UserSourceChart'

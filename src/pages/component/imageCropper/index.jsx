@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Card, Space, Button, Typography } from 'antd'
-import { useTranslation } from 'react-i18next'
 import { ImageCropper } from '@/components'
 import Logo from '/logo.png'
 

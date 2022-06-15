@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { toogleDevice, closeSideBar } from '@/store/modules/app'
 import { useResize } from '@/utils/hooks'
 import SideBar from './Sidebar'

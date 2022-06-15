@@ -1,26 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
-import Storage from '@/utils/storage'
+import storage from '@/utils/storage'
 
 const appSlice = createSlice({
   name: 'app',
   initialState: {
-    device: Storage.get('device') || 'desktop', // mobile | device
-    sideBarOpend: Storage.get('sideBarOpend') === null ? true : Storage.get('sideBarOpend')
+    device: storage.get('device') || 'desktop', // mobile | device
+    sideBarOpend: storage.get('sideBarOpend') === null ? true : storage.get('sideBarOpend')
   },
   reducers: {
     chageLang(state, { payload }) {
       state.langCur = payload
     },
     toogleSideBar(state) {
-      Storage.set('sideBarOpend', !state.sideBarOpend)
+      storage.set('sideBarOpend', !state.sideBarOpend)
       state.sideBarOpend = !state.sideBarOpend
     },
     toogleDevice(state, { payload }) {
-      Storage.set('device', payload)
+      storage.set('device', payload)
       state.device = payload
     },
     closeSideBar(state) {
-      Storage.set('sideBarOpend', false)
+      storage.set('sideBarOpend', false)
       state.sideBarOpend = false
     }
   }

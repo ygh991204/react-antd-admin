@@ -1,6 +1,6 @@
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Result, Button } from 'antd'
 import { useRouter } from '@/router'
-import { useTranslation } from 'react-i18next'
 
 const Error401 = () => {
   const router = useRouter()

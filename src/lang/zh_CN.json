@@ -46,6 +46,7 @@
     "componentRichText": "富文本",
     "componentIcons": "图标",
     "componentCharts": "图表",
+    "componentBasicList": "标准列表",
     "personal": "个人中心",
     "noName": "no-name"
   },

@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { notification } from 'antd'
-import { getToken } from '@/utils/auth'
+import { getToken, getLanguage } from '@/utils/auth'
 import Config from '@/config'
-import { getLanguage } from '@/i18n'
 
 const service = axios.create({
   baseURL: Config.baseUrl,

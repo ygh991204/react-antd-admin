@@ -1,7 +1,6 @@
-
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Card } from 'antd'
 import { Pie } from '@ant-design/plots'
-import { useTranslation } from 'react-i18next'
 
 const SalesCategoryChart = () => {
   const { t } = useTranslation()

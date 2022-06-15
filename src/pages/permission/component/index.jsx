@@ -1,6 +1,6 @@
 
 import { Card, Button, Space } from 'antd'
-import { Auth } from '@/utils/permission'
+import { Auth } from '@/components'
 
 const PermissionComponent = () => {
   return (

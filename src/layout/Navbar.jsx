@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
-import screenfull from 'screenfull'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Menu, Dropdown, Avatar, Modal, Breadcrumb } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined, FullscreenOutlined, FullscreenExitOutlined, GlobalOutlined } from '@ant-design/icons'
+import screenfull from 'screenfull'
 
 import { toogleSideBar } from '@/store/modules/app'
 import { logout } from '@/store/modules/user'

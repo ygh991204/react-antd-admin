@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
+import { useTranslation } from 'react-i18next/react-i18next'
 import { Alert, Card } from 'antd'
-import { useTranslation } from 'react-i18next'
 
 const Menu1 = () => {
   const { t } = useTranslation()

@@ -1,51 +1,31 @@
-
-import { useContext } from 'react'
+import { useContext, useCallback } from 'react'
 import CrudContext from './Context'
+import { HOOKS } from './common'
 
-/**
- * 刷新之前
- * @param {function} fn
- */
-export const useCrudBeforeRefresh = (fn) => {
-  const crud = useContext(CrudContext)
+export const useCrudHook = (hookName, fn) => {
+  const { addHook } = useContext(CrudContext)
+  const _fn = useCallback(fn, [])
+  addHook(hookName, _fn)
 }
 
-/**
- * 刷新之后
- * @param {function} fn
- */
-export const useCrudAfterRefresh = (fn) => {
-  const crud = useContext(CrudContext)
+export const useBeforeRefresh = (fn) => {
+  useCrudHook(HOOKS.beforeRefresh, fn)
 }
-
-/**
- * 删除之前
- * @param {function} fn
- */
-export const useCrudBeforeDelete = (fn) => {
-  const crud = useContext(CrudContext)
+export const useBeforeReset = (fn) => {
+  useCrudHook(HOOKS.beforeReset, fn)
 }
-
-/**
- * 删除之后
- * @param {function} fn
- */
-export const useCrudAfterDelete = (fn) => {
-  const crud = useContext(CrudContext)
+export const useBeforeToCU = (fn) => {
+  useCrudHook(HOOKS.beforeToCU, fn)
 }
-
-/**
- * 新建之前
- * @param {function} fn
- */
-export const useCrudBeforeAdd = (fn) => {
-
+export const useBeforeToCreate = (fn) => {
+  useCrudHook(HOOKS.beforeToCreate, fn)
 }
-
-/**
- * 新建之后
- * @param {function} fn
- */
-export const useCrudAfterAdd = (fn) => {
-
+export const useBeforeToUpdate = (fn) => {
+  useCrudHook(HOOKS.beforeToUpdate, fn)
+}
+export const useBeforeSubmitCU = (fn) => {
+  useCrudHook(HOOKS.beforeSubmitCU, fn)
+}
+export const useBeforeInitQuery = (fn) => {
+  useCrudHook(HOOKS.beforeInitQuery, fn)
 }

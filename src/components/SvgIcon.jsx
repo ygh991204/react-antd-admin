@@ -16,5 +16,4 @@ const SvgIcon = ({ name, prefix = 'icon', ...props }) => {
     </Svg>
   )
 }
-
 export default SvgIcon
