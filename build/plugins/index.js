@@ -6,7 +6,7 @@ import htmlPlugin from './html'
 import mockPlugin from './mock'
 import svgIconsPlugin from './svgIcons'
 import styleImportPlugin from './styleImport'
-// import pwaPlugin from './pwa'
+import pwaPlugin from './pwa'
 
 export const createPlugins = (isBuild, env) => {
   const plugins = [
@@ -17,8 +17,8 @@ export const createPlugins = (isBuild, env) => {
   plugins.push(htmlPlugin(isBuild, env))
   plugins.push(svgIconsPlugin(isBuild, env))
   plugins.push(styleImportPlugin(isBuild, env))
-  //   if (isBuild) {
-  //     plugins.push(pwaPlugin(isBuild, env))
-  //   }
+  if (isBuild) {
+    plugins.push(pwaPlugin(isBuild, env))
+  }
   return plugins
 }

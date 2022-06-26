@@ -27,6 +27,16 @@ export default defineConfig(({ command, mode }) => {
         }
       }
     },
-    build: createBuild(isBuild, env)
+    build: createBuild(isBuild, env),
+    optimizeDeps: {
+      include: [
+        '@ant-design/icons',
+        '@ant-design/charts',
+        'antd/lib/locale/zh_CN',
+        'antd/lib/locale/en_US',
+        'dayjs/locale/zh',
+        'dayjs/locale/en'
+      ]
+    }
   }
 })

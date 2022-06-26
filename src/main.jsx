@@ -1,8 +1,16 @@
 import 'virtual:svg-icons-register'
-import React from 'react'
+
 import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import Config from './config'
+
+import { setupProdMockServer } from '../mock/_prodServer'
+
+/** 非开发模式下，添加mock */
+if (Config.env !== 'dev') {
+  setupProdMockServer()
+}
 
 import '@/assets/styles/index.less'
 import 'normalize.css/normalize.css'
@@ -13,11 +21,9 @@ import App from '@/App'
 import '@/i18n'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
   <Provider store={store}>
     <HashRouter>
       <App />
     </HashRouter>
   </Provider>
-//   </React.StrictMode>
 )

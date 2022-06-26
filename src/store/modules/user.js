@@ -16,7 +16,7 @@ export const logout = createAsyncThunk('user/logout', async(data) => {
   return res
 })
 
-export const userInfo = createAsyncThunk('user/userInfo', async(data) => {
+export const userInfo = createAsyncThunk('user/userInfo', async(data, api) => {
   const res = await getUserInfo()
   return res.data
 })

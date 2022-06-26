@@ -10,7 +10,6 @@ const PaginationWrapper = styled.div`
 `
 
 const CrudPagination = React.memo(() => {
-  console.log('666')
   const { options, pageChangeHandle, pageIndex } = useContext(CrudContext)
 
   const pageChange = (page) => {
