@@ -4,7 +4,7 @@ import { validateURL } from '@/utils/validate'
 export const menuRoutes = [
   {
     path: 'dashboard',
-    component: 'dashboard/index',
+    component: 'dashboard',
     meta: { title: 'menus.dashboard', affixTab: true, icon: 'dashboard' }
   },
   {
@@ -14,16 +14,16 @@ export const menuRoutes = [
       {
         path: 'user',
         meta: { title: 'menus.systemUser' },
-        component: 'system/user/index'
+        component: 'system/user'
       },
       {
         path: 'menu',
-        component: 'system/menu/index',
+        component: 'system/menu',
         meta: { title: 'menus.systemMenu' }
       },
       {
         path: 'role',
-        component: 'system/role/index',
+        component: 'system/role',
         meta: { title: 'menus.systemRole' }
       }
     ]
@@ -35,23 +35,23 @@ export const menuRoutes = [
       {
         path: 'menu1',
         meta: { title: 'menus.menusMenu1' },
-        component: 'menus/menu1/index',
+        component: 'menus/menu1',
         children: [
           {
             path: 'menu1-1',
-            component: 'menus/menu1/menu1-1/index',
+            component: 'menus/menu1/menu1-1',
             meta: { title: 'menus.menusMenu1-1' }
           },
           {
             path: 'menu1-2',
-            component: 'menus/menu1/menu1-2/index',
+            component: 'menus/menu1/menu1-2',
             meta: { title: 'menus.menusMenu1-2' }
           }
         ]
       },
       {
         path: 'menu2',
-        component: 'menus/menu2/index',
+        component: 'menus/menu2',
         meta: { title: 'menus.menusMenu2' }
       }
     ]
@@ -79,31 +79,31 @@ export const menuRoutes = [
     children: [
       {
         path: 'imagecropper',
-        component: 'component/imageCropper/index',
+        component: 'component/imageCropper',
         meta: { title: 'menus.componentImageCropper' }
       },
       {
         path: 'richtext',
-        component: 'component/richText/index',
+        component: 'component/richText',
         meta: { title: 'menus.componentRichText' }
       },
       {
         path: 'icons',
-        component: 'component/icons/index',
+        component: 'component/icons',
         meta: {
           title: 'menus.componentIcons'
         }
       },
       {
         path: 'charts',
-        component: 'component/charts/index',
+        component: 'component/charts',
         meta: {
           title: 'menus.componentCharts'
         }
       },
       {
         path: 'basiclist',
-        component: 'component/basicList/index',
+        component: 'component/basicList',
         meta: {
           title: 'menus.componentBasicList'
         }
@@ -113,10 +113,10 @@ export const menuRoutes = [
   {
     path: 'personal',
     meta: { hidden: true, title: 'menus.personal' },
-    component: 'personal/index'
+    component: 'personal'
   },
   {
-    path: 'https://ant.design/index-cn',
+    path: 'https://ant.design-cn',
     meta: { title: 'Ant Design', icon: 'ant-design' }
   }
 ]
@@ -146,7 +146,7 @@ export const constantRoutes = [
   }
 ]
 
-export const formatRoutes = (routes, parentFullPath = '') => {
+export function formatRoutes(routes, parentFullPath = '') {
   return routes.map((route) => {
     let children
     let fullPath = route.path

@@ -21,7 +21,7 @@ export const setLanguage = (ln) => storage.set('lang', ln)
  *
  * @param {string[]} permissions
  */
-export const checkAuth = (permissions, userPermissions) => {
+export function checkAuth(permissions, userPermissions) {
   let _permissions = []
   if (userPermissions) {
     _permissions = userPermissions
@@ -38,7 +38,7 @@ export const checkAuth = (permissions, userPermissions) => {
  *
  * @param {string[]} permissions
  */
-export const useAuth = (permissions) => {
+export function useAuth(permissions) {
   const userPermissions = useSelector((state) => state.user.permissions)
   const isAuth = useMemo(() => {
     return checkAuth(permissions, userPermissions)

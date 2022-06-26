@@ -13,7 +13,7 @@ import { wait } from '@/utils'
 import { SvgIcon } from '@/components'
 import Logo from '/logo.png'
 
-const showRoutes = (routes = []) => {
+function showRoutes(routes = []) {
   return routes.filter(route => {
     if (route.meta.hidden) {
       return false
@@ -26,7 +26,7 @@ const showRoutes = (routes = []) => {
   })
 }
 
-const formatRoutes = (routes = []) => {
+function formatRoutes(routes = []) {
   return routes.map((route) => {
     return {
       children: route.children ? formatRoutes(route.children) : undefined,

@@ -50,17 +50,17 @@ export const menusDb = [
     children: [
       {
         path: 'admin',
-        component: 'permission/admin/index',
+        component: 'permission/admin',
         meta: { title: 'admin可见', permission: 'permission:admin:list' }
       },
       {
         path: 'component',
-        component: 'permission/component/index',
+        component: 'permission/component',
         meta: { title: '组件权限', permission: 'permission:component:list' }
       },
       {
         path: 'user',
-        component: 'permission/user/index',
+        component: 'permission/user',
         meta: { title: 'user可见', permission: 'permission:user:list' }
       }
     ]

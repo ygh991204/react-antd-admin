@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { constantRoutes, formatRoutes } from '@/router'
 
-const getAffixTabRoutes = (routes, tags = []) => {
+function getAffixTabRoutes(routes, tags = []) {
   return routes.reduce((prev, route) => {
     if (route.meta.affixTab) {
       prev.push({

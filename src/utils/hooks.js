@@ -4,7 +4,7 @@ import { isFunction } from './validate'
 
 const getWindowWidth = () => document.body.getBoundingClientRect().width - 1
 
-export const useResize = () => {
+export function useResize() {
   const [windowWidth, setWindowWidth] = useState(getWindowWidth())
   const handleResize = useCallback(() => {
     setWindowWidth(getWindowWidth())
@@ -20,7 +20,7 @@ export const useResize = () => {
   }
 }
 
-export const useStateSync = (initState) => {
+export function useStateSync(initState) {
   const [state, setSate] = useState(initState)
   const ref = useRef(state)
   const dispatch = useCallback((setStateAction) => {
@@ -34,7 +34,7 @@ export const useStateSync = (initState) => {
  *
  * @param {Function} fn
  */
-export const useSyncCallback = fn => {
+export function useSyncCallback(fn) {
   const [proxyState, setProxyState] = useState({ current: false })
 
   const Func = useCallback(() => {

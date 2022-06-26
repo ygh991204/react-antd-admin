@@ -27,15 +27,23 @@ const RouterLoading = (
   </RouterLoadingWrapper>
 )
 
-const RouterLazy = (path) =>
-  loadable(() => import(`../pages/${path}.jsx`), {
+const pageFiles = import.meta.glob('@/pages/**/index.jsx')
+
+const pages = Object.keys(pageFiles).sort().reduce((pages, pagePath) => {
+  pages[pagePath.replace('../pages/', '').replace('/index.jsx', '')] = pageFiles[pagePath]
+  return pages
+}, {})
+
+function RouterLazy(path) {
+  return loadable(pages(path), {
     fallback: RouterLoading
   })
+}
 
 /**
  * 路由守卫，包裹对应的路由组件
  */
-export const RouterGuard = ({ children, render }) => {
+export function RouterGuard({ children, render }) {
   const route = useRoute()
   const router = useRouter()
   const { t } = useTranslation()
@@ -65,7 +73,7 @@ export const RouterGuard = ({ children, render }) => {
 /**
  * 路由对象，映射
  */
-export const RouterRender = (routes = []) => {
+export function RouterRender(routes = []) {
   return routes.map((route) => {
     const RouterElement = () => {
       const component = route.component

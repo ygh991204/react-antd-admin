@@ -1,15 +1,13 @@
-
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 import { getMenus } from '@/api/user'
 import { addRoutes } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
 import { formatRoutes } from '@/router/routes'
-import { wait } from '@/utils'
 
 const whiteList = ['/login']
 
-const loadMenus = async(route, next) => {
+async function loadMenus(route, next) {
   store.dispatch(setLoadMenus(false))
   const _menus = await getMenus()
   const _memuData = [..._menus.data]
@@ -21,8 +19,7 @@ const loadMenus = async(route, next) => {
 /**
  * 守卫，路由组件渲染之前执行
  */
-export const routerBeforeEach = async(route, next) => {
-  await wait(300)
+export async function routerBeforeEach(route, next) {
   if (getToken()) {
     if (route.path === '/login') {
       next('/')
@@ -46,13 +43,15 @@ export const routerBeforeEach = async(route, next) => {
     if (whiteList.indexOf(route.path) !== -1) {
       next()
     } else {
-      next({
-        path: '/login',
-        query: {
-          redirect: route.fullPath
-        }
-      }, false)
+      next(
+        {
+          path: '/login',
+          query: {
+            redirect: route.fullPath
+          }
+        },
+        false
+      )
     }
   }
 }
-

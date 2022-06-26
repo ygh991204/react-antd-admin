@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import qs from 'qs'
 import { delEmptyQueryNodes } from '@/utils'
 
-export const useRouter = () => {
+export function useRouter() {
   const navigate = useNavigate()
   const _to = (options, replace = false) => {
     if (typeof options === 'string') {
@@ -13,9 +13,9 @@ export const useRouter = () => {
       })
     } else {
       const { query, params, path } = options
-      const _query = (query && Object.keys(query).length) ? delEmptyQueryNodes(query) : null
+      const _query = query && Object.keys(query).length ? delEmptyQueryNodes(query) : null
       const _path = path + (_query ? '?' + qs.stringify(_query) : '')
-      const _params = (params && Object.keys(params).length) ? delEmptyQueryNodes(params) : null
+      const _params = params && Object.keys(params).length ? delEmptyQueryNodes(params) : null
       navigate(_path, {
         replace,
         state: _params
@@ -51,7 +51,7 @@ export const useRouter = () => {
   }
 }
 
-export const useRoute = () => {
+export function useRoute() {
   const location = useLocation()
   const routes = useSelector((state) => state.routes.routes)
   const param = useParams()
