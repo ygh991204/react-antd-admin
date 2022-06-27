@@ -1,7 +1,25 @@
 {
-  "name": "antd-admin",
-  "private": true,
-  "version": "0.0.0",
+  "name": "react-antd-admin",
+  "version": "0.0.1",
+  "description": "react 后台管理模板",
+  "keywords": [
+    "react",
+    "admin",
+    "antd",
+    "react-admin",
+    "react-antd",
+    "antd-admin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ygh991204/react-antd-admin.git"
+  },
+  "author": "Xiao Feng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ygh991204/react-antd-admin/issues"
+  },
+  "homepage": "https://github.com/ygh991204/react-antd-admin#readme",
   "scripts": {
     "dev": "vite --mode dev",
     "build:test": "vite build --mode test",
