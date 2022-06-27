@@ -19,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/ygh991204/react-antd-admin/issues"
   },
-  "homepage": "https://github.com/ygh991204/react-antd-admin#readme",
   "scripts": {
     "dev": "vite --mode dev",
     "build:test": "vite build --mode test",
