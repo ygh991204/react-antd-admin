@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Navigate, Route, Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next/react-i18next'
 import { Spin } from 'antd'
 import loadable from '@loadable/component'
@@ -29,13 +29,15 @@ const RouterLoading = (
 
 const pageFiles = import.meta.glob('@/pages/**/index.jsx')
 
-const pages = Object.keys(pageFiles).sort().reduce((pages, pagePath) => {
-  pages[pagePath.replace('../pages/', '').replace('/index.jsx', '')] = pageFiles[pagePath]
-  return pages
-}, {})
+const pages = Object.keys(pageFiles)
+  .sort()
+  .reduce((pages, pagePath) => {
+    pages[pagePath.replace('../pages/', '').replace('/index.jsx', '')] = pageFiles[pagePath]
+    return pages
+  }, {})
 
 function RouterLazy(path) {
-  return loadable(pages(path), {
+  return loadable(pages[path], {
     fallback: RouterLoading
   })
 }
@@ -70,50 +72,73 @@ export function RouterGuard({ children, render }) {
   return <>{auth ? dom : RouterLoading}</>
 }
 
-/**
- * 路由对象，映射
- */
-export function RouterRender(routes = []) {
+export function RoutesRender(routes = []) {
   return routes.map((route) => {
+    if (route.component && route.redirect) {
+      const children = route.children || []
+      route.children = [
+        {
+          index: true,
+          component: <Navigate to={route.redirect} replace />
+        },
+        ...children
+      ]
+    }
     const RouterElement = () => {
       const component = route.component
-      if (component) {
-        if (component !== 'Layout') {
-          const PageComponent = RouterLazy(component)
-          return (
-            <RouterGuard>
-              <PageComponent />
-            </RouterGuard>
-          )
-        }
-      } else {
-        if (route.redirect) {
-          if (route.children) {
-            return <Outlet />
-          } else {
-            return <Navigate to={route.redirect} replace />
-          }
-        } else {
-          return <Outlet />
-        }
+      if (route.index) return component
+      if (route.component && route.component !== 'Layout') {
+        const PageComponent = RouterLazy(route.component)
+        return (
+          <RouterGuard>
+            <PageComponent />
+          </RouterGuard>
+        )
       }
+      return route.redirect ? route.children ? <Outlet /> : <Navigate to={route.redirect} replace /> : <Outlet />
     }
-    return (
-      <Route
-        key={route.fullPath}
-        path={route.path}
-        element={
-          route.component === 'Layout' ? (
-            <RouterGuard>
-              <Layout />
-            </RouterGuard>
-          ) : (
-            <RouterElement />
-          )
-        }>
-        {route.redirect ? <Route index element={<Navigate to={route.redirect} replace />} /> : null}
-        {route.children && route.children.length ? RouterRender(route.children) : null}
-      </Route>
-    )
+    return {
+      children: route.children ? RoutesRender(route.children) : undefined,
+      element: route.component === 'Layout' ? <RouterGuard><Layout /></RouterGuard> : <RouterElement />,
+      index: route.index || false,
+      path: route.path
+    }
   })
 }
+
+/**
+ * 路由对象，组件映射
+ */
+//  export function RouterRender(routes = []) {
+//     return routes.map((route) => {
+//       const RouterElement = () => {
+//         if (route.component && route.component !== 'Layout') {
+//           const PageComponent = RouterLazy(route.component)
+//           return (
+//             <RouterGuard>
+//               <PageComponent />
+//             </RouterGuard>
+//           )
+//         }
+//         return route.redirect ? route.children ? <Outlet /> : <Navigate to={route.redirect} replace /> : <Outlet />
+//       }
+//       return (
+//         <Route
+//           key={route.fullPath}
+//           path={route.path}
+//           element={
+//             route.component === 'Layout' ? (
+//               <RouterGuard>
+//                 <Layout />
+//               </RouterGuard>
+//             ) : (
+//               <RouterElement />
+//             )
+//           }>
+//           {route.redirect ? <Route index element={<Navigate to={route.redirect} replace />} /> : null}
+//           {route.children && route.children.length ? RouterRender(route.children) : null}
+//         </Route>
+//       )
+//     })
+//   }
+

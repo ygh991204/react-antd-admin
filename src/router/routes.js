@@ -139,10 +139,6 @@ export const constantRoutes = [
   {
     path: '/401',
     component: 'error/401'
-  },
-  {
-    path: '*',
-    redirect: '/404'
   }
 ]
 

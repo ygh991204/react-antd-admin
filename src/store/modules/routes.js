@@ -26,7 +26,10 @@ const routesSlice = createSlice({
   reducers: {
     addRoutes(state, { payload }) {
       const { routes, menuRoutes } = generateRoutes(payload)
-      state.routes = [...routes]
+      state.routes = [...routes, {
+        path: '*',
+        redirect: '/404'
+      }]
       state.menuRoutes = [...menuRoutes]
     }
   }

@@ -43,15 +43,7 @@ export async function routerBeforeEach(route, next) {
     if (whiteList.indexOf(route.path) !== -1) {
       next()
     } else {
-      next(
-        {
-          path: '/login',
-          query: {
-            redirect: route.fullPath
-          }
-        },
-        false
-      )
+      next({ path: '/login' }, false)
     }
   }
 }
