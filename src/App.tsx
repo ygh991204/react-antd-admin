@@ -8,9 +8,9 @@ import { useAppSelector } from './store'
 
 
 const App: React.FC = () => {
-  const routes = useAppSelector((state) => cloneDeep(state.routes.routes))
+  const routes = useAppSelector((state) => state.routes.routes)
   const antdLang = useAppSelector(state => state.language.antdLang)
-  const element = useRoutes(RoutesRender(routes))
+  const element = useRoutes(RoutesRender(cloneDeep(routes)))
   return <>
     <ConfigProvider locale={antdLang}>
       <RouterGuard>

@@ -1,4 +1,6 @@
-const assetFileExts = {
+import type { BuildOptions } from "vite"
+
+const assetFileExts: ITypeObject<RegExp> = {
   media: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i,
   img: /\.(png|jpeg|jpg|gif|svg)$/,
   fonts: /\.(woff2|woff|eot|ttf|otf)$/i,
@@ -6,8 +8,7 @@ const assetFileExts = {
   js: /\.(js)$/i
 }
 
-
-export function createBuild(isBuild: boolean) {
+export function createBuild(isBuild: boolean): BuildOptions {
   return {
     target: 'es2015',
     cssTarget: 'chrome80',
@@ -33,8 +34,8 @@ export function createBuild(isBuild: boolean) {
         },
         entryFileNames: 'static/js/[name]-[hash].js',
         assetFileNames: (assetFile) => {
-          const ext = assetFile.name.substring(assetFile.name.lastIndexOf('.'))
-          const extType = Object.keys(assetFileExts).sort().filter(v => assetFileExts[v].test(ext))[0] || '[ext]'
+          const ext = assetFile.name ? assetFile.name.substring(assetFile.name.lastIndexOf('.')) : ''
+          const extType = Object.keys(assetFileExts).filter(v => assetFileExts[v].test(ext))[0] || '[ext]'
           return `static/${extType}/[name]-[hash].[ext]`
         }
       }

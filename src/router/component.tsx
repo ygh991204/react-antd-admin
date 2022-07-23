@@ -46,7 +46,6 @@ function RouterLazy(path: string) {
 /**
  * 路由守卫，包裹对应的路由组件
  */
-
 export type RouterGuardNext = (
   options?:
     | (RouterOptions & {
@@ -60,12 +59,14 @@ export const RouterGuard: React.FC<{
   render?: React.ReactNode
   children?: React.ReactNode
 }> = ({ render, children }) => {
+
+
   const route = useRoute()
   const router = useRouter()
   const { t } = useTranslation()
   const [auth, setAuth] = useState(false)
 
-  const next: RouterGuardNext = (options, _auth) => {
+  const next: RouterGuardNext = (options, _auth = true) => {
     setAuth(!!_auth)
     if (options) {
       const _replace = !!(typeof options !== 'string' && options.replace)

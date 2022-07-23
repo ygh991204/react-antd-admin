@@ -4,7 +4,7 @@ import path from 'path'
 
 export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build'
-  const env = loadEnv(mode, process.cwd()) as any as ViteEnv
+  const env = loadEnv(mode, process.cwd()) as any as ImportMetaEnv
   return {
     plugins: createPlugins(isBuild, env),
     base: '/',

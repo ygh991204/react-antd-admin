@@ -1,6 +1,6 @@
 
 const Config = {
-  title: import.meta.env.VITE_APP_TITLE,
+  title: import.meta.env.VITE_TITLE,
   tokenKey: import.meta.env.VITE_TOKEN_KEY,
   tokenExpires: Number(import.meta.env.VITE_TOKEN_EXPIRES),
   lang: import.meta.env.VITE_LANG,

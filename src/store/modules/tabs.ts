@@ -58,7 +58,8 @@ const tabsSlice = createSlice({
       state.pages = state.pages.filter((v) => {
         return (v.meta && v.meta.affixTab) || v.path === payload.path
       })
-    },
+    }
+    
   },
 })
 

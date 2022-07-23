@@ -3,7 +3,7 @@
 interface ImportMetaEnv {
   readonly NODE_ENV: 'development' | 'production'
   readonly VITE_NODE: 'development' | 'production' | 'test'
-  readonly VITE_APP_TITLE: string
+  readonly VITE_TITLE: string
   readonly VITE_SHORT_TITLE: string
   readonly VITE_PROT: string
   readonly VITE_LANG: AppLange
