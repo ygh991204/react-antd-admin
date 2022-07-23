@@ -1,5 +1,5 @@
-import { createSlice  } from '@reduxjs/toolkit'
-import storage from '@/utils/storage'
+import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import storage, { StorageData } from '@/utils/storage'
 
 const appSlice = createSlice({
   name: 'app',
@@ -16,7 +16,7 @@ const appSlice = createSlice({
       storage.set('sideBarOpend', !state.sideBarOpend)
       state.sideBarOpend = !state.sideBarOpend
     },
-    toogleDevice(state, { payload }) {
+    toogleDevice(state, { payload }: PayloadAction<StorageData['device']>) {
       storage.set('device', payload)
       state.device = payload
     },

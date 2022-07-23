@@ -1,7 +1,8 @@
 
 import { Card } from 'antd'
+import React from 'react'
 
-const PermissionAdmin = () => {
+const PermissionAdmin: React.FC = () => {
   return (
     <Card bordered={false}>
       admin 可见

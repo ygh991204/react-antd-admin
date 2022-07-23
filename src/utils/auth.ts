@@ -18,7 +18,7 @@ export function removeToken(){
 }
 
 export function checkAuth(permissions: string[], userPermissions?: string[]) {
-  let _permissions = []
+  let _permissions: string[] = []
   if (userPermissions) {
     _permissions = userPermissions
   } else {

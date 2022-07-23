@@ -27,12 +27,12 @@ const RouterLoading = (
   </RouterLoadingWrapper>
 )
 
-const pageFiles = import.meta.glob('@/pages/**/index.jsx')
+const pageFiles = import.meta.glob('@/pages/**/index.tsx')
 
 const pages = Object.keys(pageFiles)
   .sort()
   .reduce((pages, pagePath) => {
-    const key = pagePath.replace('../pages/', '').replace('/index.jsx', '')
+    const key = pagePath.replace('../pages/', '').replace('/index.tsx', '')
     pages[key] = pageFiles[pagePath]
     return pages
   }, {} as ITypeObject<any>)
@@ -78,12 +78,8 @@ export const RouterGuard: React.FC<{
   }
 
   useEffect(() => {
-    async function beforeEach() {
-      const title = route.meta ? route.meta.title : ''
-      setPageTitle(t(title || ''))
-      await routerBeforeEach(route, next)
-    }
-    beforeEach()
+    setPageTitle(route.meta.title ? t(route.meta.title) : 'no_name')
+    routerBeforeEach(route, next)
   }, [])
 
   const dom = render || children || RouterLoading
@@ -98,6 +94,9 @@ export function RoutesRender(routes: Route[]): RouteObject[] {
         {
           index: true,
           component: <Navigate to={route.redirect} replace />,
+          path: '',
+          fullPath: '',
+          meta: {},
         },
         ...children,
       ]

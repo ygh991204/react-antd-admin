@@ -7,7 +7,7 @@ import { createStyleImportPlugin } from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 
-export function createPlugins(isBuild: boolean, env: global.ViteEnv) {
+export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
   const plugins = [react(), legacy()]
   plugins.push(
     createHtmlPlugin({

@@ -1,8 +1,9 @@
 
-import { useTranslation } from 'react-i18next/react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Alert, Card } from 'antd'
+import React from 'react'
 
-const Menu2 = () => {
+const Menu2: React.FC = () => {
   const { t } = useTranslation()
   return (
     <Card bordered={ false }>

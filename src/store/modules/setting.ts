@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Storage from '@/utils/storage'
 
 const settingSlice = createSlice({
@@ -12,11 +12,11 @@ const settingSlice = createSlice({
     }
   },
   reducers: {
-    toogleLogo(state, { payload }) {
+    toogleLogo(state, { payload }: PayloadAction<boolean>) {
       Storage.set('settingLogo', payload)
       state.logo = payload
     },
-    toogleTabs(state, { payload }) {
+    toogleTabs(state, { payload }: PayloadAction<boolean>) {
       Storage.set('settingTabs', payload)
       state.tabs = payload
     }

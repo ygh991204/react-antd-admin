@@ -90,11 +90,6 @@ export const constantRoutes: CaseRoute[] = [
             meta: { title: 'menus.componentImageCropper' },
           },
           {
-            path: 'richtext',
-            component: 'component/richText',
-            meta: { title: 'menus.componentRichText' },
-          },
-          {
             path: 'icons',
             component: 'component/icons',
             meta: {
@@ -107,14 +102,7 @@ export const constantRoutes: CaseRoute[] = [
             meta: {
               title: 'menus.componentCharts',
             },
-          },
-          {
-            path: 'basiclist',
-            component: 'component/basicList',
-            meta: {
-              title: 'menus.componentBasicList',
-            },
-          },
+          }
         ],
       },
       {
@@ -150,7 +138,7 @@ export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] 
       ...route,
       fullPath,
       children: children,
-      meta: route.meta ? { ...route.meta } : undefined,
+      meta: route.meta ? { ...route.meta } : {},
     }
   })
 }

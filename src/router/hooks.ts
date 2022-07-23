@@ -63,14 +63,21 @@ export function useRouter() {
   }
 }
 
-export type RouteLocation = ReturnType<typeof useRoute>
-
+export interface RouteLocation {
+  readonly fullPath: string
+  readonly hash: string
+  readonly matched: Route[]
+  readonly match: Route
+  readonly meta: RouteMeta
+  readonly params: IAnyObject
+  readonly path: string
+  readonly query: IAnyObject
+}
 
 /**
  * 当前路由对象
  */
-export function useRoute() {
-
+export function useRoute(): RouteLocation {
   const location = useLocation()
   const routes = useAppSelector((state) => state.routes.routes)
   const param = useParams()
@@ -87,7 +94,6 @@ export function useRoute() {
     const _query = search ? { ...qs.parse(search.substring(1)) } : {}
     return _query as IAnyObject
   }, [search])
-
 
   const params = useMemo(() => {
     const state = location.state as IAnyObject

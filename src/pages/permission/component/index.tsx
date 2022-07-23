@@ -1,8 +1,9 @@
 
 import { Card, Button, Space } from 'antd'
-import { Auth } from '@/components'
+import Auth from '@/components/Auth'
+import React from 'react'
 
-const PermissionComponent = () => {
+const PermissionComponent: React.FC = () => {
   return (
     <Card bordered={false}>
       <Space>

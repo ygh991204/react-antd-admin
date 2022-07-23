@@ -20,11 +20,11 @@ declare interface CaseRoute {
 }
 
 declare interface Route {
-  path?: string
-  fullPath?: string
+  path: string
+  fullPath: string,
+  meta: RouteMeta,
   component?: React.ReactNode
   redirect?: string
   children?: Route[]
-  meta?: RouteMeta
   index?: boolean
 }

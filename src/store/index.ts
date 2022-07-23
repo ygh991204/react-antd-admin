@@ -11,7 +11,7 @@ import language from './modules/language'
 import routes from './modules/routes'
 import setting from './modules/setting'
 import user from './modules/user'
-import tabsReducer from './modules/tabs'
+import tabs from './modules/tabs'
 
 /** 如果时 dev 环境， 添加 logger */
 // if (process.env.NODE_ENV === 'dev') {
@@ -19,7 +19,7 @@ import tabsReducer from './modules/tabs'
 // }
 
 const store = configureStore({
-  reducer: { app, language, routes, setting, user}
+  reducer: { app, language, routes, setting, user, tabs}
 })
 
 

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 
 /** antd语言 */
@@ -55,7 +55,7 @@ const languageSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(changeAppLange.fulfilled, (state, { payload }: PayloadAction<AppLange>) => {
+    builder.addCase(changeAppLange.fulfilled, (state, { payload }) => {
       state.lang = payload
       state.antdLang = antdLangs[payload]
     })

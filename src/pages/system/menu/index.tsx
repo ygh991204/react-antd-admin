@@ -1,5 +1,6 @@
+import React from "react"
 
-const SystemMenu = () => {
+const SystemMenu:React.FC = () => {
   return (
     <div>
         菜单管理

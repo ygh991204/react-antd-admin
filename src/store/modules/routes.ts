@@ -8,6 +8,7 @@ export function getMenuRoutes(routes: Route[]) {
   return routes.filter((v) => v.path === '/')[0].children || []
 }
 
+
 const routesSlice = createSlice({
   name: 'routes',
   initialState: {
@@ -20,6 +21,8 @@ const routesSlice = createSlice({
       state.routes.push({
         path: '*',
         redirect: '/404',
+        fullPath: '',
+        meta: {},
       })
       state.menuRoutes.push(payload)
     }

@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { Row, Col, Card, Avatar, Tabs, List, Form, Input, Button, Space } from 'antd'
+import { useAppSelector } from '@/store'
 const { TabPane } = Tabs
 
 const ChangeInfo = () => {
-  const user = useSelector(state => state.user.user)
+  const user = useAppSelector(state => state.user.user)
   const [form] = Form.useForm()
 
-  const formFinish = (value) => {
+  const formFinish = (value: IAnyObject) => {
     console.log(value)
   }
 
@@ -41,7 +41,7 @@ const ChangeInfo = () => {
 const ChangePassWord = () => {
   const [form] = Form.useForm()
 
-  const formFinish = (value) => {
+  const formFinish = (value: IAnyObject) => {
     console.log(value)
   }
 
@@ -77,7 +77,7 @@ const ChangePassWord = () => {
 }
 
 const Personal = () => {
-  const user = useSelector(state => state.user.user)
+  const user = useAppSelector(state => state.user.user)
   return (
     <Row gutter={[20, 20]}>
       <Col xxl={8} xl={8} lg={24} md={24} sm={24} xs={24}>

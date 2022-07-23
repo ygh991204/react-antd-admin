@@ -3,7 +3,6 @@ import { Result, Button } from 'antd'
 import { useRouter } from '@/router'
 import React from 'react'
 
-
 const Error404: React.FC = () => {
   const router = useRouter()
   const { t } = useTranslation()

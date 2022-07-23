@@ -15,7 +15,7 @@ import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 function showRoutes(routes: Route[] = []): Route[] {
   return routes.filter((route) => {
-    if (route.meta && route.meta.hidden) {
+    if (route.meta.hidden) {
       return false
     } else {
       if (route.children) {
@@ -30,9 +30,9 @@ function formatRoutes(routes: Route[] = []): ItemType[] {
   return routes.map((route) => {
     return {
       children: route.children ? formatRoutes(route.children) : undefined,
-      key: route.fullPath || '',
-      label: <Translation>{(t) => t(route.meta && route.meta.title ? route.meta.title : '')}</Translation>,
-      icon: route.meta && route.meta.icon ? <SvgIcon name={route.meta.icon} /> : null,
+      key: route.fullPath,
+      label: <Translation>{(t) => route.meta.title ? t(route.meta.title) : 'no_name'}</Translation>,
+      icon: route.meta.icon ? <SvgIcon name={route.meta.icon} /> : null,
     }
   })
 }
