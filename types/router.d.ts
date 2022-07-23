@@ -1,8 +1,5 @@
 /// <reference types="react" />
 
-/**
- * 路由源信息
- */
 declare interface RouteMeta {
   hidden?: boolean
   title?: string

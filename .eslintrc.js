@@ -23,7 +23,7 @@ module.exports = {
       'component': true,
       'html': true
     }],
-    'react-hooks/rules-of-hooks': [0], // Checks rules of Hooks
+    'react-hooks/rules-of-hooks': [0],
     'react/jsx-uses-vars': 'error',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',

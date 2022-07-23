@@ -59,8 +59,8 @@ const tabsSlice = createSlice({
         return (v.meta && v.meta.affixTab) || v.path === payload.path
       })
     }
-    
-  },
+
+  }
 })
 
 export const { delAllTabPage, delTabsPage, addTabsPage, delOtherTabPage } = tabsSlice.actions
