@@ -12,7 +12,6 @@ const { TabPane } = Tabs
 const getTabsPages = () => store.getState().tabs.pages
 
 const TabsPages: React.FC = () => {
-    
   const { t } = useTranslation()
   const tabsPages = useAppSelector((state) => state.tabs.pages)
   const dispatch = useAppDispatch()
@@ -55,29 +54,29 @@ const TabsPages: React.FC = () => {
       {
         key: 'closeCurTab',
         label: '关闭标签',
-        disabled: hasTabs.filter((v) => v.path === route.path).length === 0,
+        disabled: hasTabs.filter((v) => v.path === route.path).length === 0
       },
       {
         key: 'closeOtherTab',
         label: '关闭其他',
-        disabled: hasTabs.filter((v) => v.path !== route.path).length === 0,
+        disabled: hasTabs.filter((v) => v.path !== route.path).length === 0
       },
       {
         key: 'closeAllTab',
         label: '关闭全部',
-        disabled: hasTabs.length === 0,
-      },
+        disabled: hasTabs.length === 0
+      }
     ]
   }, [tabsPages, route])
 
   return (
-    <div className="app-navbar-tabs">
-      <div className="app-navbar-tabs-main">
+    <div className='app-navbar-tabs'>
+      <div className='app-navbar-tabs-main'>
         <Tabs
           hideAdd
-          type="editable-card"
+          type='editable-card'
           tabBarGutter={5}
-          size="small"
+          size='small'
           activeKey={route.path}
           defaultActiveKey={route.path}
           onChange={tabChange}
@@ -91,7 +90,7 @@ const TabsPages: React.FC = () => {
           ))}
         </Tabs>
       </div>
-      <div className="app-navbar-tabs-oper">
+      <div className='app-navbar-tabs-oper'>
         <Dropdown
           overlay={
             <Menu
@@ -102,7 +101,7 @@ const TabsPages: React.FC = () => {
                 if (key === 'closeOtherTab') {
                   dispatch(
                     delOtherTabPage({
-                      path: route.path,
+                      path: route.path
                     })
                   )
                   toLastView()
@@ -115,7 +114,7 @@ const TabsPages: React.FC = () => {
               items={operMenus}
             />
           }>
-          <div className="app-navbar-tabs-oper-item">
+          <div className='app-navbar-tabs-oper-item'>
             <DownOutlined style={{ fontSize: '14px' }} />
           </div>
         </Dropdown>

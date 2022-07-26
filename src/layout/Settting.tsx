@@ -29,12 +29,12 @@ const Setting: React.FC = () => {
           onClick={() => {
             setVisible(!visible)
           }}
-          size="large"
-          type="primary"
+          size='large'
+          type='primary'
         />
       </SettingButton>
       <Drawer
-        placement="right"
+        placement='right'
         width={278}
         visible={visible}
         onClose={() => {
@@ -51,7 +51,7 @@ const Setting: React.FC = () => {
               }}
             />
           }>
-          <List.Item.Meta title="logo" />
+          <List.Item.Meta title='logo' />
         </List.Item>
         <List.Item
           extra={
@@ -63,7 +63,7 @@ const Setting: React.FC = () => {
               }}
             />
           }>
-          <List.Item.Meta title="tabs" />
+          <List.Item.Meta title='tabs' />
         </List.Item>
       </Drawer>
     </>

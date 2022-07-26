@@ -16,7 +16,7 @@ const SvgIcon: React.FC<{
 }> = ({ name, prefix = 'icon', ...props }) => {
   const symbolId = `#${prefix}-${name}`
   return (
-    <Svg aria-hidden="true" {...props}>
+    <Svg aria-hidden='true' {...props}>
       <use href={symbolId} />
     </Svg>
   )

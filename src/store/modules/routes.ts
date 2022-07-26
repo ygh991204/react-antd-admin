@@ -12,7 +12,7 @@ function createRoutes(menus: CaseRoute[] = []) {
   const routes = formatRoutes(_constantRoutes)
   return {
     routes,
-    menuRoutes: getMenuRoutes(routes) as Route[],
+    menuRoutes: getMenuRoutes(routes) as Route[]
   }
 }
 
@@ -22,7 +22,7 @@ const routesSlice = createSlice({
   name: 'routes',
   initialState: {
     routes,
-    menuRoutes,
+    menuRoutes
   },
   reducers: {
     addRoutes(state, { payload }: PayloadAction<CaseRoute[]>) {
@@ -31,11 +31,11 @@ const routesSlice = createSlice({
         path: '*',
         redirect: '/404',
         fullPath: '',
-        meta: {},
+        meta: {}
       })
       state.menuRoutes = menuRoutes
     }
-  },
+  }
 })
 
 export const { addRoutes } = routesSlice.actions

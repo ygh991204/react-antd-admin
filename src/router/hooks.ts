@@ -19,22 +19,22 @@ export function useRouter() {
   function _to(options: RouterOptions | string, replace = false) {
     if (typeof options === 'string') {
       navigate(options, {
-        replace,
+        replace
       })
     } else {
       const { query, params, path } = options
       const _query =
-        query && Object.keys(query).length
-          ? omitBy(query, (val) => val === undefined || val === null || val === '')
-          : null
+        query && Object.keys(query).length ?
+          omitBy(query, (val) => val === undefined || val === null || val === '') :
+          null
       const _path = path + (_query ? '?' + qs.stringify(_query) : '')
       const _params =
-        params && Object.keys(params).length
-          ? omitBy(params, (val) => val === undefined || val === null || val === '')
-          : null
+        params && Object.keys(params).length ?
+          omitBy(params, (val) => val === undefined || val === null || val === '') :
+          null
       navigate(_path, {
         replace,
-        state: _params,
+        state: _params
       })
     }
   }
@@ -59,7 +59,7 @@ export function useRouter() {
     push,
     replace,
     go,
-    back,
+    back
   }
 }
 
@@ -119,14 +119,14 @@ export function useRoute(): RouteLocation {
         if (!prev.length) {
           const layoutRoutes = routes.filter((v) => v.path === '/')[0].children || []
           const _curRoute = layoutRoutes.filter((v) => v.fullPath === item)[0]
-          prev = _curRoute
-            ? [
-                {
-                  ..._curRoute,
-                  path: _curRoute.fullPath,
-                },
-              ]
-            : []
+          prev = _curRoute ?
+            [
+              {
+                ..._curRoute,
+                path: _curRoute.fullPath
+              }
+            ] :
+            []
         }
       }
       return prev
@@ -157,6 +157,6 @@ export function useRoute(): RouteLocation {
     meta,
     params,
     path,
-    query,
+    query
   }
 }

@@ -20,7 +20,6 @@ import App from '@/App'
 
 import '@/i18n'
 
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <HashRouter>

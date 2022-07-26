@@ -29,32 +29,34 @@ function dataURLtoFile(dataurl: string, name = '') {
 }
 
 interface ImageCropperProps {
-  url?: string
-  onReady?: () => void
-  aspectRatio?: number,
-  cropper?: React.MutableRefObject<Cropper>
+  url?: string;
+  onReady?: () => void;
+  aspectRatio?: number;
 }
 
-export interface ImageCropperEvents {
-  getImageBase64: () => string
-  getImageFile: (name: string) => File
-  initCropper: (url: string) => void
-  cropperRotateRight: () => void
-  cropperRotateLeft: () => void
+export interface ImageCropperInstance {
+  // 获取base64格式
+  getImageBase64: () => string;
+  // 获取图片文件
+  getImageFile: (name: string) => File;
+  initCropper: (url: string) => void;
+  cropperRotateRight: () => void;
+  cropperRotateLeft: () => void;
 }
 
-function ImageCropper({ aspectRatio = NaN, onReady, url = '' }: ImageCropperProps) {
-    const imageEl = useRef(null)
+const ImageCropper = React.forwardRef<ImageCropperInstance, ImageCropperProps>(
+  ({ aspectRatio = NaN, onReady, url = '' }, ref) => {
+    const imageEl = useRef<HTMLImageElement>(null)
     const cropper = useRef<Cropper | null>(null)
     const [loading, setLoading] = useState(false)
 
-    // useImperativeHandle(ref, () => ({
-    //   getImageBase64,
-    //   getImageFile,
-    //   initCropper,
-    //   cropperRotateRight,
-    //   cropperRotateLeft,
-    // }))
+    useImperativeHandle(ref, () => ({
+      getImageBase64,
+      getImageFile,
+      initCropper,
+      cropperRotateRight,
+      cropperRotateLeft
+    }))
 
     const initCropper = useCallback((url: string) => {
       setLoading(true)
@@ -80,13 +82,13 @@ function ImageCropper({ aspectRatio = NaN, onReady, url = '' }: ImageCropperProp
     }, [])
 
     const getImageBase64 = useCallback(() => {
-      return cropper.current
-        ? cropper.current
-            .getCroppedCanvas({
-              imageSmoothingQuality: 'high',
-            })
-            .toDataURL('image/png')
-        : ''
+      return cropper.current ?
+        cropper.current
+          .getCroppedCanvas({
+            imageSmoothingQuality: 'high'
+          })
+          .toDataURL('image/png') :
+        ''
     }, [])
 
     const getImageFile = useCallback((name: string) => {
@@ -110,7 +112,7 @@ function ImageCropper({ aspectRatio = NaN, onReady, url = '' }: ImageCropperProp
           zoomOnWheel: true, // 鼠标滚轮放大
           modal: true, // 黑色遮罩
           guides: true, // 虚线
-          ready: cropperReady,
+          ready: cropperReady
         })
         return _cropper
       } else {
@@ -131,8 +133,8 @@ function ImageCropper({ aspectRatio = NaN, onReady, url = '' }: ImageCropperProp
     return (
       <CropperWrapper>
         <Space style={{ paddingBottom: '15px' }}>
-          <Button type="primary" onClick={cropperRotateRight} icon={<RedoOutlined />} />
-          <Button type="primary" onClick={cropperRotateLeft} icon={<UndoOutlined />} />
+          <Button type='primary' onClick={cropperRotateRight} icon={<RedoOutlined />} />
+          <Button type='primary' onClick={cropperRotateLeft} icon={<UndoOutlined />} />
         </Space>
         <Spin spinning={loading}>
           <CropperInner>
@@ -143,7 +145,5 @@ function ImageCropper({ aspectRatio = NaN, onReady, url = '' }: ImageCropperProp
     )
   }
 )
-
-// ImageCropper.use = s
 
 export default ImageCropper

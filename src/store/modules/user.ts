@@ -6,17 +6,17 @@ import { setToken, removeToken } from '@/utils/auth'
 import AdminAvater from '@/assets/images/admin_avater.png'
 import UserAvater from '@/assets/images/user_avater.png'
 
-export const login = createAsyncThunk('user/login', async (data: ApiLoginData) => {
+export const login = createAsyncThunk('user/login', async(data: ApiLoginData) => {
   const res = await userLogin(data)
   return res.data
 })
 
-export const logout = createAsyncThunk('user/logout', async () => {
+export const logout = createAsyncThunk('user/logout', async() => {
   const res = await userLogout()
   return res
 })
 
-export const userInfo = createAsyncThunk('user/userInfo', async () => {
+export const userInfo = createAsyncThunk('user/userInfo', async() => {
   const res = await getUserInfo()
   return res.data
 })
@@ -32,7 +32,7 @@ const initialState: UserState = {
   user: {},
   token: null,
   permissions: [],
-  loadMenus: false,
+  loadMenus: false
 }
 
 export const userSlice = createSlice({
@@ -41,7 +41,7 @@ export const userSlice = createSlice({
   reducers: {
     setLoadMenus(state, { payload }) {
       state.loadMenus = !!payload
-    },
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, { payload }) => {
@@ -64,7 +64,7 @@ export const userSlice = createSlice({
       state.user = { ...payload, avater: payload.role === 'admin' ? AdminAvater : UserAvater }
       state.permissions = payload.permissions
     })
-  },
+  }
 })
 
 export const { setLoadMenus } = userSlice.actions

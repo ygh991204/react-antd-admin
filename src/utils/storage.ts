@@ -18,7 +18,7 @@ function storageSet<K extends StorageType = StorageType, T extends StorageData[K
   localStorage.setItem(
     key,
     JSON.stringify({
-      value,
+      value
     })
   )
 }
@@ -35,7 +35,7 @@ const Storage = {
   set: storageSet,
   remove: storageRemove,
   get: storageGet,
-  clear: storageClear,
+  clear: storageClear
 }
 
 export default Storage

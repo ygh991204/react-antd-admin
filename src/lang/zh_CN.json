@@ -29,10 +29,6 @@
   },
   "menus": {
     "dashboard": "首页",
-    "system": "系统管理",
-    "systemUser": "用户管理",
-    "systemMenu": "菜单管理",
-    "systemRole": "角色管理",
     "menus": "多级菜单",
     "menusMenu1": "菜单1",
     "menusMenu1-1": "菜单1-1",
@@ -46,11 +42,21 @@
     "componentRichText": "富文本",
     "componentIcons": "图标",
     "componentCharts": "图表",
-    "componentBasicList": "标准列表",
     "personal": "个人中心",
-    "noName": "no-name"
+    "noName": "no-name",
+    "list": "列表页",
+    "listQueryTable": "查询表格",
+    "form": "表单页",
+    "formBasis": "基础表单页",
+    "detail": "详情页",
+    "detailBasis": "基础详情页",
+    "i18n": "国际化",
+    "doc": "文档"
   },
   "componentImageCropper": {
     "see": "查看结果"
+  },
+  "i18n": {
+    "title": "本项目国际化基于 react-i18next"
   }
 }

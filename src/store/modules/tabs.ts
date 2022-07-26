@@ -12,7 +12,7 @@ function getAffixTabRoutes(routes: Route[], tags: RouteLocation[] = []) {
         match: route,
         matched: [],
         params: {},
-        query: {},
+        query: {}
       })
     }
     if (route.children) {
@@ -26,7 +26,7 @@ const tabsSlice = createSlice({
   name: 'tabs',
 
   initialState: {
-    pages: getAffixTabRoutes(formatRoutes(constantRoutes)),
+    pages: getAffixTabRoutes(formatRoutes(constantRoutes))
   },
 
   reducers: {
@@ -34,7 +34,7 @@ const tabsSlice = createSlice({
       if (state.pages.some((v) => v.path === payload.path)) return
       state.pages.push(
         Object.assign({}, payload, {
-          title: payload.meta.title || 'no-name',
+          title: payload.meta.title || 'no-name'
         })
       )
     },

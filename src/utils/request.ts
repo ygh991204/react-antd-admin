@@ -6,9 +6,8 @@ import Storage from './storage'
 
 const service = axios.create({
   baseURL: Config.baseUrl,
-  timeout: 6000,
+  timeout: 6000
 })
-
 
 service.interceptors.request.use(
   (config) => {
@@ -35,7 +34,7 @@ service.interceptors.response.use(
         return data
       } else {
         notification.error({
-          message: data.msg,
+          message: data.msg
         })
         return Promise.reject('')
       }

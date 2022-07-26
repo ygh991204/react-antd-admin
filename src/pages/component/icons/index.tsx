@@ -22,8 +22,8 @@ const svgNames = Object.keys(modulesFiles)
 const ComponentIcons: React.FC = () => {
   return (
     <Card bordered={false}>
-      <Tabs defaultActiveKey="base">
-        <TabPane tab="icons" key="icons">
+      <Tabs defaultActiveKey='base'>
+        <TabPane tab='icons' key='icons'>
           <Row gutter={[20, 20]} style={{ marginTop: '20px' }}>
             {svgNames.map((v) => (
               <Col xxl={2} xl={2} lg={4} md={4} sm={6} xs={6} key={v}>
@@ -31,7 +31,7 @@ const ComponentIcons: React.FC = () => {
                   text={'<SvgIcon name="' + v + '" />'}
                   onCopy={(text) => {
                     notification.success({
-                      message: text + ' 复制成功',
+                      message: text + ' 复制成功'
                     })
                   }}>
                   <div style={{ textAlign: 'center', cursor: 'pointer' }}>
@@ -43,8 +43,8 @@ const ComponentIcons: React.FC = () => {
             ))}
           </Row>
         </TabPane>
-        <TabPane tab="ant design icons" key="ant">
-          <Link href="https://ant.design/components/icon-cn/" target="_blank">
+        <TabPane tab='ant design icons' key='ant'>
+          <Link href='https://ant.design/components/icon-cn/' target='_blank'>
             https://ant.design/components/icon-cn/
           </Link>
         </TabPane>

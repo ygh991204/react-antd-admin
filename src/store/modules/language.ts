@@ -18,36 +18,39 @@ const defaultLang = Storage.get('lang') || Config.lang
 
 const dayjsLangs = {
   zh_CN: 'zh',
-  en_US: 'en',
+  en_US: 'en'
 }
 
 const antdLangs = {
   zh_CN: AntdZhCN,
-  en_US: AntdEnUS,
+  en_US: AntdEnUS
 }
 
 dayjs.locale(dayjsLangs[defaultLang])
 
-export const changeAppLange = createAsyncThunk('language/changeAppLange', async (lang: AppLange) => {
-  dayjs.locale(dayjsLangs[lang])
-  await i18n.changeLanguage(lang)
-  Storage.set('lang', lang)
-  return lang
-})
+export const changeAppLange = createAsyncThunk(
+  'language/changeAppLange',
+  async(lang: AppLange) => {
+    dayjs.locale(dayjsLangs[lang])
+    await i18n.changeLanguage(lang)
+    Storage.set('lang', lang)
+    return lang
+  }
+)
 
 interface LanguageState {
-  lang: AppLange
-  langs: { key: AppLange; label: string }[]
-  antdLang: Locale
+  lang: AppLange;
+  langs: { key: AppLange; label: string }[];
+  antdLang: Locale;
 }
 
 const initialState: LanguageState = {
   langs: [
     { key: 'zh_CN', label: '简体中文' },
-    { key: 'en_US', label: 'English' },
+    { key: 'en_US', label: 'English' }
   ],
   lang: defaultLang,
-  antdLang: antdLangs[defaultLang],
+  antdLang: antdLangs[defaultLang]
 }
 
 const languageSlice = createSlice({
@@ -59,7 +62,7 @@ const languageSlice = createSlice({
       state.lang = payload
       state.antdLang = antdLangs[payload]
     })
-  },
+  }
 })
 
 export default languageSlice.reducer

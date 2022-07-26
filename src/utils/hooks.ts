@@ -15,7 +15,7 @@ export function useResize() {
     }
   }, [])
   return {
-    windowWidth,
+    windowWidth
   }
 }
 

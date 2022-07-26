@@ -1,7 +1,40 @@
 {
+  "typescript.tsdk": "./node_modules/typescript/lib",
   "i18n-ally.localesPaths": ["src/lang"],
-  "i18n-ally.enabledParsers": ["json"], //这个最好加上，如果是其他格式，如ts，不加上就无效了
+  "i18n-ally.enabledParsers": ["json"],
   "i18n-ally.keystyle": "nested", // 翻译路径格式,
   "i18n-ally.sourceLanguage": "en_US", // 翻译源语言
-  "i18n-ally.displayLanguage": "zh_CN" //显示语言， 这里也可以设置显示英文为en,
+  "i18n-ally.displayLanguage": "zh_CN", //显示语言
+  "editor.tabSize": 4,
+  "editor.formatOnSave": false,
+  "eslint.validate": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 140,
+  "prettier.jsxBracketSameLine": true
 }

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import storage, { StorageData } from '@/utils/storage'
 
 const appSlice = createSlice({
@@ -8,7 +8,7 @@ const appSlice = createSlice({
     const sideBarOpend = storage.get('sideBarOpend')
     return {
       device: device || 'desktop',
-      sideBarOpend: sideBarOpend === null ? true : sideBarOpend,
+      sideBarOpend: sideBarOpend === null ? true : sideBarOpend
     }
   },
   reducers: {

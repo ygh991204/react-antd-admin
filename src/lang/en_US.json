@@ -29,10 +29,6 @@
   },
   "menus": {
     "dashboard": "Dashboard",
-    "system": "System Manage",
-    "systemUser": "User Manage",
-    "systemMenu": "Menu Manage",
-    "systemRole": "Role Manage",
     "menus": "Multi level menu",
     "menusMenu1": "Menu 1",
     "menusMenu1-1": "Menu 1-1",
@@ -46,11 +42,21 @@
     "componentRichText": "Rich text",
     "componentIcons": "Icons",
     "componentCharts": "Charts",
-    "componentBasicList": "Basic list",
     "personal": "Personal Center",
-    "noName": "no-name"
+    "noName": "no-name",
+    "list": "List",
+    "listQueryTable": "Search Table",
+    "form": "Form",
+    "formBasis": "Basic form page",
+    "detail": "Details",
+    "detailBasis": "Basic Details Page",
+    "i18n": "I18n",
+    "doc": "Documentation"
   },
   "componentImageCropper": {
     "see": "View Results"
+  },
+  "i18n": {
+    "title": "The internationalization of this project is based on react-i18next"
   }
 }

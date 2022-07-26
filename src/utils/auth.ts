@@ -8,12 +8,12 @@ export function getToken() {
 }
 
 export function setToken(token: string, rememberMe?: boolean) {
-  return rememberMe
-    ? Cookies.set(Config.tokenKey, token, { expires: Config.tokenExpires })
-    : Cookies.set(Config.tokenKey, token)
+  return rememberMe ?
+    Cookies.set(Config.tokenKey, token, { expires: Config.tokenExpires }) :
+    Cookies.set(Config.tokenKey, token)
 }
 
-export function removeToken(){
+export function removeToken() {
   return Cookies.remove(Config.tokenKey)
 }
 

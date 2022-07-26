@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosPromise } from 'axios'
+import type { AxiosRequestConfig } from 'axios'
 
 declare module 'axios' {
   export interface AxiosInstance {
@@ -10,16 +10,5 @@ declare module 'axios' {
     post<T = any, R = Api.Response<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>
     put<T = any, R = Api.Response<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>
     patch<T = any, R = Api.Response<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>
-  }
-}
-
-declare namespace Api {
-  /**
-   * 定义接口返回的固定格式
-   */
-  export interface Response<T = any> {
-    code: number
-    msg: string
-    data: T
   }
 }

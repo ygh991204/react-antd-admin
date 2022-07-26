@@ -8,7 +8,7 @@ export function login(data: ApiLoginData) {
   return request<UserDb>({
     url: '/api/v1/login',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -16,7 +16,7 @@ export function login(data: ApiLoginData) {
 export function getMenus() {
   return request<CaseRoute[]>({
     url: '/api/v1/menus',
-    method: 'post',
+    method: 'post'
   })
 }
 
@@ -24,7 +24,7 @@ export function getMenus() {
 export function getUserInfo() {
   return request<RoleDb & UserDb>({
     url: '/api/v1/userinfo',
-    method: 'post',
+    method: 'post'
   })
 }
 
@@ -32,6 +32,6 @@ export function getUserInfo() {
 export function logout() {
   return request({
     url: '/api/v1/logout',
-    method: 'post',
+    method: 'post'
   })
 }

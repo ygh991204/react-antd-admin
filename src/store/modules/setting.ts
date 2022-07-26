@@ -8,7 +8,7 @@ const settingSlice = createSlice({
     const tabs = Storage.get('settingTabs')
     return {
       logo: logo === null ? true : logo,
-      tabs: tabs === null ? true : tabs,
+      tabs: tabs === null ? true : tabs
     }
   },
   reducers: {

@@ -32,7 +32,7 @@ function formatRoutes(routes: Route[] = []): ItemType[] {
       children: route.children ? formatRoutes(route.children) : undefined,
       key: route.fullPath,
       label: <Translation>{(t) => route.meta.title ? t(route.meta.title) : 'no_name'}</Translation>,
-      icon: route.meta.icon ? <SvgIcon name={route.meta.icon} /> : null,
+      icon: route.meta.icon ? <SvgIcon name={route.meta.icon} /> : null
     }
   })
 }
@@ -40,7 +40,7 @@ function formatRoutes(routes: Route[] = []): ItemType[] {
 const LogoTitle = () => {
   const sideBarOpend = useAppSelector((state) => state.app.sideBarOpend)
   const [show, setShow] = useState(true)
-  const handleShow = async (sideBarOpend: boolean) => {
+  const handleShow = async(sideBarOpend: boolean) => {
     if (sideBarOpend) {
       await wait(100)
       setShow(true)
@@ -51,7 +51,7 @@ const LogoTitle = () => {
   useEffect(() => {
     handleShow(sideBarOpend)
   }, [sideBarOpend])
-  return <>{show ? <span className="app-logo-title">React Antd Admin</span> : null}</>
+  return <>{show ? <span className='app-logo-title'>React Antd Admin</span> : null}</>
 }
 
 const SideBar: React.FC = () => {
@@ -86,20 +86,20 @@ const SideBar: React.FC = () => {
     <>
       {sideBarOpend && device === 'mobile' ? (
         <div
-          className="app-sidebar-drawer"
+          className='app-sidebar-drawer'
           onClick={() => {
             dispatch(closeSideBar())
           }}
         />
       ) : null}
-      <div className="app-sidebar">
+      <div className='app-sidebar'>
         {logo ? (
-          <div className="app-logo">
-            <img src={Logo} className="app-logo-img" />
+          <div className='app-logo'>
+            <img src={Logo} className='app-logo-img' />
             <LogoTitle />
           </div>
         ) : null}
-        <div className="app-sidebar-main">
+        <div className='app-sidebar-main'>
           <Menu
             inlineCollapsed={!sideBarOpend}
             defaultSelectedKeys={selectedKeys}
@@ -118,8 +118,8 @@ const SideBar: React.FC = () => {
             }}
             subMenuCloseDelay={0.3}
             subMenuOpenDelay={0.3}
-            mode="inline"
-            theme="dark"
+            mode='inline'
+            theme='dark'
             items={menuRoutes}
           />
         </div>

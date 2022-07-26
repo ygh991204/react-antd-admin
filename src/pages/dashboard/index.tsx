@@ -7,7 +7,6 @@ import SalesCategoryChart from './SalesCategoryChart'
 import UserSourceChart from './UserSourceChart'
 import SalesChart from './SalesChart'
 
-
 const CardHeader: React.FC<{
   title: string
   data: string
@@ -34,10 +33,10 @@ const DashboardAnalyze: React.FC = () => {
   return (
     <>
       <Row gutter={[20, 20]}>
-        <CardHeader title={t('dashboard.totalSales')} data="¥ 199,120" />
-        <CardHeader title={t('dashboard.paysCount')} data="4,012" />
-        <CardHeader title={t('dashboard.totalUserCount')} data="21,999" />
-        <CardHeader title={t('dashboard.operEffect')} data="87%" />
+        <CardHeader title={t('dashboard.totalSales')} data='¥ 199,120' />
+        <CardHeader title={t('dashboard.paysCount')} data='4,012' />
+        <CardHeader title={t('dashboard.totalUserCount')} data='21,999' />
+        <CardHeader title={t('dashboard.operEffect')} data='87%' />
       </Row>
       <SalesChart />
       <Row gutter={[20, 20]} style={{ marginTop: '20px' }}>

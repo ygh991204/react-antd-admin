@@ -23,7 +23,7 @@ const RouterLoadingWrapper = styled.div`
 `
 const RouterLoading = (
   <RouterLoadingWrapper>
-    <Spin size="large" />
+    <Spin size='large' />
   </RouterLoadingWrapper>
 )
 
@@ -39,7 +39,7 @@ const pages = Object.keys(pageFiles)
 
 function RouterLazy(path: string) {
   return loadable(pages[path], {
-    fallback: RouterLoading,
+    fallback: RouterLoading
   })
 }
 
@@ -48,10 +48,10 @@ function RouterLazy(path: string) {
  */
 export type RouterGuardNext = (
   options?:
-    | (RouterOptions & {
-        replace?: boolean
-      })
-    | string,
+  | (RouterOptions & {
+    replace?: boolean
+  })
+  | string,
   _auth?: boolean
 ) => void
 
@@ -59,8 +59,6 @@ export const RouterGuard: React.FC<{
   render?: React.ReactNode
   children?: React.ReactNode
 }> = ({ render, children }) => {
-
-
   const route = useRoute()
   const router = useRouter()
   const { t } = useTranslation()
@@ -79,7 +77,7 @@ export const RouterGuard: React.FC<{
   }
 
   useEffect(() => {
-    setPageTitle(route.meta.title ? t(route.meta.title) : 'no_name')
+    setPageTitle(route.meta.title ? t(route.meta.title) : '')
     routerBeforeEach(route, next)
   }, [])
 
@@ -97,9 +95,9 @@ export function RoutesRender(routes: Route[]): RouteObject[] {
           component: <Navigate to={route.redirect} replace />,
           path: '',
           fullPath: '',
-          meta: {},
+          meta: {}
         },
-        ...children,
+        ...children
       ]
     }
     const RouterElement: React.FC = () => {
@@ -126,7 +124,7 @@ export function RoutesRender(routes: Route[]): RouteObject[] {
           <RouterElement />
         ),
       index: route.index || false,
-      path: route.path,
+      path: route.path
     }
   })
 }

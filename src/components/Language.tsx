@@ -17,7 +17,7 @@ const Language: React.FC<{
           }}
           items={langs.map((v) => ({
             ...v,
-            disabled: lang === v.key,
+            disabled: lang === v.key
           }))}
         />
       }>

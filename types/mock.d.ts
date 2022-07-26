@@ -12,3 +12,11 @@ declare interface RoleDb {
   roleName: string
   permissions: string[]
 }
+
+declare interface BasisListItem {
+  id: string,
+  name: string,
+  description: string,
+  createTime: string,
+  status: 1 | 2
+}
