@@ -9,6 +9,7 @@ import path from 'path'
 
 export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
   const plugins = [react(), legacy()]
+  console.log(isBuild, env)
   plugins.push(
     createHtmlPlugin({
       minify: isBuild,

@@ -12,7 +12,7 @@ const userLogin = createApi('/api/v1/login', 'post', ({ body }) => {
 })
 
 /** 退出登录 */
-const userLogout = createApi('/api/v1/logout', 'post', ({ body }) => {
+const userLogout = createApi('/api/v1/logout', 'post', () => {
   return response(null)
 })
 

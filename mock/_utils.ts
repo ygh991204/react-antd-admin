@@ -4,7 +4,7 @@ export function response(data: any = null, code = 200, msg = '操作成功') {
   return {
     code,
     data,
-    msg,
+    msg
   }
 }
 
@@ -18,7 +18,7 @@ export function createApi(
   return {
     url,
     method,
-    response,
+    response
   }
 }
 
@@ -30,7 +30,7 @@ export function getUserInfoByToken(headers: IAnyObject) {
       const role = rolesDb.filter((v) => v.roleValue === user.role)[0]
       return {
         ...user,
-        ...role,
+        ...role
       }
     } else {
       return null
