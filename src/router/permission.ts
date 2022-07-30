@@ -38,7 +38,7 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
     if (whiteList.indexOf(route.path) !== -1) {
       next()
     } else {
-      next({ path: '/login' }, false)
+      next({ path: '/login' })
     }
   }
 }
