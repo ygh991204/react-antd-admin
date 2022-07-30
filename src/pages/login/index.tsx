@@ -1,6 +1,6 @@
 
 import { useTranslation } from 'react-i18next'
-import { Form, Input, Button, Checkbox, notification } from 'antd'
+import { Form, Input, Button, notification } from 'antd'
 import { UserOutlined, LockOutlined, GlobalOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import Config from '@/config'
@@ -108,9 +108,6 @@ const Login = () => {
             <Form.Item name='password' rules={[{ required: true, message: t('login.passwordRequiredMsg') }]}>
               <Input prefix={<LockOutlined />} type='password' placeholder={t('login.passwordPlaceholder')} />
             </Form.Item>
-            {/* <Form.Item name='remember' valuePropName='checked'>
-              <Checkbox>{t('login.rememberMe')}</Checkbox>
-            </Form.Item> */}
             <Form.Item>
               <Button type='primary' block htmlType='submit'>
                 {t('login.submitButtonText')}

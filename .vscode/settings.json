@@ -1,10 +1,10 @@
 {
   "typescript.tsdk": "./node_modules/typescript/lib",
   "i18n-ally.localesPaths": ["src/lang"],
-  "i18n-ally.enabledParsers": ["json"],
-  "i18n-ally.keystyle": "nested", // 翻译路径格式,
-  "i18n-ally.sourceLanguage": "en_US", // 翻译源语言
-  "i18n-ally.displayLanguage": "zh_CN", //显示语言
+  "i18n-ally.enabledParsers": ["ts"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sourceLanguage": "en_US",
+  "i18n-ally.displayLanguage": "zh_CN",
   "editor.tabSize": 4,
   "editor.formatOnSave": false,
   "eslint.validate": ["javascript", "typescript", "javascriptreact", "typescriptreact"],

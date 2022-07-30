@@ -1,4 +1,4 @@
-import type { BuildOptions } from "vite"
+import type { BuildOptions } from 'vite'
 
 const assetFileExts: ITypeObject<RegExp> = {
   media: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i,

@@ -6,7 +6,7 @@ export const usersDb: UserDb[] = [
     password: '123456',
     role: 'admin',
     avater: '',
-    token: 'admin_token_123456',
+    token: 'admin_token_123456'
   },
   {
     nikename: '普通用户',
@@ -14,8 +14,8 @@ export const usersDb: UserDb[] = [
     password: '123456',
     role: 'user',
     avater: '',
-    token: 'user_token_123456',
-  },
+    token: 'user_token_123456'
+  }
 ]
 
 export const rolesDb: RoleDb[] = [
@@ -27,8 +27,8 @@ export const rolesDb: RoleDb[] = [
       'permission:list',
       'permission:admin:list',
       'permission:component:list',
-      'permission:user:list',
-    ],
+      'permission:user:list'
+    ]
   },
   {
     roleValue: 'user',
@@ -38,9 +38,9 @@ export const rolesDb: RoleDb[] = [
       'permission:list',
       'permission:component:list',
       'permission:user:list',
-      'permission:component:button',
-    ],
-  },
+      'permission:component:button'
+    ]
+  }
 ]
 
 export const menusDb: CaseRoute[] = [
@@ -51,18 +51,18 @@ export const menusDb: CaseRoute[] = [
       {
         path: 'admin',
         component: 'permission/admin',
-        meta: { title: 'admin可见', permission: 'permission:admin:list' },
+        meta: { title: 'admin可见', permission: 'permission:admin:list' }
       },
       {
         path: 'component',
         component: 'permission/component',
-        meta: { title: '组件权限', permission: 'permission:component:list' },
+        meta: { title: '组件权限', permission: 'permission:component:list' }
       },
       {
         path: 'user',
         component: 'permission/user',
-        meta: { title: 'user可见', permission: 'permission:user:list' },
-      },
-    ],
+        meta: { title: 'user可见', permission: 'permission:user:list' }
+      }
+    ]
   }
 ]

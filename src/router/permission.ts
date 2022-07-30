@@ -3,24 +3,16 @@ import { getToken } from '@/utils/auth'
 import { getMenus } from '@/api/user'
 import { addRoutes } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
-import { formatRoutes } from '@/router/routes'
 
-import type { RouteLocation } from './hooks'
-import type { RouterGuardNext } from './component'
+import { formatRoutes } from './routes'
+
+import type { RouteLocation } from './useRoute'
+import type { RouterGuardNext } from './RouterGuard'
 
 const whiteList = ['/login']
 
-async function loadMenus(route: RouteLocation, next: RouterGuardNext) {
-  store.dispatch(setLoadMenus(false))
-  const _menus = await getMenus()
-  const _memuData = [..._menus.data]
-  const _routes = formatRoutes(_memuData)
-  store.dispatch(addRoutes(_routes))
-  next({ replace: true, path: route.fullPath })
-}
-
 /**
- * 守卫，路由组件渲染之前执行
+ * 路由守卫
  */
 export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNext) {
   if (getToken()) {
@@ -49,4 +41,13 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
       next({ path: '/login' }, false)
     }
   }
+}
+
+async function loadMenus(route: RouteLocation, next: RouterGuardNext) {
+  store.dispatch(setLoadMenus(false))
+  const _menus = await getMenus()
+  const _memuData = [..._menus.data]
+  const _routes = formatRoutes(_memuData)
+  store.dispatch(addRoutes(_routes))
+  next({ replace: true, path: route.fullPath })
 }

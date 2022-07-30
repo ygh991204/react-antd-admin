@@ -13,7 +13,7 @@ const MobileWidth = 992
 
 const Layout: React.FC = () => {
   const { sideBarOpend, device } = useAppSelector((state) => state.app)
-  const { tabs } = useAppSelector(state => state.setting)
+  const { tabs } = useAppSelector((state) => state.setting)
   const dispatch = useAppDispatch()
   const { windowWidth } = useResize()
 
@@ -41,10 +41,10 @@ const Layout: React.FC = () => {
       <div className='app-inner'>
         <div className='app-navbar'>
           <NavBar />
-          { tabs ? <TabsPages /> : null }
+          {tabs ? <TabsPages /> : null}
         </div>
         <div className='app-main'>
-          <Setting/>
+          <Setting />
           <Outlet />
         </div>
       </div>

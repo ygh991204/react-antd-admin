@@ -1,140 +1,123 @@
-import React, { useEffect, useCallback, useState } from 'react'
-import { Button, Form, Space, Card, Input, Select, Table } from 'antd'
-import { getList, GetListQueryFrom } from '@/api/list'
-import DatePicker from '@/components/DatePicker'
+import React, { useEffect, useCallback, useState, useRef } from 'react'
+import { Button, Space, Card, Table, Row, Col, Popconfirm, notification, Modal, Tag } from 'antd'
+import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { getList, GetListQueryFrom, del } from '@/api/list'
+import { useStateSync } from '@/utils/hooks'
+import { wait } from '@/utils'
 
-const { RangePicker } = DatePicker
+import QueryFrom from './QueryFrom'
+import EditorForm, { EditorFormRef } from './EditorForm'
 
-const { Option } = Select
-
-const StatusOption: {
-  value: BasisListItem['status']
-  label: string
-}[] = [
-  {
-    value: 1,
-    label: '已开启'
-  },
-  {
-    value: 2,
-    label: '已关闭'
-  }
-]
-
-interface QueryFromProps {
-  onChange: (params: GetListQueryFrom) => void
-}
-
-const QueryFrom = React.memo<QueryFromProps>(({ onChange }) => {
-  const [form] = Form.useForm()
-
-  function formFinish(values: any) {
-    const _data: GetListQueryFrom = {
-      name: values.name,
-      status: values.status,
-      createTime: values.createTime ?
-        [values.createTime[0].format('YYYY-MM-DD'), values.createTime[1].format('YYYY-MM-DD')] :
-        undefined
-    }
-    onChange(_data)
-  }
-
-  function formClear() {
-    form.resetFields()
-    formSubmit()
-  }
-
-  function formSubmit() {
-    form.submit()
-  }
-
-  return (
-    <>
-      <Card bordered={false}>
-        <Form form={form} layout='inline' onFinish={formFinish}>
-          <Form.Item label='名称' name='name'>
-            <Input placeholder='输入名称' onPressEnter={formSubmit} />
-          </Form.Item>
-          <Form.Item label='状态' name='status'>
-            <Select placeholder='选择状态' onChange={formSubmit}>
-              {StatusOption.map((v) => (
-                <Option key={'status' + v.value} value={v.value}>
-                  {v.label}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item label='日期范围' name='createTime'>
-            <RangePicker onChange={formSubmit} />
-          </Form.Item>
-          <Form.Item>
-            <Space>
-              <Button onClick={formClear}>重置</Button>
-              <Button type='primary' onClick={formSubmit}>
-                查询
-              </Button>
-            </Space>
-          </Form.Item>
-        </Form>
-      </Card>
-    </>
-  )
-})
 const ListQueryTable: React.FC = () => {
   const [data, setData] = useState<BasisListItem[]>([])
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState({
-    index: 1
-  })
-
   const [count, setCount] = useState(1)
+  const [pageIndex, setPageIndex, pageIndexRef] = useStateSync(1)
+  const form = useRef<EditorFormRef>(null)
 
-  const [query, setQuery] = useState<GetListQueryFrom>({
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
+  const query = useRef<GetListQueryFrom>({
     name: undefined,
     createTime: undefined,
     status: undefined
   })
 
-  async function refresh() {
-    setLoading(true)
+  const refresh = useCallback(async() => {
     const response = await getList({
-      pageIndex: page.index,
-      ...query
+      pageIndex: pageIndexRef.current,
+      ...query.current
     })
     setData(response.data.list)
     setCount(response.data.count)
+    await wait(500)
     setLoading(false)
-  }
+  }, [])
 
-  async function toQuery() {
-    setPage({ index: 1 })
-  }
-
-  async function pageChange(page: number) {
-    setPage({ index: page })
-  }
-
-  useEffect(() => {
+  const toQuery = useCallback(async() => {
+    setPageIndex(1)
     refresh()
-  }, [query, page])
+  }, [])
 
   const queryChange = useCallback((params: GetListQueryFrom) => {
-    setQuery(params)
+    query.current = params
+    toQuery()
+  }, [])
+
+  const pageChange = useCallback((num: number) => {
+    setPageIndex(num)
+    refresh()
+  }, [])
+
+  const delItem = useCallback(async(ids: string[]) => {
+    await del(ids)
+    notification.success({
+      message: '删除成功'
+    })
+    refresh()
+  }, [])
+
+  useEffect(() => {
+    toQuery()
   }, [])
 
   return (
     <>
       <QueryFrom onChange={queryChange} />
+      <EditorForm ref={form} onRefresh={refresh} />
       <Card style={{ marginTop: '20px' }} bordered={false}>
+        <Row style={{ marginBottom: '20px' }}>
+          <Col span={12}>
+            <Space>
+              <Button
+                type='primary'
+                icon={<PlusOutlined />}
+                onClick={() => {
+                  form.current?.open()
+                }}>
+                新增
+              </Button>
+              <Button
+                danger
+                type='primary'
+                disabled={!selectedRowKeys.length}
+                onClick={() => {
+                  Modal.confirm({
+                    title: '提示！',
+                    icon: <ExclamationCircleOutlined />,
+                    content: '确认删除该' + selectedRowKeys.length + '条数据吗',
+                    onOk() {
+                      return delItem(selectedRowKeys as string[])
+                    }
+                  })
+                }}
+                icon={<DeleteOutlined />}>
+                删除
+              </Button>
+            </Space>
+          </Col>
+          <Col span={12} style={{ textAlign: 'right' }}>
+            <Space>{/*  */}</Space>
+          </Col>
+        </Row>
         <Table
           dataSource={data}
+          rowKey={(row) => row.id}
           pagination={{
-            current: page.index,
-            defaultCurrent: page.index,
+            current: pageIndex,
+            defaultCurrent: pageIndex,
             defaultPageSize: 10,
             pageSize: 10,
             total: count,
-            onChange: pageChange
+            onChange: pageChange,
+            showQuickJumper: true,
+            showSizeChanger: false,
+            size: 'small'
+          }}
+          rowSelection={{
+            selectedRowKeys: selectedRowKeys,
+            onChange: (selectedRowKeys) => {
+              setSelectedRowKeys(selectedRowKeys)
+            }
           }}
           columns={[
             {
@@ -152,11 +135,34 @@ const ListQueryTable: React.FC = () => {
             },
             {
               title: '状态',
-              dataIndex: 'status'
+              dataIndex: 'status',
+              render: (_, row) => {
+                return row.status === 1 ? <Tag color='green'>已开启</Tag> : <Tag color='red'>已关闭</Tag>
+              }
             },
             {
               title: '创建时间',
               dataIndex: 'createTime'
+            },
+            {
+              title: '操作',
+              key: 'action',
+              render: (_, row) => (
+                <Space size='small'>
+                  <Button
+                    size='small'
+                    onClick={() => {
+                      form.current?.open(row)
+                    }}>
+                    编辑
+                  </Button>
+                  <Popconfirm title='确认删除该条数据？' onConfirm={() => delItem([row.id])}>
+                    <Button danger size='small'>
+                      删除
+                    </Button>
+                  </Popconfirm>
+                </Space>
+              )
             }
           ]}
           loading={loading}

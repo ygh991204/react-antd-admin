@@ -106,6 +106,7 @@ module.exports = {
     'space-before-blocks': 0,
     'space-before-function-paren': 0,
     'space-infix-ops': 0,
+    'no-useless-escape': 0,
 
     // getter 和 setter 在对象中成对出现
     'accessor-pairs': 2,

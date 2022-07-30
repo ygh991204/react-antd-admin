@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import { cloneDeep } from 'lodash'
 
-import { RoutesRender } from '@/router'
+import { RoutesRender, RouterGuard } from '@/router'
 import { useAppSelector } from './store'
 
 const App: React.FC = () => {
@@ -12,7 +12,9 @@ const App: React.FC = () => {
   const element = useRoutes(RoutesRender(cloneDeep(routes)))
   return (
     <>
-      <ConfigProvider locale={antdLang}>{element}</ConfigProvider>
+      <ConfigProvider locale={antdLang}>
+        <RouterGuard>{element}</RouterGuard>
+      </ConfigProvider>
     </>
   )
 }

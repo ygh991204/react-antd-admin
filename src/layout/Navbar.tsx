@@ -78,7 +78,7 @@ const NavBar: React.FC = () => {
         <Breadcrumb>
           {route.matched.map(v => (
             <Breadcrumb.Item key={v.fullPath}>
-              { t(v.meta && v.meta.title ? v.meta.title : '')}
+              { v.meta.title ? t(v.meta.title as any) : ''}
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>

@@ -14,9 +14,9 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
       minify: isBuild,
       inject: {
         data: {
-          title: env.VITE_TITLE,
-        },
-      },
+          title: env.VITE_TITLE
+        }
+      }
     })
   )
   plugins.push(
@@ -24,7 +24,7 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
       ignore: /^\_/,
       mockPath: 'mock',
       localEnabled: !isBuild,
-      prodEnabled: isBuild,
+      prodEnabled: isBuild
     })
   )
   if (isBuild) {
@@ -37,15 +37,15 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
             {
               src: '/logo.png',
               sizes: '192x192',
-              type: 'image/png',
+              type: 'image/png'
             },
             {
               src: '/logo-2.png',
               sizes: '512x512',
-              type: 'image/png',
-            },
-          ],
-        },
+              type: 'image/png'
+            }
+          ]
+        }
       })
     )
   }
@@ -55,9 +55,9 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
         {
           libraryName: 'antd',
           esModule: true,
-          resolveStyle: (name) => `antd/es/${name}/style/index`,
-        },
-      ],
+          resolveStyle: (name) => `antd/es/${name}/style/index`
+        }
+      ]
     })
   )
   plugins.push(
@@ -65,7 +65,7 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       symbolId: 'icon-[dir]-[name]',
       inject: 'body-last',
-      customDomId: '__svg__icons__dom__',
+      customDomId: '__svg__icons__dom__'
     })
   )
   return plugins
