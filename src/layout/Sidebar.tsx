@@ -31,7 +31,7 @@ function formatRoutes(routes: Route[] = []): ItemType[] {
     return {
       children: route.children ? formatRoutes(route.children) : undefined,
       key: route.fullPath,
-      label: <Translation>{(t) => route.meta.title ? t(route.meta.title) : 'no_name'}</Translation>,
+      label: <Translation>{(t) => route.meta.title ? t(route.meta.title as any) : 'no_name'}</Translation>,
       icon: route.meta.icon ? <SvgIcon name={route.meta.icon} /> : null
     }
   })
