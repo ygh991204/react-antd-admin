@@ -22,7 +22,6 @@ const RouterGuard: React.FC<{ children?: React.ReactNode }> = ({ children }) => 
   const [auth, setAuth] = useState(false)
 
   const next: RouterGuardNext = useCallback((options) => {
-    setAuth(true)
     if (options) {
       const _replace = !!(typeof options !== 'string' && options.replace)
       if (_replace) {
@@ -31,6 +30,7 @@ const RouterGuard: React.FC<{ children?: React.ReactNode }> = ({ children }) => 
         router.push(options)
       }
     }
+    setAuth(true)
   }, [])
 
   useEffect(() => {

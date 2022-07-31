@@ -1,0 +1,124 @@
+@import url('./var.less');
+
+.ql-container {
+  overflow-y: auto;
+
+  .ql-editor {
+    white-space: normal !important;
+    padding: 36px 36px;
+  }
+
+  .ql-editor.ql-blank::before {
+    padding-left: 24px;
+  }
+}
+
+.ql-container.ql-snow {
+    border-color: #f0f2f5;
+
+  .ql-tooltip[data-mode='link']::before {
+    content: 'Link';
+  }
+
+  .ql-tooltip.ql-editing a.ql-action::after {
+    content: 'Save';
+  }
+
+  .ql-tooltip {
+    z-index: 99;
+    border-color: #f0f2f5;
+    box-shadow: 0px 0px 5px #f0f2f5;
+  }
+
+  .ql-tooltip input[type='text'] {
+    border-color: #f0f2f5;
+  }
+}
+
+.ql-toolbar.ql-snow {
+    border-color: #f0f2f5;
+
+  each(@font-size, {
+    .ql-picker.ql-size {
+        .ql-picker-label[data-value=~"@{key}"]::before {
+            content: "@{value}";
+        }
+
+        .ql-picker-item[data-value=~"@{key}"]::before {
+            content: "@{value}";
+            font-size: @value;
+        }
+    }
+});
+
+  each(@font-weight, {
+.ql-picker.ql-weight {
+    .ql-picker-label[data-value=~"@{key}"]::before {
+        content: "@{value}";
+    }
+
+    .ql-picker-item[data-value=~"@{key}"]::before {
+        content: "@{value}";
+        font-weight: @value;
+    }
+}
+});
+
+  each(@colors, {
+.ql-picker.ql-background {
+    .ql-picker-label[data-value=~"@{key}"] > svg > g {
+        fill: "@{value}" !important;
+    }
+
+    .ql-picker-item[data-value=~"@{key}"] {
+        background-color: @value  !important;
+    }
+}
+
+.ql-picker.ql-color {
+    .ql-picker-label[data-value=~"@{key}"] > svg > .ql-stroke {
+        stroke: "@{value}" !important;
+    }
+
+    .ql-picker-item[data-value=~"@{key}"] {
+        background-color: @value  !important;
+    }
+}
+
+});
+
+  .ql-picker,
+  button {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .ql-picker-options {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+.ql-toolbar {
+  line-height: 1.15;
+}
+
+.ql-lineHeight {
+  width: 70px;
+}
+
+.ql-weight {
+  width: 80px;
+}
+
+.ql-size {
+  width: 100px;
+}
+
+.ql-picker {
+  border: 1px solid #f0f2f5;
+}
+
+.ql-textIndent {
+  width: 180px;
+}

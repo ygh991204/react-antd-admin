@@ -1,15 +1,16 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Card, Space, Button, Typography } from 'antd'
-import ImageCropper, { ImageCropperInstance } from '@/components/ImageCropper'
-import Logo from '/logo.png'
-
+import ImageCropper, { ImageCropperRef } from '@/components/ImageCropper'
 const { Link } = Typography
+
+import Logo from '/logo.png'
 
 const ComponentImageCropper = () => {
   const { t } = useTranslation()
   const [imgBase, setImgBase] = useState('')
-  const cropper = useRef<ImageCropperInstance>(null)
+  const cropper = useRef<ImageCropperRef>(null)
+
   return (
     <Card
       title={
@@ -23,7 +24,7 @@ const ComponentImageCropper = () => {
       bordered={false}>
       <div className='clearfix'>
         <div className='fl' style={{ marginRight: '40px' }}>
-          <ImageCropper url={Logo} ref={cropper} />
+          <ImageCropper ref={cropper} url={Logo} />
         </div>
         <div className='fl' style={{ padding: '20px' }}>
           <div style={{ paddingBottom: '20px' }}>

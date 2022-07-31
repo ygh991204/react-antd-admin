@@ -1,4 +1,5 @@
 import Config from '@/config'
+import { isArray } from './validate'
 
 export function wait(delay = 1000) {
   return new Promise((resolve) => {
@@ -13,3 +14,9 @@ export function setPageTitle(title: string) {
   document.title = _title
   return _title
 }
+
+export function toArray<T =any>(origin: T[] | T) {
+  return isArray(origin) ? origin : [origin]
+}
+
+// export

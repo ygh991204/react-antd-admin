@@ -117,6 +117,11 @@ const menusRoutes: CaseRoute[] = [
         meta: {
           title: 'menus.componentCharts'
         }
+      },
+      {
+        path: 'imageupload',
+        component: 'component/imageUpload',
+        meta: { title: 'menus.componentImageUpload' }
       }
     ]
   },
@@ -131,7 +136,7 @@ const menusRoutes: CaseRoute[] = [
   }
 ]
 
-export const constantRoutes: CaseRoute[] = [
+const constantRoutes: CaseRoute[] = [
   {
     path: '/login',
     component: 'login'
@@ -168,3 +173,5 @@ export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] 
     }
   })
 }
+
+export default constantRoutes

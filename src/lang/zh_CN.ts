@@ -40,6 +40,7 @@ const zh_CN = {
     'error401': '401',
     'component': '组件',
     'componentImageCropper': '图片裁剪',
+    'componentImageUpload': '图片上传',
     'componentRichText': '富文本',
     'componentIcons': '图标',
     'componentCharts': '图表',

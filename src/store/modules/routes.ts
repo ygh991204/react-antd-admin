@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cloneDeep } from 'lodash'
-import { constantRoutes, formatRoutes } from '@/router/routes'
+import { constantRoutes, formatRoutes } from '@/router'
 
 export function getMenuRoutes(routes: CaseRoute[]) {
   return routes.filter((v) => v.path === '/')[0].children || []

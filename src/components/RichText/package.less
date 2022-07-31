@@ -1,0 +1,64 @@
+@import url('./var.less');
+
+.richtext-content {
+
+  font-size: @font-size-df;
+  font-weight: @font-weight-regular;
+  line-height: @font-size-df + @base-linHeight;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .richText-link {
+    color: @blue-color;
+    text-decoration: none !important;
+  }
+
+  .richtext-direction-rtl {
+    direction: rtl;
+  }
+
+  .richtext-align-center {
+    text-align: center;
+  }
+
+  .richtext-align-right {
+    text-align: right;
+  }
+
+  each(@font-size, {
+    .richtext-size-@{key} {
+      font-size: @value;
+      line-height: @value + @base-linHeight;
+    }
+  });
+
+  each(@font-weight, {
+    .richtext-weight-@{key} {
+      font-weight: @value;
+    }
+  });
+
+  each(@colors, {
+    .richtext-color-@{key} {
+      color: @value;
+    }
+
+    .richtext-background-@{key} {
+      background-color: @value;
+    }
+
+  });
+
+  each(@indents, {
+    .richtext-indent-@{key}:not(.richtext-direction-rtl) {
+      padding-left: @value;
+    }
+  });
+}

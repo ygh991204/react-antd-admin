@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { toogleDevice, closeSideBar } from '@/store/modules/app'
 import { useResize } from '@/utils/hooks'
@@ -17,7 +17,7 @@ const Layout: React.FC = () => {
   const dispatch = useAppDispatch()
   const { windowWidth } = useResize()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!document.hidden) {
       const isMobile = windowWidth < MobileWidth
       const newDevice = isMobile ? 'mobile' : 'desktop'

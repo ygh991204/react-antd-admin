@@ -1,26 +1,12 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react'
-
-import Quill, { SelectionChangeHandler } from 'quill'
-
+import React, { useRef, useEffect, useCallback, useState, ChangeEvent } from 'react'
 import { v1 as uuidv1 } from 'uuid'
-
 import styled from 'styled-components'
+import Quill, { SelectionChange, textAlignParam, fontSizeParams, colorParams, fontWeightParams } from './quill'
+import { fileFormatValidateImage, FileType, fileSizeValidateImage } from '@/utils/file'
+import { uploadImage } from '@/api/static'
 
-import 'quill/dist/quill.snow.css'
-import './style-package.less'
-
-const textAlignParam = ['right', 'center']
-const fontSizeParams = ['xs', 'sm', 'df', 'lg', 'xl', 'xxl', 'xxxl', 'xsl', 'sl', 'ssl', 'sssl']
-const fontWeightParams = ['regular', 'medium', 'semibold']
-
-const DirectionClass = Quill.import('attributors/class/direction')
-DirectionClass.keyName = 'ql-direction'
-Quill.register(DirectionClass, true)
-
-const AlignClass = Quill.import('attributors/class/align')
-AlignClass.whitelist = textAlignParam
-AlignClass.keyName = 'ql-text-align'
-Quill.register(AlignClass, true)
+import './style.less'
+import './package.less'
 
 export interface RichTextProps {
   value?: string
@@ -46,7 +32,9 @@ const RichText = React.memo<RichTextProps>(
     const [toolBarId] = useState('RichTextToolBar' + uuidv1())
     const content = useRef('')
 
-    const selectionChange: SelectionChangeHandler = useCallback((range) => {
+    const imageUploadEl = useRef<HTMLInputElement>(null)
+
+    const selectionChange: SelectionChange = useCallback((range) => {
       if (range) {
         onFocus && myQuill.current && onFocus(myQuill.current)
       } else {
@@ -68,7 +56,7 @@ const RichText = React.memo<RichTextProps>(
         const _text = myQuill.current.getText()
         const flag = _text.replace(/&nbsp;/g, '').replace(/\s/g, '')
         if (flag) {
-          text = _text
+          text = myQuill.current.getText()
           html = myQuill.current.root.innerHTML
         }
       }
@@ -80,6 +68,28 @@ const RichText = React.memo<RichTextProps>(
       myQuill.current?.clipboard.dangerouslyPasteHTML(html)
     }, [])
 
+    const customImageHandler = useCallback(() => {
+      imageUploadEl.current?.click()
+    }, [])
+
+    const imageUploadChange = useCallback(async(event: ChangeEvent<HTMLInputElement>) => {
+      const files = event.target.files ? [...event.target.files] : []
+      const range = myQuill.current?.getSelection(true)
+      if (files.length && range && fileFormatValidateImage(files, true) && fileSizeValidateImage(files, true)) {
+        const reslut = await Promise.all(files.map((file) => uploadImage(file)))
+        let rangeIndex = range.index
+        reslut.forEach((item) => {
+          myQuill.current?.insertEmbed(rangeIndex, 'RichTextPTag', `<br/>`)
+          rangeIndex++
+          myQuill.current?.insertEmbed(rangeIndex, 'image', item.fileUrl)
+          rangeIndex++
+          myQuill.current?.insertEmbed(rangeIndex, 'RichTextPTag', `<br/>`)
+          rangeIndex++
+        })
+        myQuill.current?.setSelection(rangeIndex as any)
+      }
+    }, [])
+
     useEffect(() => {
       if (quillEl.current) {
         myQuill.current = new Quill(quillEl.current, {
@@ -88,7 +98,10 @@ const RichText = React.memo<RichTextProps>(
           readOnly: false,
           modules: {
             toolbar: {
-              container: '#' + toolBarId
+              container: '#' + toolBarId,
+              handlers: {
+                image: customImageHandler
+              }
             }
           }
         })
@@ -113,34 +126,65 @@ const RichText = React.memo<RichTextProps>(
 
     return (
       <div>
+        <input
+          style={{ display: 'none' }}
+          ref={imageUploadEl}
+          multiple
+          type='file'
+          accept={FileType['image']}
+          onChange={imageUploadChange}
+        />
         <div id={toolBarId}>
+          <select className='ql-size' title='字体大小' defaultValue='df'>
+            {fontSizeParams.map((v) => (
+              <option key={v} value={v} />
+            ))}
+          </select>
+          <select className='ql-weight' title='字体粗细' defaultValue='regular'>
+            {fontWeightParams.map((v) => (
+              <option key={v} value={v} />
+            ))}
+          </select>
+          {/*  */}
           <button className='ql-bold' title='加粗' />
           <button className='ql-italic' title='斜体' />
           <button className='ql-underline' title='下划线' />
           <button className='ql-strike' title='删除线' />
-          <button className='ql-clean' title='清楚格式' />
+          {/*  */}
+          <select className='ql-color' defaultValue='' title='字体颜色'>
+            {colorParams.map((v) => (
+              <option key={v} value={v} />
+            ))}
+          </select>
+          <select className='ql-background' defaultValue='' title='背景颜色'>
+            {colorParams.map((v) => (
+              <option key={v} value={v} label={'#333333'} />
+            ))}
+          </select>
+          {/*  */}
+          <button className='ql-script' value='super' title='脚本-上' />
+          <button className='ql-script' value='sub' title='脚本-下' />
+          {/*  */}
+          <button className='ql-header' value='1' title='大标题' />
+          <button className='ql-header' value='2' title='中标题' />
+          {/*  */}
+          <button className='ql-indent' value='-1' title='缩进-1' />
+          <button className='ql-indent' value='+1' title='缩进+1' />
+          {/*  */}
           <button className='ql-direction' value='rtl' title='文本方向' />
-          <button className='ql-image' value='image' title='插入图片' />
-          <button className='ql-color' value='color' title='字体颜色' />
-          <button className='ql-background' value='background' title='背景颜色' />
-          {/* <select className='ql-align' title='对齐方式' defaultValue='left'>
-            <option selected />
+          <select className='ql-align' title='对齐方式' defaultValue=''>
+            <option value='' />
             {textAlignParam.map((v) => (
               <option key={v} value={v} />
             ))}
-          </select> */}
-          {/* <select className='ql-fontSize' title='字体大小' defaultValue='df'>
-            {fontSizeParams.map((v) => (
-              <option key={v} selected={v === 'df'} value={v} />
-            ))}
-          </select> */}
-          {/* <select className='ql-fontWeight' title='字体粗细' defaultValue='regular'>
-            {fontWeightParams.map((v) => (
-              <option key={v} selected={v === 'regular'} value={v} />
-            ))}
-          </select> */}
+          </select>
+          {/*  */}
+          <button className='ql-link' title='插入链接' />
+          <button className='ql-image' value='image' title='插入图片' />
+          {/*  */}
+          <button className='ql-clean' title='清楚格式' />
         </div>
-        <RichTextMain height={height} ref={quillEl} />
+        <RichTextMain height={height} className='richtext-content' ref={quillEl} />
       </div>
     )
   }

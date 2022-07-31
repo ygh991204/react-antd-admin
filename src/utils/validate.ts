@@ -1,3 +1,4 @@
+
 export const isArray = Array.isArray
 
 export function isString(val: any): val is string {

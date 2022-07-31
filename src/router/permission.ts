@@ -4,7 +4,7 @@ import { getMenus } from '@/api/user'
 import { addRoutes } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
 
-import { formatRoutes } from './routes'
+import { formatRoutes } from './constantRoutes'
 
 import type { RouteLocation } from './useRoute'
 import type { RouterGuardNext } from './RouterGuard'
