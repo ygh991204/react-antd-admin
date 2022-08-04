@@ -17,7 +17,6 @@ const I18n: React.FC = () => {
     <Card
       title={
         <Space>
-          <span> {t('menus.i18n')}</span>
           <Link href='https://react.i18next.com/' target='_blank'>
             https://react.i18next.com/
           </Link>

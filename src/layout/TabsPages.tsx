@@ -83,7 +83,7 @@ const TabsPages: React.FC = () => {
           onEdit={tabDel}>
           {tabsPages.map((tag) => (
             <TabPane
-              tab={tag.meta.title ? t(tag.meta.title) : 'no_name'}
+              tab={tag.meta.title ? t(tag.meta.title as any) : 'no_name'}
               key={tag.path}
               closable={!tag.meta.affixTab}
             />
@@ -115,7 +115,7 @@ const TabsPages: React.FC = () => {
             />
           }>
           <div className='app-navbar-tabs-oper-item'>
-            <DownOutlined style={{ fontSize: '14px' }} />
+            <DownOutlined style={{ fontSize: '12px' }} />
           </div>
         </Dropdown>
       </div>

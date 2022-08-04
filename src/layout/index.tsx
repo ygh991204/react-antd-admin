@@ -1,13 +1,14 @@
 import React, { useLayoutEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { toogleDevice, closeSideBar } from '@/store/modules/app'
-import { useResize } from '@/utils/hooks'
+import useResize from '@/hooks/useResize'
 import SideBar from './Sidebar'
 import NavBar from './Navbar'
 import TabsPages from './TabsPages'
 import Setting from './Settting'
-import './index.less'
 import { useAppDispatch, useAppSelector } from '@/store'
+
+import './index.less'
 
 const MobileWidth = 992
 

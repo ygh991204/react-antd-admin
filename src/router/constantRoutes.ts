@@ -1,4 +1,3 @@
-import { validateURL } from '@/utils/validate'
 
 const menusRoutes: CaseRoute[] = [
   {
@@ -82,9 +81,9 @@ const menusRoutes: CaseRoute[] = [
         meta: { title: 'menus.error404' }
       },
       {
-        path: '401',
-        component: 'error/401',
-        meta: { title: 'menus.error401' }
+        path: '403',
+        component: 'error/403',
+        meta: { title: 'menus.error403' }
       }
     ]
   },
@@ -133,6 +132,26 @@ const menusRoutes: CaseRoute[] = [
   {
     path: 'https://ant.design-cn',
     meta: { title: 'Ant Design', icon: 'ant-design' }
+  },
+  {
+    path: 'navigate',
+    meta: { title: 'menus.navigate', icon: 'link' },
+    children: [
+      {
+        path: 'router',
+        component: 'navigate/router',
+        meta: { title: 'menus.navigateRouter' }
+      },
+      {
+        path: 'link',
+        meta: { title: 'menus.navigateLink' }
+      },
+      {
+        path: 'test',
+        component: 'navigate/test',
+        meta: { title: 'menus.navigateTest', hidden: true }
+      }
+    ]
   }
 ]
 
@@ -156,22 +175,5 @@ const constantRoutes: CaseRoute[] = [
     component: 'error/401'
   }
 ]
-
-export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] {
-  return routes.map((route) => {
-    let children
-    let fullPath = route.path
-    if (!validateURL(route.path)) {
-      fullPath = parentFullPath + (route.path === '/' ? '' : route.path)
-      children = route.children && route.children.length ? formatRoutes(route.children, fullPath + '/') : undefined
-    }
-    return {
-      ...route,
-      fullPath,
-      children: children,
-      meta: route.meta ? { ...route.meta } : {}
-    }
-  })
-}
 
 export default constantRoutes

@@ -113,6 +113,18 @@
     .ant-tabs-tab {
       font-size: 12px !important;
       padding: 3px 10px !important;
+
+      .ant-tabs-tab-remove {
+        opacity: 0;
+      }
+
+      &:hover .ant-tabs-tab-remove {
+        opacity: 1;
+      }
+
+      &.ant-tabs-tab-active .ant-tabs-tab-remove {
+        opacity: 1 !important;
+      }
     }
 
     .ant-tabs-nav-more {
@@ -135,13 +147,16 @@
       background-color: #1890ff !important;
       border-bottom-color: #f0f0f0 !important;
     }
+
     .ant-tabs-tab-active .ant-tabs-tab-btn {
       color: #ffffff !important;
     }
+
     .ant-tabs-tab-remove {
       margin-left: 6px !important;
       font-size: 10px !important;
     }
+
     .ant-tabs-tab-active .ant-tabs-tab-remove {
       color: #fff !important;
     }
@@ -149,6 +164,7 @@
     .app-navbar-tabs-oper {
       display: flex;
     }
+
     .app-navbar-tabs-oper-item {
       padding: 0 10px;
       display: flex;

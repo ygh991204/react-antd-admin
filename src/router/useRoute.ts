@@ -93,12 +93,12 @@ function useRoute<Q extends IAnyObject = IAnyObject, P extends IAnyObject = IAny
   return {
     fullPath,
     hash,
-    matched,
-    match,
-    meta,
-    params,
     path,
-    query
+    query,
+    params,
+    meta,
+    matched,
+    match
   }
 }
 

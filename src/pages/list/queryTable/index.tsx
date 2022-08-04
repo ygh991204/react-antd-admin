@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useRef } from 'react'
 import { Button, Space, Card, Table, Row, Col, Popconfirm, notification, Modal, Tag } from 'antd'
 import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { getList, GetListQueryFrom, del } from '@/api/list'
-import { useStateSync } from '@/utils/hooks'
+import useStateSync from '@/hooks/useStateSync'
 import { wait } from '@/utils'
 
 import QueryFrom from './QueryFrom'

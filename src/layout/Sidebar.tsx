@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useLayoutEffect, useEffect } from 'react'
 import { Translation } from 'react-i18next'
-import { cloneDeep } from 'lodash'
 import { Menu } from 'antd'
 
 import { useRoute, useRouter } from '@/router'
@@ -12,19 +11,6 @@ import SvgIcon from '@/components/SvgIcon'
 import Logo from '/logo.png'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-
-function showRoutes(routes: Route[] = []): Route[] {
-  return routes.filter((route) => {
-    if (route.meta.hidden) {
-      return false
-    } else {
-      if (route.children) {
-        route.children = showRoutes(route.children)
-      }
-      return true
-    }
-  })
-}
 
 function formatRoutes(routes: Route[] = []): ItemType[] {
   return routes.map((route) => {
@@ -64,8 +50,7 @@ const SideBar: React.FC = () => {
   const [openkeys, setOpenKeys] = useState<string[]>([])
 
   const menuRoutes = useMemo(() => {
-    const _showRoutes = showRoutes(cloneDeep(routes))
-    return formatRoutes(_showRoutes)
+    return formatRoutes(routes)
   }, [routes])
 
   const selectedKeys = useMemo(() => {

@@ -96,10 +96,7 @@ RichTextPTag.tagName = 'p'
 
 Quill.register(RichTextPTag, true)
 
-//
-
 const Link = Quill.import('formats/link')
-
 class MyLink extends Link {
   static create(value: any) {
     const node = super.create(value)
@@ -108,7 +105,6 @@ class MyLink extends Link {
     return node
   }
 }
-
 MyLink.className = 'richText-link'
 Quill.register(MyLink, true)
 

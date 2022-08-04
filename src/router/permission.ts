@@ -1,11 +1,7 @@
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-import { getMenus } from '@/api/user'
-import { addRoutes } from '@/store/modules/routes'
+import { loadAsyncMenus } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
-
-import { formatRoutes } from './constantRoutes'
-
 import type { RouteLocation } from './useRoute'
 import type { RouterGuardNext } from './RouterGuard'
 
@@ -45,9 +41,6 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
 
 async function loadMenus(route: RouteLocation, next: RouterGuardNext) {
   store.dispatch(setLoadMenus(false))
-  const _menus = await getMenus()
-  const _memuData = [..._menus.data]
-  const _routes = formatRoutes(_memuData)
-  store.dispatch(addRoutes(_routes))
+  await store.dispatch(loadAsyncMenus()).unwrap()
   next({ replace: true, path: route.fullPath })
 }

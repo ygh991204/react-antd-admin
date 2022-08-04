@@ -8,7 +8,7 @@ const zh_CN = {
   },
   'error': {
     '404Tip': '抱歉，您访问的页面不存在。请联系管理员。',
-    '401Tip': '抱歉，您无权访问此页面。请联系管理员。'
+    '403Tip': '抱歉，您无权访问此页面。请联系管理员。'
   },
   'login': {
     'rememberMe': '记住我',
@@ -37,7 +37,7 @@ const zh_CN = {
     'menusMenu2': '菜单2',
     'error': '异常页',
     'error404': '404',
-    'error401': '401',
+    'error403': '403',
     'component': '组件',
     'componentImageCropper': '图片裁剪',
     'componentImageUpload': '图片上传',
@@ -53,7 +53,11 @@ const zh_CN = {
     'detail': '详情页',
     'detailBasis': '基础详情页',
     'i18n': '国际化',
-    'doc': '文档'
+    'doc': '文档',
+    'navigate': '跳转',
+    'navigateRouter': '路由',
+    'navigateLink': '外链githup',
+    'navigateTest': '路由测试页'
   },
   'componentImageCropper': {
     'see': '查看结果'

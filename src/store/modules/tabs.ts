@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { constantRoutes, formatRoutes } from '@/router'
-import type { RouteLocation } from '@/router/hooks'
+import type { RouteLocation } from '@/router/useRoute'
 
 function getAffixTabRoutes(routes: Route[], tags: RouteLocation[] = []) {
   return routes.reduce((prev, route) => {

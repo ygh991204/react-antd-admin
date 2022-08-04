@@ -8,8 +8,8 @@ const Error401: React.FC = () => {
   const { t } = useTranslation()
   return <Result
     status='403'
-    title='401'
-    subTitle={t('error.401Tip')}
+    title='403'
+    subTitle={t('error.403Tip')}
     extra={<Button type='primary' onClick={() => {
       router.replace('/')
     }}>{t('app.backHome')}</Button>}

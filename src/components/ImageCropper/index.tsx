@@ -4,8 +4,8 @@ import { Button, Space, Spin } from 'antd'
 import { UndoOutlined, RedoOutlined } from '@ant-design/icons'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
-import { dataURLtoFile } from '@/utils/file'
-import { CropperInner, CropperWrapper } from './style'
+
+import { base64toFile } from '@/utils/file'
 import Dialog from './dialog'
 
 export type { ImageCropperDialogRef } from './dialog'
@@ -81,7 +81,7 @@ const InternalImageCropper: ForwardRefRenderFunction<ImageCropperRef, ImageCropp
 
   const getImageFile = useCallback((name = '') => {
     const _baseData = getImageBase64()
-    return dataURLtoFile(_baseData, name)
+    return base64toFile(_baseData, name)
   }, [])
 
   const createCropper = useCallback(() => {
@@ -116,17 +116,17 @@ const InternalImageCropper: ForwardRefRenderFunction<ImageCropperRef, ImageCropp
   }, [])
 
   return (
-    <CropperWrapper>
-      <Space style={{ paddingBottom: '15px' }}>
+    <>
+      <Space style={{ marginBottom: '15px' }}>
         <Button type='primary' onClick={cropperRotateRight} icon={<RedoOutlined />} />
         <Button type='primary' onClick={cropperRotateLeft} icon={<UndoOutlined />} />
       </Space>
       <Spin spinning={loading}>
-        <CropperInner>
+        <div style={{ width: '600px', height: '400px' }}>
           <img style={{ height: '100%', width: '100%' }} src={url} ref={imageEl} />
-        </CropperInner>
+        </div>
       </Spin>
-    </CropperWrapper>
+    </>
   )
 }
 

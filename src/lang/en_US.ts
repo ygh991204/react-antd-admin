@@ -10,7 +10,7 @@ const en_US: Locale = {
   },
   'error': {
     '404Tip': 'Sorry, the page you visited does not exist. Please contact the administrator.',
-    '401Tip': "Sorry, you don't have permission to access this page. Please contact the administrator."
+    '403Tip': "Sorry, you don't have permission to access this page. Please contact the administrator."
   },
   'login': {
     'rememberMe': 'remember me',
@@ -39,7 +39,7 @@ const en_US: Locale = {
     'menusMenu2': 'Menu 2',
     'error': 'Exception page',
     'error404': '404',
-    'error401': '401',
+    'error403': '403',
     'component': 'Components',
     'componentImageCropper': 'Image cropping',
     'componentImageUpload': 'Upload picture',
@@ -55,7 +55,11 @@ const en_US: Locale = {
     'detail': 'Details',
     'detailBasis': 'Basic Details Page',
     'i18n': 'I18n',
-    'doc': 'Documentation'
+    'doc': 'Documentation',
+    'navigate': 'Jump',
+    'navigateRouter': 'Routing',
+    'navigateLink': 'External chain github',
+    'navigateTest': 'Route test page'
   },
   'componentImageCropper': {
     'see': 'View Results'
