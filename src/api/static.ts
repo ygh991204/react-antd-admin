@@ -15,27 +15,13 @@ export async function uploadImage<F extends OriginFile = OriginFile>(origin: F):
     const reader = new FileReader()
     reader.readAsDataURL(origin as Blob)
     reader.onload = (event) => {
-      console.log('onload', event)
       reslove({
         fileUrl: event.target?.result as string,
         file: origin
       })
     }
-    reader.onerror = (event) => {
-      console.log('onerror', event)
+    reader.onerror = () => {
       reject(null)
-    }
-    reader.onabort = (event) => {
-      console.log('onabort', event)
-    }
-    reader.onloadend = (event) => {
-      console.log('onloadend', event)
-    }
-    reader.onprogress = (event) => {
-      console.log('onprogress', event)
-    }
-    reader.onloadstart = (event) => {
-      console.log('onloadstart', event)
     }
   })
 }

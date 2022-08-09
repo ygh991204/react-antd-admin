@@ -22,12 +22,16 @@ function RoutesRender(routes: Route[]): RouteObject[] {
       const component = route.component
       if (route.index) return <>{component}</>
       if (route.component && route.component !== 'Layout') {
-        const PageComponent = routerLazy(route.component as any)
-        return (
-          <RouterGuard>
-            <PageComponent />
-          </RouterGuard>
-        )
+        if(typeof route.component === 'string') {
+          const PageComponent = routerLazy(route.component)
+          return (
+            <RouterGuard>
+              <PageComponent />
+            </RouterGuard>
+          )
+        } else {
+          return <>{ route.component }</>
+        }
       }
       return route.redirect ? route.children ? <Outlet /> : <Navigate to={route.redirect} replace /> : <Outlet />
     }

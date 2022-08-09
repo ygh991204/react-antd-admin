@@ -10,11 +10,11 @@ import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import '@/assets/styles/index.less'
-import 'normalize.css/normalize.css'
-
 import store from '@/store'
 import App from '@/App'
+
+import '@/assets/styles/index.less'
+import 'normalize.css/normalize.css'
 
 import '@/i18n'
 

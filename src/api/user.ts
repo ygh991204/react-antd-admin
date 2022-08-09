@@ -4,6 +4,8 @@ export type ApiLoginData = {
   username: string
   password: string
 }
+
+/** 登录 */
 export function login(data: ApiLoginData) {
   return request<UserDb>({
     url: '/api/v1/login',

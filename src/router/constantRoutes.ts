@@ -116,11 +116,6 @@ const menusRoutes: CaseRoute[] = [
         meta: {
           title: 'menus.componentCharts'
         }
-      },
-      {
-        path: 'imageupload',
-        component: 'component/imageUpload',
-        meta: { title: 'menus.componentImageUpload' }
       }
     ]
   },

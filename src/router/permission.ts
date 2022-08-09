@@ -1,9 +1,10 @@
+import type { RouteLocation } from './useRoute'
+import type { RouterGuardNext } from './RouterGuard'
+
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 import { loadAsyncMenus } from '@/store/modules/routes'
 import { setLoadMenus, userInfo, logout } from '@/store/modules/user'
-import type { RouteLocation } from './useRoute'
-import type { RouterGuardNext } from './RouterGuard'
 
 const whiteList = ['/login']
 
@@ -19,13 +20,17 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
       if (state.user.permissions.length === 0) {
         try {
           await store.dispatch(userInfo()).unwrap()
-          await loadMenus(route, next)
+          store.dispatch(setLoadMenus(false))
+          await store.dispatch(loadAsyncMenus()).unwrap()
+          next({ replace: true, path: route.fullPath })
         } catch (e) {
           store.dispatch(logout())
           location.reload()
         }
       } else if (state.user.loadMenus) {
-        await loadMenus(route, next)
+        store.dispatch(setLoadMenus(false))
+        await store.dispatch(loadAsyncMenus()).unwrap()
+        next({ replace: true, path: route.fullPath })
       } else {
         next()
       }
@@ -37,10 +42,4 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
       next({ path: '/login' })
     }
   }
-}
-
-async function loadMenus(route: RouteLocation, next: RouterGuardNext) {
-  store.dispatch(setLoadMenus(false))
-  await store.dispatch(loadAsyncMenus()).unwrap()
-  next({ replace: true, path: route.fullPath })
 }

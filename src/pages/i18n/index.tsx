@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Card, Space, Typography, Divider, Radio, Alert } from 'antd'
+import { Card, Space, Typography, Radio, Alert } from 'antd'
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
 import DatePicker from '@/components/DatePicker'
@@ -23,7 +23,6 @@ const I18n: React.FC = () => {
         </Space>
       }
       bordered={false}>
-      <Divider orientation='left'>切换语言</Divider>
       <Radio.Group
         options={langs.map((v) => ({
           label: v.label,
@@ -36,9 +35,8 @@ const I18n: React.FC = () => {
         optionType='button'
         buttonStyle='solid'
       />
-      <Divider orientation='left'>效果展示</Divider>
       <Space direction='vertical'>
-        <Alert message={t('i18n.title')} type='info' />
+        <Alert style={{ margin: '15px 0' }} message={t('i18n.title')} type='info' />
         <Space>
           <DatePicker />
           <TimePicker />
