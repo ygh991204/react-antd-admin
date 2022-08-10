@@ -3,14 +3,14 @@ import Layout from '@/layout'
 import routerLazy from './routerLazy'
 import RouterGuard from './RouterGuard'
 
-function RoutesRender(routes: Route[]): RouteObject[] {
+function RoutesRender(routes: Route[], isComponent = true): RouteObject[] {
   return routes.map((route) => {
     if (route.component && route.redirect) {
       const children = route.children || []
       route.children = [
         {
           index: true,
-          component: <Navigate to={route.redirect} replace />,
+          component: isComponent ? <Navigate to={route.redirect} replace /> : undefined,
           path: '',
           fullPath: '',
           meta: {}
@@ -19,6 +19,9 @@ function RoutesRender(routes: Route[]): RouteObject[] {
       ]
     }
     const RouterElement: React.FC = () => {
+      if(!isComponent) {
+        return <>{null}</>
+      }
       const component = route.component
       if (route.index) return <>{component}</>
       if (route.component && route.component !== 'Layout') {
@@ -36,15 +39,15 @@ function RoutesRender(routes: Route[]): RouteObject[] {
       return route.redirect ? route.children ? <Outlet /> : <Navigate to={route.redirect} replace /> : <Outlet />
     }
     return {
-      children: route.children ? RoutesRender(route.children) : undefined,
+      children: route.children ? RoutesRender(route.children, isComponent) : undefined,
       element:
-        route.component === 'Layout' ? (
-          <RouterGuard>
-            <Layout />
-          </RouterGuard>
-        ) : (
-          <RouterElement />
-        ),
+       isComponent ? route.component === 'Layout' ? (
+         <RouterGuard>
+           <Layout />
+         </RouterGuard>
+       ) : (
+         <RouterElement />
+       ) : undefined,
       index: route.index || false,
       path: route.path
     }

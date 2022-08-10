@@ -1,4 +1,3 @@
-
 import type { RouteLocation } from './useRoute'
 import { validateURL } from '@/utils/validate'
 
@@ -7,8 +6,11 @@ export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] 
     let children
     let fullPath = route.path
     if (!validateURL(route.path)) {
-      fullPath = parentFullPath + (route.path === '/' ? '' : route.path)
-      children = route.children && route.children.length ? formatRoutes(route.children, fullPath + '/') : undefined
+      fullPath = parentFullPath + route.path
+      children =
+        route.children && route.children.length ?
+          formatRoutes(route.children, fullPath === '/' ? fullPath : fullPath + '/') :
+          undefined
     }
     return {
       ...route,

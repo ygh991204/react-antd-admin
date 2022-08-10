@@ -27,13 +27,12 @@ const { routes, menuRoutes } = createRoutes()
 const routesSlice = createSlice({
   name: 'routes',
   initialState: {
-    routes,
+    routes: routes,
     menuRoutes
   },
   reducers: {},
   extraReducers(builder) {
     builder.addCase(loadAsyncMenus.fulfilled, (state, { payload }) => {
-      console.log(payload)
       const { routes, menuRoutes } = createRoutes(payload)
       routes.push({
         path: '*',

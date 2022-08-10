@@ -3,8 +3,8 @@ import { useRoutes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import { cloneDeep } from 'lodash'
 
-import { RoutesRender, RouterGuard } from '@/router'
-import { useAppSelector } from './store'
+import { RouterGuard, RoutesRender } from '@/router'
+import { useAppSelector } from '@/store'
 
 const App: React.FC = () => {
   const routes = useAppSelector((state) => state.routes.routes)
