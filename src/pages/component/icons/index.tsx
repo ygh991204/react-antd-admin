@@ -1,7 +1,6 @@
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Card, Tabs, Typography, Col, Row, notification, Alert } from 'antd'
 import SvgIcon from '@/components/SvgIcon'
-import React from 'react'
 
 const { TabPane } = Tabs
 const { Link } = Typography
@@ -19,14 +18,14 @@ const svgNames = Object.keys(modulesFiles)
     return modules
   }, [] as string[])
 
-const ComponentIcons: React.FC = () => {
+function ComponentIcons() {
   return (
     <>
       <Alert
         message={
           <>
             <p>将需要使用的图标（svg）文件放在文件夹 src/icons/ 下；项目会自动根据文件名加载</p>
-            <p>使用：{ "<SvgIcon name='filename' />" }</p>
+            <p>使用：{"<SvgIcon name='filename' />"}</p>
           </>
         }
         type='info'

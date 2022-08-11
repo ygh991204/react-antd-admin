@@ -3,11 +3,11 @@ import { Row, Col, Card, Avatar, Tabs, List, Form, Input, Button, Space } from '
 import { useAppSelector } from '@/store'
 const { TabPane } = Tabs
 
-const ChangeInfo = () => {
+function ChangeInfo() {
   const user = useAppSelector(state => state.user.user)
   const [form] = Form.useForm()
 
-  const formFinish = (value: IAnyObject) => {
+  function formFinish(value: IAnyObject) {
     console.log(value)
   }
 
@@ -38,10 +38,10 @@ const ChangeInfo = () => {
   )
 }
 
-const ChangePassWord = () => {
+function ChangePassWord() {
   const [form] = Form.useForm()
 
-  const formFinish = (value: IAnyObject) => {
+  function formFinish(value: IAnyObject) {
     console.log(value)
   }
 
@@ -76,7 +76,7 @@ const ChangePassWord = () => {
   )
 }
 
-const Personal = () => {
+function Personal() {
   const user = useAppSelector(state => state.user.user)
   return (
     <Row gutter={[20, 20]}>

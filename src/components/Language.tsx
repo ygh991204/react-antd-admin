@@ -1,11 +1,9 @@
+import type { PropsWithChildren } from 'react'
 import { Menu, Dropdown } from 'antd'
 import { changeAppLange } from '@/store/modules/language'
-import React from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
 
-const Language: React.FC<{
-  children?: React.ReactNode
-}> = ({ children }) => {
+function Language({ children }: PropsWithChildren) {
   const { lang, langs } = useAppSelector((state) => state.language)
   const dispatch = useAppDispatch()
   return (

@@ -8,7 +8,8 @@ const zh_CN = {
   },
   'error': {
     '404Tip': '抱歉，您访问的页面不存在。请联系管理员。',
-    '403Tip': '抱歉，您无权访问此页面。请联系管理员。'
+    '403Tip': '抱歉，您无权访问此页面。请联系管理员。',
+    '500Tip': '抱歉，服务器出现异常'
   },
   'login': {
     'rememberMe': '记住我',
@@ -38,6 +39,7 @@ const zh_CN = {
     'error': '异常页',
     'error404': '404',
     'error403': '403',
+    'error500': '500',
     'component': '组件',
     'componentImageCropper': '图片裁剪',
     'componentImageUpload': '图片上传',

@@ -1,10 +1,9 @@
 import { Card, Space, Typography, Alert } from 'antd'
 import RichText from '@/components/RichText'
-import React from 'react'
 
 const { Link } = Typography
 
-const ComponentRichText: React.FC = () => {
+function ComponentRichText() {
   return (
     <>
       <Alert

@@ -17,7 +17,7 @@ const SettingButton = styled.div<{
   z-index: ${(props) => (props.visible ? 1001 : 899)};
 `
 
-const Setting: React.FC = () => {
+function Setting() {
   const { logo, tabs } = useAppSelector((state) => state.setting)
   const [visible, setVisible] = useState(false)
   const dispatch = useAppDispatch()

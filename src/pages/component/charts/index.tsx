@@ -1,10 +1,8 @@
-
 import { Card, Space, Typography, Alert } from 'antd'
-import React from 'react'
 
 const { Link } = Typography
 
-const ComponentCharts: React.FC = () => {
+function ComponentCharts() {
   return (
     <>
       <Alert
@@ -16,13 +14,18 @@ const ComponentCharts: React.FC = () => {
         }
         type='info'
       />
-      <Card style={{ marginTop: '20px' }} title={ <Space>
-        <Link href='https://charts.ant.design/zh' target='_blank'>
-                  https://charts.ant.design/zh
-        </Link>
-      </Space>} bordered={false} />
+      <Card
+        style={{ marginTop: '20px' }}
+        title={
+          <Space>
+            <Link href='https://charts.ant.design/zh' target='_blank'>
+              https://charts.ant.design/zh
+            </Link>
+          </Space>
+        }
+        bordered={false}
+      />
     </>
-
   )
 }
 

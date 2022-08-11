@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import Config from '@/config'
 
 import { login } from '@/store/modules/user'
-import { useRouter, useRoute } from '@/router'
+import { useRouter, useRoute } from '@/router/hook'
 import Language from '@/components/Language'
 import Logo from '/logo.png'
 import { ApiLoginData } from '@/api/user'
@@ -50,14 +50,10 @@ const LoginTitle = styled.div`
   color: black;
 `
 
-const getTimeState = () => {
-  // 获取当前时间
+function getTimeState() {
   const timeNow = new Date()
-  // 获取当前小时
   const hours = timeNow.getHours()
-  // 设置默认文字
   let state = ``
-  // 判断当前时间段
   if (hours >= 0 && hours <= 10) {
     state = `早上好！`
   } else if (hours > 10 && hours <= 14) {
@@ -70,7 +66,7 @@ const getTimeState = () => {
   return state
 }
 
-const Login = () => {
+function Login() {
   const { t } = useTranslation()
   const [form] = Form.useForm()
   const dispatch = useAppDispatch()

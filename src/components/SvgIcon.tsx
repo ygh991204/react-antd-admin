@@ -1,5 +1,12 @@
-import React from 'react'
+import type { CSSProperties } from 'react'
 import styled from 'styled-components'
+
+export interface SvgIconProps {
+  name: string
+  prefix?: string,
+  style?: CSSProperties,
+  className?: string
+}
 
 const Svg = styled.svg`
   width: 1em;
@@ -9,11 +16,7 @@ const Svg = styled.svg`
   overflow: hidden;
 `
 
-const SvgIcon: React.FC<{
-  name: string
-  prefix?: string,
-  [key:string]: any
-}> = ({ name, prefix = 'icon', ...props }) => {
+function SvgIcon({ name, prefix = 'icon', ...props }: SvgIconProps) {
   const symbolId = `#${prefix}-${name}`
   return (
     <Svg aria-hidden='true' {...props}>

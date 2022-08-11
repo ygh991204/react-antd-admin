@@ -43,7 +43,7 @@ export const rolesDb: RoleDb[] = [
   }
 ]
 
-export const menusDb: CaseRoute[] = [
+export const menusDb: CaseRoute<string>[] = [
   {
     path: 'permission',
     meta: { title: '权限页', icon: 'permission', permission: 'permission:list' },

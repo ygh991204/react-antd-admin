@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Result, Button } from 'antd'
-import { useRouter } from '@/router'
-import React from 'react'
+import { useRouter } from '@/router/hook'
 
-const Error404: React.FC = () => {
+export default function() {
   const router = useRouter()
   const { t } = useTranslation()
   return <Result
@@ -15,5 +14,3 @@ const Error404: React.FC = () => {
     }}>{t('app.backHome')}</Button>}
   />
 }
-
-export default Error404

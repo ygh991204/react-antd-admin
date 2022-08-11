@@ -1,10 +1,10 @@
 
-import React, { useState, useCallback, useEffect } from 'react'
+import type { PropsWithChildren } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setPageTitle } from '@/utils'
-import RouterLoading from './RouterLoading'
-import useRoute from './useRoute'
-import useRouter, { RouterOptions } from './useRouter'
+import { RouterLoading } from '@/router'
+import { RouterOptions, useRoute, useRouter } from '@/router/hook'
 import { routerBeforeEach } from './permission'
 
 export type RouterGuardNext = (
@@ -15,7 +15,7 @@ export type RouterGuardNext = (
   | string
 ) => void
 
-const RouterGuard: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+export function RouterGuard({ children }: PropsWithChildren) {
   const route = useRoute()
   const router = useRouter()
   const { t } = useTranslation()
@@ -38,7 +38,5 @@ const RouterGuard: React.FC<{ children?: React.ReactNode }> = ({ children }) => 
     routerBeforeEach(route, next)
   }, [])
 
-  return <>{auth ? children || RouterLoading : RouterLoading}</>
+  return <>{auth ? children || <RouterLoading/> : <RouterLoading/>}</>
 }
-
-export default RouterGuard

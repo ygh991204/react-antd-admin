@@ -1,5 +1,4 @@
 
-import 'react-i18next'
 import type { Locale } from '@/lang/zh_CN'
 
 declare module 'react-i18next' {

@@ -7,10 +7,10 @@ import SalesCategoryChart from './SalesCategoryChart'
 import UserSourceChart from './UserSourceChart'
 import SalesChart from './SalesChart'
 
-const CardHeader: React.FC<{
+function CardHeader({ title, data }: {
   title: string
   data: string
-}> = ({ title, data }) => {
+}) {
   const { t } = useTranslation()
   return (
     <Col xxl={6} xl={6} lg={12} md={12} sm={12} xs={24}>
@@ -28,7 +28,7 @@ const CardHeader: React.FC<{
   )
 }
 
-const DashboardAnalyze: React.FC = () => {
+function DashboardAnalyze() {
   const { t } = useTranslation()
   return (
     <>

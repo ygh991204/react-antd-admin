@@ -1,8 +1,7 @@
 import { Card } from 'antd'
 import { Column, ColumnConfig } from '@ant-design/plots'
-import React from 'react'
 
-const SalesChart: React.FC = () => {
+function SalesChart() {
   const data = [
     {
       type: '1月',

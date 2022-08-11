@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Card } from 'antd'
 import { Rose, RoseConfig } from '@ant-design/plots'
 
-const UserSourceChart = () => {
+function UserSourceChart() {
   const { t } = useTranslation()
   const data = [
     {

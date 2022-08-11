@@ -5,13 +5,13 @@ import { DownOutlined } from '@ant-design/icons'
 
 import store, { useAppDispatch, useAppSelector } from '@/store'
 import { addTabsPage, delTabsPage, delOtherTabPage, delAllTabPage } from '@/store/modules/tabs'
-import { useRoute, useRouter } from '@/router'
+import { useRoute, useRouter } from '@/router/hook'
 
 const { TabPane } = Tabs
 
 const getTabsPages = () => store.getState().tabs.pages
 
-const TabsPages: React.FC = () => {
+function TabsPages() {
   const { t } = useTranslation()
   const tabsPages = useAppSelector((state) => state.tabs.pages)
   const dispatch = useAppDispatch()
@@ -19,26 +19,19 @@ const TabsPages: React.FC = () => {
   const route = useRoute()
 
   useEffect(() => {
-    if (route.path && !route.match.redirect && !route.match.children) {
+    if (!route.match.redirect && !route.match.children) {
       dispatch(addTabsPage(route))
     }
   }, [route])
 
-  const tabChange = (activeKey: string) => {
-    const tag = tabsPages.filter((v) => v.path === activeKey)[0]
-    if (tag) {
-      router.push(tag.fullPath || '/')
-    }
-  }
-
-  const tabDel = (key: React.MouseEvent | React.KeyboardEvent | string) => {
+  function tabDel(key: React.MouseEvent | React.KeyboardEvent | string) {
     dispatch(delTabsPage({ path: key as string }))
     if (route.path === key) {
       toLastView()
     }
   }
 
-  const toLastView = () => {
+  function toLastView() {
     const _tabsPages = getTabsPages()
     const lastPage = _tabsPages[_tabsPages.length - 1]
     if (lastPage) {
@@ -79,11 +72,16 @@ const TabsPages: React.FC = () => {
           size='small'
           activeKey={route.path}
           defaultActiveKey={route.path}
-          onChange={tabChange}
+          onChange={(activeKey) => {
+            const tag = tabsPages.filter((v) => v.path === activeKey)[0]
+            if (tag) {
+              router.push(tag.fullPath || '/')
+            }
+          }}
           onEdit={tabDel}>
           {tabsPages.map((tag) => (
             <TabPane
-              tab={tag.meta.title ? t(tag.meta.title as any) : 'no_name'}
+              tab={<>{tag.meta.title ? t(tag.meta.title) : 'no_name'}</>}
               key={tag.path}
               closable={!tag.meta.affixTab}
             />
@@ -99,11 +97,7 @@ const TabsPages: React.FC = () => {
                   tabDel(route.path)
                 }
                 if (key === 'closeOtherTab') {
-                  dispatch(
-                    delOtherTabPage({
-                      path: route.path
-                    })
-                  )
+                  dispatch(delOtherTabPage({ path: route.path }))
                   toLastView()
                 }
                 if (key === 'closeAllTab') {

@@ -1,10 +1,16 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Menu, Dropdown, Avatar, Modal, Breadcrumb } from 'antd'
-import { MenuUnfoldOutlined, MenuFoldOutlined, FullscreenOutlined, FullscreenExitOutlined, GlobalOutlined } from '@ant-design/icons'
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
+  GlobalOutlined
+} from '@ant-design/icons'
 import screenfull from 'screenfull'
 
-import { useRoute, useRouter } from '@/router'
+import { useRoute, useRouter } from '@/router/hook'
 
 import { useAppDispatch, useAppSelector } from '@/store'
 import { toogleSideBar } from '@/store/modules/app'
@@ -12,7 +18,7 @@ import { logout } from '@/store/modules/user'
 
 import Language from '@/components/Language'
 
-const NavBar: React.FC = () => {
+function NavBar() {
   const { t } = useTranslation()
   const sideBarOpened = useAppSelector((state) => state.app.sideBarOpend)
   const user = useAppSelector(state => state.user.user)
@@ -41,7 +47,7 @@ const NavBar: React.FC = () => {
     }
   }, [])
 
-  const logoutConfirm = () => {
+  function logoutConfirm() {
     Modal.confirm({
       title: t('app.modalConfirmTitle'),
       type: 'warning',
@@ -68,9 +74,9 @@ const NavBar: React.FC = () => {
           dispatch(toogleSideBar())
         }}>
         {sideBarOpened ? (
-          <MenuFoldOutlined style={{ fontSize: '20px' }} />
+          <MenuFoldOutlined style={{ fontSize: '20px' }}/>
         ) : (
-          <MenuUnfoldOutlined style={{ fontSize: '20px' }} />
+          <MenuUnfoldOutlined style={{ fontSize: '20px' }}/>
         )}
       </div>
 
@@ -78,17 +84,18 @@ const NavBar: React.FC = () => {
         <Breadcrumb>
           {route.matched.map(v => (
             <Breadcrumb.Item key={v.fullPath}>
-              { v.meta.title ? t(v.meta.title as any) : ''}
+              {v.meta.title ? t(v.meta.title as any) : ''}
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>
       </div>
 
-      <div className='app-navbar-header-file' />
+      <div className='app-navbar-header-file'/>
 
       <div onClick={screenfullToogle} className='app-navbar-header-item'>
         {
-          isScreenfull ? <FullscreenExitOutlined style={{ fontSize: '20px' }} /> : <FullscreenOutlined style={{ fontSize: '20px' }} />
+          isScreenfull ? <FullscreenExitOutlined style={{ fontSize: '20px' }}/> :
+            <FullscreenOutlined style={{ fontSize: '20px' }}/>
         }
       </div>
 
@@ -98,10 +105,13 @@ const NavBar: React.FC = () => {
         } else {
           router.push('/personal')
         }
-      }} items={[{ label: t('menus.personal'), key: '1' }, { type: 'divider' }, { label: t('app.logout'), key: '3' }]} />}>
+      }} items={[{
+        label: t('menus.personal'),
+        key: '1'
+      }, { type: 'divider' }, { label: t('app.logout'), key: '3' }]}/>}>
         <div className='app-navbar-header-item'>
-          <Avatar size={30} src={ user.avater } />
-          <span style={{ paddingLeft: '5px' }}>{ user.nikename }</span>
+          <Avatar size={30} src={user.avater}/>
+          <span style={{ paddingLeft: '5px' }}>{user.nikename}</span>
         </div>
       </Dropdown>
 

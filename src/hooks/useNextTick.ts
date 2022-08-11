@@ -5,7 +5,7 @@ type Func = () => void
 /**
  * 类似 Vue 的 $nextTick
  */
-export default function() {
+export default function useNextTick() {
   const funcs = useRef<Func[]>([])
   const [state, setState] = useState({})
   const nextTick = useCallback((func: Func) => {

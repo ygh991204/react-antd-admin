@@ -1,4 +1,6 @@
 
+export const BasicLayout = 'BasicLayout'
+
 const menusRoutes: CaseRoute[] = [
   {
     path: 'dashboard',
@@ -84,6 +86,11 @@ const menusRoutes: CaseRoute[] = [
         path: '403',
         component: 'error/403',
         meta: { title: 'menus.error403' }
+      },
+      {
+        path: '500',
+        component: 'error/500',
+        meta: { title: 'menus.error500' }
       }
     ]
   },
@@ -126,7 +133,7 @@ const menusRoutes: CaseRoute[] = [
   },
   {
     path: 'https://ant.design-cn',
-    meta: { title: 'Ant Design', icon: 'ant-design' }
+    meta: { title: 'Ant Design' as RouteMetaTitle, icon: 'ant-design' }
   },
   {
     path: 'navigate',
@@ -158,7 +165,7 @@ const constantRoutes: CaseRoute[] = [
   {
     path: '/',
     redirect: '/dashboard',
-    component: 'Layout',
+    component: BasicLayout,
     children: menusRoutes
   },
   {
@@ -170,5 +177,12 @@ const constantRoutes: CaseRoute[] = [
     component: 'error/401'
   }
 ]
+
+export const ErrorRoute: Route = {
+  path: '*',
+  redirect: '/404',
+  fullPath: '',
+  meta: {}
+}
 
 export default constantRoutes

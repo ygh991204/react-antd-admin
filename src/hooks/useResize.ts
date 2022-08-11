@@ -4,7 +4,7 @@ export function getWindowWidth() {
   return document.body.getBoundingClientRect().width
 }
 
-export default function() {
+export default function useResize() {
   const [windowWidth, setWindowWidth] = useState(getWindowWidth())
   const handleResize = useCallback(() => {
     setWindowWidth(getWindowWidth())

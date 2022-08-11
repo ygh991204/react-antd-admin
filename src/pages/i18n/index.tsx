@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { Card, Space, Typography, Radio, Alert } from 'antd'
-import React from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
 import DatePicker from '@/components/DatePicker'
 import TimePicker from '@/components/TimePicker'
@@ -9,7 +8,7 @@ import { changeAppLange } from '@/store/modules/language'
 
 const { Link } = Typography
 
-const I18n: React.FC = () => {
+function I18n() {
   const { t } = useTranslation()
   const { lang, langs } = useAppSelector((state) => state.language)
   const dispatch = useAppDispatch()

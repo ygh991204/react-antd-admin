@@ -1,12 +1,12 @@
-import React from 'react'
 import { useRoutes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import { cloneDeep } from 'lodash'
 
-import { RouterGuard, RoutesRender } from '@/router'
+import { RoutesRender } from '@/router'
+import { RouterGuard } from '@/router/guard'
 import { useAppSelector } from '@/store'
 
-const App: React.FC = () => {
+export default function App() {
   const routes = useAppSelector((state) => state.routes.routes)
   const antdLang = useAppSelector((state) => state.language.antdLang)
   const element = useRoutes(RoutesRender(cloneDeep(routes)))
@@ -18,5 +18,3 @@ const App: React.FC = () => {
     </>
   )
 }
-
-export default App

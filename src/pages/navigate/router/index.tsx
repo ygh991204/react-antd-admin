@@ -1,8 +1,7 @@
-import React from 'react'
 import { Alert, Button, Card, Space } from 'antd'
-import { useRouter } from '@/router'
+import { useRouter } from '@/router/hook'
 
-const RouterNavigate: React.FC = () => {
+export default function RouterNavigate() {
   const router = useRouter()
   return (
     <>
@@ -12,53 +11,61 @@ const RouterNavigate: React.FC = () => {
       />
       <Card style={{ marginTop: '20px' }} bordered={false} title='push'>
         <Space direction='vertical'>
-          <Button type='link' onClick={() => {
-            router.push({
-              path: '/'
-            })
-          }}>
+          <Button
+            type='link'
+            onClick={() => {
+              router.push({
+                path: '/'
+              })
+            }}>
             首页
           </Button>
-          <Button type='link' onClick={() => {
-            router.push({
-              path: '/navigate/test',
-              query: {
-                id: 'ygh91204'
-              }
-            })
-          }}>
+          <Button
+            type='link'
+            onClick={() => {
+              router.push({
+                path: '/navigate/test',
+                query: {
+                  id: 'ygh91204'
+                }
+              })
+            }}>
             路由测试页（带 query）
           </Button>
-          <Button type='link' onClick={() => {
-            router.push({
-              path: '/navigate/test',
-              params: {
-                name: 'antd'
-              }
-            })
-          }}>
+          <Button
+            type='link'
+            onClick={() => {
+              router.push({
+                path: '/navigate/test',
+                params: {
+                  name: 'antd'
+                }
+              })
+            }}>
             路由测试页（带 params）
           </Button>
         </Space>
       </Card>
       <Card style={{ marginTop: '20px' }} bordered={false} title='replace'>
-        <Button type='link' onClick={() => {
-          router.replace({
-            path: '/detail/basis'
-          })
-        }}>
-            基础详情页
+        <Button
+          type='link'
+          onClick={() => {
+            router.replace({
+              path: '/detail/basis'
+            })
+          }}>
+          基础详情页
         </Button>
       </Card>
       <Card style={{ marginTop: '20px' }} bordered={false} title='back'>
-        <Button type='link' onClick={() => {
-          router.back()
-        }}>
-            返回
+        <Button
+          type='link'
+          onClick={() => {
+            router.back()
+          }}>
+          返回
         </Button>
       </Card>
     </>
   )
 }
-
-export default RouterNavigate

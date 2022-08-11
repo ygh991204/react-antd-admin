@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { toogleDevice, closeSideBar } from '@/store/modules/app'
 import useResize from '@/hooks/useResize'
@@ -12,7 +12,7 @@ import './index.less'
 
 const MobileWidth = 992
 
-const Layout: React.FC = () => {
+function Layout() {
   const { sideBarOpend, device } = useAppSelector((state) => state.app)
   const { tabs } = useAppSelector((state) => state.setting)
   const dispatch = useAppDispatch()

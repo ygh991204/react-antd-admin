@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Card, Form, Select, Input, Button, InputNumber, Space } from 'antd'
 
 import RichText from '@/components/RichText'
@@ -15,7 +15,7 @@ const typeOptions: Array<{
   { id: uuidv1(), name: '数码' }
 ]
 
-const FormBasis: React.FC = () => {
+function FormBasis() {
   const [form] = Form.useForm()
 
   function formFinish(val: any) {

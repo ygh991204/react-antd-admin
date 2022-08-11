@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Card } from 'antd'
 import { Pie } from '@ant-design/plots'
-import React from 'react'
 
-const SalesCategoryChart: React.FC = () => {
+function SalesCategoryChart() {
   const { t } = useTranslation()
   const data = [
     {

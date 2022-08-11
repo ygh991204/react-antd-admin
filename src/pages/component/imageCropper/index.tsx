@@ -6,7 +6,7 @@ const { Link } = Typography
 
 import Logo from '/logo.png'
 
-const ComponentImageCropper = () => {
+function ComponentImageCropper() {
   const { t } = useTranslation()
   const [imgBase, setImgBase] = useState('')
   const [imgBaseDialog, setImgBaseDialog] = useState('')

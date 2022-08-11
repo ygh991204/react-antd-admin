@@ -8,7 +8,7 @@ import { wait } from '@/utils'
 import QueryFrom from './QueryFrom'
 import EditorForm, { EditorFormRef } from './EditorForm'
 
-const ListQueryTable: React.FC = () => {
+function ListQueryTable() {
   const [data, setData] = useState<BasisListItem[]>([])
   const [loading, setLoading] = useState(false)
   const [count, setCount] = useState(1)

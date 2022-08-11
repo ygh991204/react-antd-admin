@@ -1,4 +1,3 @@
-import React from 'react'
 import { Descriptions, Card, Divider, Table } from 'antd'
 
 import type { ColumnsType } from 'antd/es/table'
@@ -61,7 +60,7 @@ const columns: ColumnsType<Commodity> = [
   }
 ]
 
-const DetailBasis: React.FC = () => {
+function DetailBasis() {
   return (
     <Card bordered={false}>
       <Descriptions title='订单详情'>

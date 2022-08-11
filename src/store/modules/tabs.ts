@@ -1,7 +1,7 @@
-import type { RouteLocation } from '@/router/useRoute'
+import type { RouteLocation } from '@/router/hook'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import constantRoutes from '@/router/constantRoutes'
-import { formatRoutes, getAffixTabRoutes } from '@/router/utils'
+import { formatRoutes, getAffixTabRoutes } from '@/router/helper'
 
 const tabsSlice = createSlice({
   name: 'tabs',
@@ -11,13 +11,10 @@ const tabsSlice = createSlice({
   },
 
   reducers: {
+
     addTabsPage(state, { payload }: PayloadAction<RouteLocation>) {
       if (state.pages.some((v) => v.path === payload.path)) return
-      state.pages.push(
-        Object.assign({}, payload, {
-          title: payload.meta.title || 'no-name'
-        })
-      )
+      state.pages.push(Object.assign({}, payload) as any)
     },
 
     delTabsPage(state, { payload }: PayloadAction<{ path: string }>) {

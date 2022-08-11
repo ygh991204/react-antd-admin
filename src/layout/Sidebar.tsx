@@ -1,12 +1,10 @@
-import React, { useMemo, useState, useLayoutEffect, useEffect } from 'react'
+import { useMemo, useState, useLayoutEffect, useEffect } from 'react'
 import { Translation } from 'react-i18next'
 import { Menu } from 'antd'
-
-import { useRoute, useRouter } from '@/router'
+import { useRoute, useRouter } from '@/router/hook'
 import { closeSideBar } from '@/store/modules/app'
 import { validateURL } from '@/utils/validate'
 import { wait } from '@/utils'
-
 import SvgIcon from '@/components/SvgIcon'
 import Logo from '/logo.png'
 import { useAppDispatch, useAppSelector } from '@/store'
@@ -17,13 +15,13 @@ function formatRoutes(routes: Route[] = []): ItemType[] {
     return {
       children: route.children ? formatRoutes(route.children) : undefined,
       key: route.fullPath,
-      label: <Translation>{(t) => route.meta.title ? t(route.meta.title as any) : 'no_name'}</Translation>,
+      label: <Translation>{(t) => <>{route.meta.title ? t(route.meta.title) : 'no_name'}</>}</Translation>,
       icon: route.meta.icon ? <SvgIcon name={route.meta.icon} /> : null
     }
   })
 }
 
-const LogoTitle = () => {
+function LogoTitle() {
   const sideBarOpend = useAppSelector((state) => state.app.sideBarOpend)
   const [show, setShow] = useState(true)
   const handleShow = async(sideBarOpend: boolean) => {
@@ -40,7 +38,7 @@ const LogoTitle = () => {
   return <>{show ? <span className='app-logo-title'>React Antd Admin</span> : null}</>
 }
 
-const SideBar: React.FC = () => {
+function SideBar() {
   const { sideBarOpend, device } = useAppSelector((state) => state.app)
   const { logo } = useAppSelector((state) => state.setting)
   const routes = useAppSelector((state) => state.routes.menuRoutes)
@@ -54,12 +52,12 @@ const SideBar: React.FC = () => {
   }, [routes])
 
   const selectedKeys = useMemo(() => {
-    return route.matched.map((v) => v.fullPath || '')
+    return route.matched.map((v) => v.fullPath)
   }, [route.matched])
 
   useLayoutEffect(() => {
     if (sideBarOpend) {
-      const _openKeys = route.matched.map((v) => v.fullPath || '')
+      const _openKeys = route.matched.map((v) => v.fullPath)
       _openKeys.pop()
       setOpenKeys(_openKeys)
     } else {

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { cloneDeep } from 'lodash'
-import { constantRoutes, formatRoutes, getShowRoutes } from '@/router'
+import { formatRoutes, getShowRoutes } from '@/router/helper'
+import constantRoutes, { ErrorRoute } from '@/router/constantRoutes'
 import { getMenus } from '@/api/user'
 
 function createRoutes(menus: CaseRoute[] = []) {
@@ -28,20 +29,18 @@ const routesSlice = createSlice({
   name: 'routes',
   initialState: {
     routes: routes,
-    menuRoutes
+    menuRoutes: menuRoutes
   },
   reducers: {},
   extraReducers(builder) {
     builder.addCase(loadAsyncMenus.fulfilled, (state, { payload }) => {
       const { routes, menuRoutes } = createRoutes(payload)
-      routes.push({
-        path: '*',
-        redirect: '/404',
-        fullPath: '',
-        meta: {}
-      })
-      state.routes = routes
-      state.menuRoutes = menuRoutes
+      routes.push(ErrorRoute)
+      state.routes = routes as any
+      state.menuRoutes = menuRoutes as any
+    })
+    builder.addCase(loadAsyncMenus.rejected, (state) => {
+      state.routes.push(ErrorRoute as any)
     })
   }
 })

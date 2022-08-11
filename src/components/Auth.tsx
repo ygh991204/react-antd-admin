@@ -1,11 +1,13 @@
-import { useAuth } from '@/utils/auth'
-import React from 'react'
 
-const Auth: React.FC<{
+import type { ReactNode, PropsWithChildren } from 'react'
+import { useAuth } from '@/utils/auth'
+
+export type AuthProps = PropsWithChildren<{
   permissions: string[]
-  render?: React.ReactNode
-  children?: React.ReactNode
-}> = ({ permissions, render, children }) => {
+  render?: ReactNode
+}>
+
+function Auth({ permissions, render, children }: AuthProps) {
   const auth = useAuth(permissions)
   return <>{auth ? render || children || null : null}</>
 }

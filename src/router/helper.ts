@@ -1,6 +1,18 @@
-import type { RouteLocation } from './useRoute'
+import type { ComponentType } from 'react'
+import type { RouteLocation } from '@/router/hook'
 import { validateURL } from '@/utils/validate'
 
+const pagesModules = import.meta.glob('@/pages/**/index.tsx')
+
+export function asyncImportPages(component: string) {
+  const keys = '../pages/' + component + '/index.tsx'
+  return pagesModules[keys] as () => Promise<ComponentType>
+}
+
+/**
+ *  处理 fullPath
+ *  CaseRoute => Route
+ */
 export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] {
   return routes.map((route) => {
     let children
@@ -21,6 +33,9 @@ export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] 
   })
 }
 
+/**
+ * 过滤隐藏的路由
+ */
 export function getShowRoutes(routes: Route[] = []): Route[] {
   return routes.filter((route) => {
     if (route.meta.hidden) {
@@ -39,7 +54,7 @@ export function getAffixTabRoutes(routes: Route[], tags: RouteLocation[] = []) {
     if (route.meta && route.meta.affixTab) {
       prev.push({
         ...route,
-        path: route.fullPath || '',
+        path: route.fullPath,
         hash: '',
         match: route,
         matched: [],
