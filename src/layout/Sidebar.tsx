@@ -1,8 +1,10 @@
+import type { RouteRecord } from '@/router/type'
+
 import { useMemo, useState, useLayoutEffect, useEffect } from 'react'
 import { Translation } from 'react-i18next'
 import { Menu } from 'antd'
 import { useRoute, useRouter } from '@/router/hook'
-import { closeSideBar } from '@/store/modules/app'
+import { closeSideBar } from '@/store/modules/appSlice'
 import { validateURL } from '@/utils/validate'
 import { wait } from '@/utils'
 import SvgIcon from '@/components/SvgIcon'
@@ -10,7 +12,7 @@ import Logo from '/logo.png'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
-function formatRoutes(routes: Route[] = []): ItemType[] {
+function formatRoutes(routes: RouteRecord[] = []): ItemType[] {
   return routes.map((route) => {
     return {
       children: route.children ? formatRoutes(route.children) : undefined,
@@ -41,7 +43,7 @@ function LogoTitle() {
 function SideBar() {
   const { sideBarOpend, device } = useAppSelector((state) => state.app)
   const { logo } = useAppSelector((state) => state.setting)
-  const routes = useAppSelector((state) => state.routes.menuRoutes)
+  const routes = useAppSelector((state) => state.permission.menuRoutes)
   const dispatch = useAppDispatch()
   const route = useRoute()
   const router = useRouter()

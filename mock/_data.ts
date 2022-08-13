@@ -1,5 +1,5 @@
 
-export const usersDb: UserDb[] = [
+export const usersDb: Api.UserDb[] = [
   {
     nikename: '管理员',
     username: 'admin',
@@ -18,7 +18,7 @@ export const usersDb: UserDb[] = [
   }
 ]
 
-export const rolesDb: RoleDb[] = [
+export const rolesDb: Api.RoleDb[] = [
   {
     roleValue: 'admin',
     roleName: '管理员',
@@ -43,7 +43,7 @@ export const rolesDb: RoleDb[] = [
   }
 ]
 
-export const menusDb: CaseRoute<string>[] = [
+export const menusDb: Api.MenuDb[] = [
   {
     path: 'permission',
     meta: { title: '权限页', icon: 'permission', permission: 'permission:list' },

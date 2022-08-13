@@ -4,13 +4,14 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import DatePicker from '@/components/DatePicker'
 import TimePicker from '@/components/TimePicker'
 import Calendar from '@/components/Calendar'
-import { changeAppLange } from '@/store/modules/language'
+import { changeAppLange } from '@/store/modules/appSlice'
+import { languageList } from '@/language'
 
 const { Link } = Typography
 
 function I18n() {
   const { t } = useTranslation()
-  const { lang, langs } = useAppSelector((state) => state.language)
+  const language = useAppSelector((state) => state.app.language)
   const dispatch = useAppDispatch()
   return (
     <Card
@@ -23,14 +24,14 @@ function I18n() {
       }
       bordered={false}>
       <Radio.Group
-        options={langs.map((v) => ({
+        options={languageList.map((v) => ({
           label: v.label,
           value: v.key
         }))}
-        onChange={(val) => {
-          dispatch(changeAppLange(val.target.value))
+        onChange={(event) => {
+          dispatch(changeAppLange(event.target.value))
         }}
-        value={lang}
+        value={language}
         optionType='button'
         buttonStyle='solid'
       />

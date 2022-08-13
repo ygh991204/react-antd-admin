@@ -1,21 +1,22 @@
 import type { PropsWithChildren } from 'react'
 import { Menu, Dropdown } from 'antd'
-import { changeAppLange } from '@/store/modules/language'
+import { changeAppLange } from '@/store/modules/appSlice'
 import { useAppDispatch, useAppSelector } from '@/store'
+import { languageList, LanguageType } from '@/language'
 
 function Language({ children }: PropsWithChildren) {
-  const { lang, langs } = useAppSelector((state) => state.language)
+  const language = useAppSelector((state) => state.app.language)
   const dispatch = useAppDispatch()
   return (
     <Dropdown
       overlay={
         <Menu
           onClick={({ key }) => {
-            dispatch(changeAppLange(key as AppLange))
+            dispatch(changeAppLange(key as LanguageType))
           }}
-          items={langs.map((v) => ({
+          items={languageList.map((v) => ({
             ...v,
-            disabled: lang === v.key
+            disabled: language === v.key
           }))}
         />
       }>

@@ -6,7 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_TITLE: string
   readonly VITE_SHORT_TITLE: string
   readonly VITE_PROT: string
-  readonly VITE_LANG: AppLange
+  readonly VITE_LANGUAGE: 'zh_CN' | 'en_US'
   readonly VITE_TOKEN_KEY: string
   readonly VITE_TOKEN_EXPIRES: string
   readonly VITE_BASE_URL: string

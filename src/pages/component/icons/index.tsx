@@ -5,7 +5,7 @@ import SvgIcon from '@/components/SvgIcon'
 const { TabPane } = Tabs
 const { Link } = Typography
 
-const modulesFiles = import.meta.globEager('../../../assets/icons/*.svg')
+const modulesFiles = import.meta.globEager('@/assets/icons/*.svg')
 const svgNames = Object.keys(modulesFiles)
   .sort()
   .reduce((modules, modulePath) => {

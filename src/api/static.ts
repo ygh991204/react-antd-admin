@@ -1,16 +1,13 @@
-
 /**
  * 图片上传
  */
 
-import type { OriginFile } from '@/utils/file'
-
-export type UploadImageReslut<F extends OriginFile = OriginFile> = {
-  fileUrl: string,
+export type UploadImageReslut<F extends File = File> = {
+  fileUrl: string
   file: F
 }
 
-export async function uploadImage<F extends OriginFile = OriginFile>(origin: F): Promise<UploadImageReslut<F>> {
+export async function uploadImage<F extends File = File>(origin: F): Promise<UploadImageReslut<F>> {
   return new Promise((reslove, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(origin as Blob)

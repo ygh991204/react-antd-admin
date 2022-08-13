@@ -1,13 +1,36 @@
+import type { RouteRecord } from '@/router/type'
 import type { RouteLocation } from '@/router/hook'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import constantRoutes from '@/router/constantRoutes'
-import { formatRoutes, getAffixTabRoutes } from '@/router/helper'
+import { constantRoutes } from '@/router/constant'
+import { formatRoutes } from '@/router/helper'
+
+export function getAffixTabRoutes(routes: RouteRecord[], tags: RouteLocation[] = []) {
+  return routes.reduce((prev, route) => {
+    if (route.meta && route.meta.affixTab) {
+      prev.push({
+        ...route,
+        path: route.fullPath,
+        hash: '',
+        match: route,
+        matched: [],
+        params: {},
+        query: {}
+      })
+    }
+    if (route.children) {
+      getAffixTabRoutes(route.children, prev)
+    }
+    return prev
+  }, tags)
+}
+
+const initialStatePages = getAffixTabRoutes(formatRoutes(constantRoutes))
 
 const tabsSlice = createSlice({
   name: 'tabs',
 
   initialState: {
-    pages: getAffixTabRoutes(formatRoutes(constantRoutes))
+    pages: initialStatePages
   },
 
   reducers: {

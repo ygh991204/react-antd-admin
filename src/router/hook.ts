@@ -1,3 +1,5 @@
+import type { RouteRecord, RouteMeta } from '@/router/type'
+
 import { useMemo, useCallback } from 'react'
 import { useLocation, useParams, matchRoutes, useNavigate } from 'react-router-dom'
 import qs from 'qs'
@@ -8,8 +10,8 @@ import { RoutesRender } from '@/router'
 export interface RouteLocation<Q extends IAnyObject = IAnyObject, P extends IAnyObject = IAnyObject> {
   readonly fullPath: string
   readonly hash: string
-  readonly matched: Route[]
-  readonly match: Route
+  readonly matched: RouteRecord[]
+  readonly match: RouteRecord
   readonly meta: RouteMeta
   readonly params: P
   readonly path: string
@@ -22,7 +24,7 @@ export interface RouteLocation<Q extends IAnyObject = IAnyObject, P extends IAny
 export function useRoute<Q extends IAnyObject = IAnyObject, P extends IAnyObject = IAnyObject>(): RouteLocation<Q, P> {
   const location = useLocation()
   const param = useParams()
-  const routes = useAppSelector((state) => state.routes.routes)
+  const routes = useAppSelector((state) => state.permission.routes)
 
   const search = useMemo(() => {
     return location.search ? decodeURIComponent(location.search) : ''
@@ -54,7 +56,7 @@ export function useRoute<Q extends IAnyObject = IAnyObject, P extends IAnyObject
         matchedRoutes = routes.filter((v) => v.fullPath === matchPath)
       }
       return matchedRoutes
-    }, [] as Route[])
+    }, [] as RouteRecord[])
     return _matched
   }, [routes, location])
 

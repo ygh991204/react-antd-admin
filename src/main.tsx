@@ -17,7 +17,7 @@ import App from '@/App'
 import '@/assets/styles/index.less'
 import 'normalize.css/normalize.css'
 
-import '@/i18n'
+import '@/language'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>

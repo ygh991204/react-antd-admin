@@ -4,12 +4,11 @@ import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-de
 import { getList, GetListQueryFrom, del } from '@/api/list'
 import useStateSync from '@/hooks/useStateSync'
 import { wait } from '@/utils'
-
 import QueryFrom from './QueryFrom'
 import EditorForm, { EditorFormRef } from './EditorForm'
 
 function ListQueryTable() {
-  const [data, setData] = useState<BasisListItem[]>([])
+  const [data, setData] = useState<Api.BasisListDb[]>([])
   const [loading, setLoading] = useState(false)
   const [count, setCount] = useState(1)
   const [pageIndex, setPageIndex, pageIndexRef] = useStateSync(1)

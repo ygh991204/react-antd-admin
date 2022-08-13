@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button, Drawer, List, Switch } from 'antd'
-
 import { SettingOutlined, CloseOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
-
-import { toogleLogo, toogleTabs } from '@/store/modules/setting'
+import { toogleLogo, toogleTabs } from '@/store/modules/settingSlice'
 import { useAppDispatch, useAppSelector } from '@/store'
 
 const SettingButton = styled.div<{

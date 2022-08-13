@@ -7,7 +7,7 @@ export type ApiLoginData = {
 
 /** 登录 */
 export function login(data: ApiLoginData) {
-  return request<UserDb>({
+  return request<Api.UserDb>({
     url: '/api/v1/login',
     method: 'post',
     data
@@ -16,7 +16,7 @@ export function login(data: ApiLoginData) {
 
 /** 获取菜单列表 */
 export function getMenus() {
-  return request<CaseRoute[]>({
+  return request<Api.MenuDb[]>({
     url: '/api/v1/menus',
     method: 'post'
   })
@@ -24,7 +24,7 @@ export function getMenus() {
 
 /** 获取用户数据 */
 export function getUserInfo() {
-  return request<RoleDb & UserDb>({
+  return request<Api.RoleDb & Api.UserDb>({
     url: '/api/v1/userinfo',
     method: 'post'
   })

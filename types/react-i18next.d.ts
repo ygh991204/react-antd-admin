@@ -1,11 +1,10 @@
-
-import type { Locale } from '@/lang/zh_CN'
+import type { TranslationLocale } from '@/language/zh_CN'
+import type { LanguageType } from '@/language'
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {
-    defaultNS: AppLange;
     resources: {
-      zh_CN: Locale,
+      [key in LanguageType]: TranslationLocale
     }
   }
 }

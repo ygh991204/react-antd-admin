@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
 import { login as userLogin, logout as userLogout, getUserInfo, ApiLoginData } from '@/api/user'
 import { setToken, removeToken } from '@/utils/auth'
-
 import AdminAvater from '@/assets/images/admin_avater.png'
 import UserAvater from '@/assets/images/user_avater.png'
 
@@ -22,7 +20,7 @@ export const userInfo = createAsyncThunk('user/userInfo', async() => {
 })
 
 interface UserState {
-  user: Partial<UserDb & RoleDb>
+  user: Partial<Api.UserDb & Api.RoleDb>
   token: string | null
   permissions: string[]
   loadMenus: boolean

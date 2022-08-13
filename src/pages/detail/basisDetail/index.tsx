@@ -1,7 +1,5 @@
-import { Descriptions, Card, Divider, Table } from 'antd'
-
 import type { ColumnsType } from 'antd/es/table'
-
+import { Descriptions, Card, Divider, Table } from 'antd'
 import data, { Commodity, createCommodity } from './data'
 
 data.commoditys.push(

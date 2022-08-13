@@ -2,9 +2,8 @@ import React, { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Tabs, Dropdown, Menu } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-
 import store, { useAppDispatch, useAppSelector } from '@/store'
-import { addTabsPage, delTabsPage, delOtherTabPage, delAllTabPage } from '@/store/modules/tabs'
+import { addTabsPage, delTabsPage, delOtherTabPage, delAllTabPage } from '@/store/modules/tabsSlice'
 import { useRoute, useRouter } from '@/router/hook'
 
 const { TabPane } = Tabs

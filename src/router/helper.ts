@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react'
-import type { RouteLocation } from '@/router/hook'
+import type { RouteRecordCase, RouteRecord } from '@/router/type'
 import { validateURL } from '@/utils/validate'
 
 const pagesModules = import.meta.glob('@/pages/**/index.tsx')
@@ -13,7 +13,7 @@ export function asyncImportPages(component: string) {
  *  处理 fullPath
  *  CaseRoute => Route
  */
-export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] {
+export function formatRoutes(routes: RouteRecordCase[], parentFullPath = ''): RouteRecord[] {
   return routes.map((route) => {
     let children
     let fullPath = route.path
@@ -28,7 +28,7 @@ export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] 
       ...route,
       fullPath,
       children: children,
-      meta: route.meta ? { ...route.meta } : {}
+      meta: { ...route.meta }
     }
   })
 }
@@ -36,7 +36,7 @@ export function formatRoutes(routes: CaseRoute[], parentFullPath = ''): Route[] 
 /**
  * 过滤隐藏的路由
  */
-export function getShowRoutes(routes: Route[] = []): Route[] {
+export function getShowRoutes(routes: RouteRecord[] = []): RouteRecord[] {
   return routes.filter((route) => {
     if (route.meta.hidden) {
       return false
@@ -47,24 +47,4 @@ export function getShowRoutes(routes: Route[] = []): Route[] {
       return true
     }
   })
-}
-
-export function getAffixTabRoutes(routes: Route[], tags: RouteLocation[] = []) {
-  return routes.reduce((prev, route) => {
-    if (route.meta && route.meta.affixTab) {
-      prev.push({
-        ...route,
-        path: route.fullPath,
-        hash: '',
-        match: route,
-        matched: [],
-        params: {},
-        query: {}
-      })
-    }
-    if (route.children) {
-      getAffixTabRoutes(route.children, prev)
-    }
-    return prev
-  }, tags)
 }

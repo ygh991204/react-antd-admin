@@ -1,6 +1,5 @@
 import React from 'react'
 import { Form, Card, Row, Col, Select, Input, Space, Button } from 'antd'
-
 import { GetListQueryFrom } from '@/api/list'
 import DatePicker from '@/components/DatePicker'
 
@@ -9,7 +8,7 @@ const { RangePicker } = DatePicker
 const { Option } = Select
 
 const StatusOption: {
-  value: BasisListItem['status']
+  value: Api.BasisListDb['status']
   label: string
 }[] = [
   {

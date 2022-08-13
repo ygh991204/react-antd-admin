@@ -8,19 +8,19 @@ interface EditorFormProps {
 }
 
 export interface EditorFormRef {
-  open: (data?: Partial<BasisListItem>) => void
+  open: (data?: Partial<Api.BasisListDb>) => void
 }
 
 const EditorForm = React.forwardRef<EditorFormRef, EditorFormProps>(({ onRefresh }, ref) => {
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const [title, setTitle] = useState('')
-  const formValues = useRef<Partial<BasisListItem>>({})
+  const formValues = useRef<Partial<Api.BasisListDb>>({})
 
   useImperativeHandle(ref, () => {
     return {
       open(
-        data: Partial<BasisListItem> = {
+        data: Partial<Api.BasisListDb> = {
           status: 1
         }
       ) {
@@ -39,7 +39,7 @@ const EditorForm = React.forwardRef<EditorFormRef, EditorFormProps>(({ onRefresh
       status: values.status ? 1 : 2
     })
     if (formData.id) {
-      await edit(formData as BasisListItem)
+      await edit(formData as Api.BasisListDb)
       notification.success({
         message: '编辑成功'
       })

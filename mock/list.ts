@@ -8,7 +8,7 @@ const getList = createApi('/api/v1/list', 'get', (request) => {
   const size = pageSize ? Number(pageSize) : 10
   const page = pageIndex ? Number(pageIndex) : 1
   const totalPage = Math.ceil(count / size)
-  const list: BasisListItem[] = []
+  const list: Api.BasisListDb[] = []
   if (totalPage >= pageIndex) {
     const Random = Mock.Random
     for (let i = 0; i < size; i++) {

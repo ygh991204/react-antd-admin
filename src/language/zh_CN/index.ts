@@ -69,6 +69,6 @@ const zh_CN = {
   }
 }
 
-export type Locale = typeof zh_CN
+export type TranslationLocale = typeof zh_CN
 
 export default zh_CN

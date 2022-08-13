@@ -12,27 +12,3 @@ declare module 'axios' {
     patch<T = any, R = Api.Response<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>
   }
 }
-
-declare namespace Api {
-
-  export interface Response<T = any> {
-    code: number
-    msg: string
-    data: T
-  }
-
-  export type PageListRequest<T extends IAnyObject = IAnyObject> = {
-    pageIndex: number
-    pageSize?: number
-  } & T
-
-  export interface PageListResponse<T extends IAnyObject = IAnyObject> {
-    count: number
-    list: T[]
-    pageIndex: number
-    pageSize: number
-    totalPage: number
-  }
-}
-
-export default {}

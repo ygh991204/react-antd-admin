@@ -1,16 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-
-/** modules */
-import app from './modules/app'
-import language from './modules/language'
-import routes from './modules/routes'
-import setting from './modules/setting'
-import user from './modules/user'
-import tabs from './modules/tabs'
+import appReducer from './modules/appSlice'
+import permissionReducer from './modules/permissionSlice'
+import settingReducer from './modules/settingSlice'
+import userReducer from './modules/userSlice'
+import tabsReducer from './modules/tabsSlice'
 
 const store = configureStore({
-  reducer: { app, language, routes, setting, user, tabs }
+  reducer: {
+    app: appReducer,
+    permission: permissionReducer,
+    setting: settingReducer,
+    user: userReducer,
+    tabs: tabsReducer
+  }
 })
 
 export type RootState = ReturnType<typeof store.getState>

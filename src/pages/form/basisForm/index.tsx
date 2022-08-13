@@ -1,8 +1,5 @@
-
 import { Card, Form, Select, Input, Button, InputNumber, Space } from 'antd'
-
 import RichText from '@/components/RichText'
-
 import { v1 as uuidv1 } from 'uuid'
 
 const { Option } = Select

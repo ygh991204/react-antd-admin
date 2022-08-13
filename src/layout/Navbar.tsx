@@ -9,13 +9,10 @@ import {
   GlobalOutlined
 } from '@ant-design/icons'
 import screenfull from 'screenfull'
-
 import { useRoute, useRouter } from '@/router/hook'
-
 import { useAppDispatch, useAppSelector } from '@/store'
-import { toogleSideBar } from '@/store/modules/app'
-import { logout } from '@/store/modules/user'
-
+import { toogleSideBar } from '@/store/modules/appSlice'
+import { logout } from '@/store/modules/userSlice'
 import Language from '@/components/Language'
 
 function NavBar() {
@@ -84,7 +81,7 @@ function NavBar() {
         <Breadcrumb>
           {route.matched.map(v => (
             <Breadcrumb.Item key={v.fullPath}>
-              {v.meta.title ? t(v.meta.title as any) : ''}
+              <>{v.meta.title ? t(v.meta.title) : ''}</>
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>

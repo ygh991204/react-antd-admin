@@ -1,10 +1,11 @@
+import type { RouteRecordCase } from '@/router/type'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { cloneDeep } from 'lodash'
 import { formatRoutes, getShowRoutes } from '@/router/helper'
-import constantRoutes, { ErrorRoute } from '@/router/constantRoutes'
+import { ErrorRoute, constantRoutes } from '@/router/constant'
 import { getMenus } from '@/api/user'
 
-function createRoutes(menus: CaseRoute[] = []) {
+function createRoutes(menus: RouteRecordCase[] = []) {
   const _constantRoutes = cloneDeep(constantRoutes)
   const menuRoutes = _constantRoutes.filter((v => v.path === '/'))[0].children
   if (menuRoutes) {
@@ -20,12 +21,12 @@ function createRoutes(menus: CaseRoute[] = []) {
 
 export const loadAsyncMenus = createAsyncThunk('routes/loadAsyncMenus', async() => {
   const response = await getMenus()
-  return response.data
+  return response.data as RouteRecordCase[]
 })
 
 const { routes, menuRoutes } = createRoutes()
 
-const routesSlice = createSlice({
+const permissionSlice = createSlice({
   name: 'routes',
   initialState: {
     routes: routes,
@@ -45,4 +46,4 @@ const routesSlice = createSlice({
   }
 })
 
-export default routesSlice.reducer
+export default permissionSlice.reducer

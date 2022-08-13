@@ -3,16 +3,16 @@ import { ConfigProvider } from 'antd'
 import { cloneDeep } from 'lodash'
 
 import { RoutesRender } from '@/router'
-import { RouterGuard } from '@/router/guard'
+import { RouterGuard } from '@/router/permission'
 import { useAppSelector } from '@/store'
 
 export default function App() {
-  const routes = useAppSelector((state) => state.routes.routes)
-  const antdLang = useAppSelector((state) => state.language.antdLang)
+  const routes = useAppSelector((state) => state.permission.routes)
+  const antdLanguage = useAppSelector((state) => state.app.antdLanguage)
   const element = useRoutes(RoutesRender(cloneDeep(routes)))
   return (
     <>
-      <ConfigProvider locale={antdLang}>
+      <ConfigProvider locale={antdLanguage}>
         <RouterGuard>{element}</RouterGuard>
       </ConfigProvider>
     </>

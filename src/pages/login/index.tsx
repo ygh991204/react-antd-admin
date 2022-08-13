@@ -1,54 +1,14 @@
-
 import { useTranslation } from 'react-i18next'
 import { Form, Input, Button, notification } from 'antd'
 import { UserOutlined, LockOutlined, GlobalOutlined } from '@ant-design/icons'
-import styled from 'styled-components'
 import Config from '@/config'
-
-import { login } from '@/store/modules/user'
-import { useRouter, useRoute } from '@/router/hook'
+import { LanguageWrapper, LoginHeader, LoginLogo, LoginMain, LoginTitle, LoginWrapper } from './style'
+import { login } from '@/store/modules/userSlice'
+import { useRouter } from '@/router/hook'
 import Language from '@/components/Language'
 import Logo from '/logo.png'
 import { ApiLoginData } from '@/api/user'
 import { useAppDispatch } from '@/store'
-
-const LanguageWrapper = styled.div`
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  cursor: pointer;
-`
-
-const LoginWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  padding-top: 100px;
-  display: flex;
-  justify-content: center;
-`
-
-const LoginMain = styled.div`
-  width: 350px;
-`
-
-const LoginHeader = styled.div`
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding-bottom: 60px;
-`
-
-const LoginLogo = styled.img`
-   width: 50px;
-   height: 50px;
-   margin-right: 16px;
-`
-
-const LoginTitle = styled.div`
-  font-size: 32px;
-  font-weight: bold;
-  color: black;
-`
 
 function getTimeState() {
   const timeNow = new Date()
@@ -71,7 +31,6 @@ function Login() {
   const [form] = Form.useForm()
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const route = useRoute()
   const onFinish = (value: ApiLoginData) => {
     dispatch(login(value))
       .unwrap()
@@ -80,7 +39,7 @@ function Login() {
           message: getTimeState() + data.nikename,
           description: '欢迎回来'
         })
-        router.push(route.query.redirect || '/')
+        router.push('/')
       })
   }
   return (

@@ -1,7 +1,7 @@
 
-import type { Locale } from './zh_CN'
+import type { TranslationLocale } from '../zh_CN'
 
-const en_US: Locale = {
+const en_US: TranslationLocale = {
   'app': {
     'logout': 'Log out',
     'logoutTip': 'Are you sure to exit and log off the system?',

@@ -1,9 +1,10 @@
+import type { RouteRecord } from '@/router/type'
 import { Navigate, Outlet, RouteObject } from 'react-router-dom'
 import { Spin } from 'antd'
 import styled from 'styled-components'
 import loadable from '@loadable/component'
-import { RouterGuard } from '@/router/guard'
-import { BasicLayout } from '@/router/constantRoutes'
+import { RouterGuard } from '@/router/permission'
+import { BasicLayout } from '@/router/constant'
 import Layout from '@/layout'
 import { asyncImportPages } from './helper'
 
@@ -33,7 +34,7 @@ function routerLazy(path: string) {
   })
 }
 
-export function RoutesRender(routes: Route[], isComponent = true): RouteObject[] {
+export function RoutesRender(routes: RouteRecord[], isComponent = true): RouteObject[] {
   return routes.map((route) => {
     if (route.component && route.redirect) {
       const children = route.children || []

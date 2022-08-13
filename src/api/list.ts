@@ -5,22 +5,22 @@ const api = '/api/v1/list'
 export interface GetListQueryFrom {
   name?: string
   createTime?: [string, string],
-  status?: BasisListItem['status']
+  status?: Api.BasisListDb['status']
 }
 
 export type GetListParams = Api.PageListRequest<GetListQueryFrom>
 
-export type BasisListForm = Omit<BasisListItem, 'id' | 'createTime'>
+export type BasisListForm = Omit<Api.BasisListDb, 'id' | 'createTime'>
 
 export function getList(params: GetListParams) {
-  return request<Api.PageListResponse<BasisListItem>>({
+  return request<Api.PageListResponse<Api.BasisListDb>>({
     url: api,
     method: 'get',
     params
   })
 }
 
-export function edit(data: BasisListItem) {
+export function edit(data: Api.BasisListDb) {
   return request({
     url: api,
     method: 'put',

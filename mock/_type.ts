@@ -1,4 +1,5 @@
-declare interface UserDb {
+
+export interface UserDb {
   nikename: string
   username: string
   password: string
@@ -7,16 +8,17 @@ declare interface UserDb {
   token: string
 }
 
-declare interface RoleDb {
+export interface RoleDb {
   roleValue: string
   roleName: string
   permissions: string[]
 }
 
-declare interface BasisListItem {
+export interface BasisListItem {
   id: string,
   name: string,
   description: string,
   createTime: string,
   status: 1 | 2
 }
+

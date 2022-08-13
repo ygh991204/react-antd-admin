@@ -1,7 +1,9 @@
 
+import type { RouteRecordCase, RouteRecord, RouteMetaTitle } from '@/router/type'
+
 export const BasicLayout = 'BasicLayout'
 
-const menusRoutes: CaseRoute[] = [
+export const menusRoutes: RouteRecordCase[] = [
   {
     path: 'dashboard',
     component: 'dashboard',
@@ -157,32 +159,34 @@ const menusRoutes: CaseRoute[] = [
   }
 ]
 
-const constantRoutes: CaseRoute[] = [
+export const constantRoutes: RouteRecordCase[] = [
   {
     path: '/login',
-    component: 'login'
+    component: 'login',
+    meta: {}
   },
   {
     path: '/',
     redirect: '/dashboard',
     component: BasicLayout,
-    children: menusRoutes
+    children: menusRoutes,
+    meta: {}
   },
   {
     path: '/404',
-    component: 'error/404'
+    component: 'error/404',
+    meta: {}
   },
   {
     path: '/401',
-    component: 'error/401'
+    component: 'error/401',
+    meta: {}
   }
 ]
 
-export const ErrorRoute: Route = {
+export const ErrorRoute: RouteRecord = {
   path: '*',
   redirect: '/404',
   fullPath: '',
   meta: {}
 }
-
-export default constantRoutes

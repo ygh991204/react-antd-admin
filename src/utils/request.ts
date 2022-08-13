@@ -15,7 +15,7 @@ service.interceptors.request.use(
     if (config.headers) {
       if (token) config.headers['Authorization'] = 'Bearer ' + token
       config.headers['Content-Type'] = 'application/json'
-      config.headers['Accept-Language'] = Storage.get('lang') || Config.lang
+      config.headers['Accept-Language'] = Storage.get('language') || Config.language
     }
     return config
   },
