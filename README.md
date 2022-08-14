@@ -11,14 +11,17 @@ react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `reac
 - [Gitee]() 在线预览
 - [Gitee]() 文档地址
 
+如果你发现问题，欢迎提 [issues](https://github.com/ygh991204/react-antd-admin/issues)
+如果你有更好的想法或建议，或者技术交流分享，欢迎进入 QQ群 `1169116236`
+
 ## 准备
 
 - 在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)
-- 项目技术栈基于 [Vite](https://vitejs.dev/)、[React18](https://reactjs.org/)、[TypeScript](https://www.typescriptlang.org/)、[Redux-Toolkit](https://redux-toolkit.js.org/)、[Ant-Design](https://ant.design/index-cn)
+- 项目技术栈 [Vite](https://vitejs.dev/)、[React18](https://reactjs.org/)、[TypeScript](https://www.typescriptlang.org/)、[Redux-Toolkit](https://redux-toolkit.js.org/)、[React-Router-v6](https://reactrouter.com/)、[Ant-Design](https://ant.design/index-cn)
 - 项目请求数据使用 [Mock.js](https://github.com/nuysoft/Mock) 模拟
 
 <p align="center">
-    <img alt="React Antd Admin Home" width="100%" src="http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminHome">
+<img alt="React Antd Admin Home" width="100%" src="http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminHome">
 </p>
 
 ## 开发
@@ -55,7 +58,6 @@ npm run preview
 如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持
 
 ![donate](http://rglaex5y3.hn-bkt.clouddn.com/myPayCode.png)
-
 
 ## 交流
 
