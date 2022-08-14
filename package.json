@@ -23,7 +23,7 @@
     "dev": "vite --mode development",
     "build": "vite build --mode production",
     "build:test": "vite build --mode test",
-    "view": "vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/charts": "^1.3.6",

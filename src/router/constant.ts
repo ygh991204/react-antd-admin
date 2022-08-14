@@ -1,5 +1,6 @@
 
 import type { RouteRecordCase, RouteRecord, RouteMetaTitle } from '@/router/type'
+import Config from '@/config'
 
 export const BasicLayout = 'BasicLayout'
 
@@ -170,7 +171,9 @@ export const constantRoutes: RouteRecordCase[] = [
     redirect: '/dashboard',
     component: BasicLayout,
     children: menusRoutes,
-    meta: {}
+    meta: {
+      title: Config.title as RouteMetaTitle
+    }
   },
   {
     path: '/404',
