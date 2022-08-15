@@ -1,6 +1,7 @@
-
-src/assets/
 node_modules/
 dist/
-.idea/
 public/
+.idea/
+.vscode/
+.husky/
+src/assets/

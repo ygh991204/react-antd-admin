@@ -8,7 +8,6 @@ export interface RouteMeta {
   hidden?: boolean
   title?: RouteMetaTitle
   affixTab?: boolean
-  permission?: string
   icon?: string
 }
 
@@ -26,6 +25,6 @@ export interface RouteRecord {
   fullPath: string
   component?: ReactNode
   redirect?: string
-  children?: RouteRecord[],
+  children?: RouteRecord[]
   index?: boolean
 }

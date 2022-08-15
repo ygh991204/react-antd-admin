@@ -1,0 +1,7 @@
+{
+  "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "git add"],
+  "types/**/*.{ts,js}": ["eslint --fix", "git add"],
+  "build/**/*.{ts,js}": ["eslint --fix", "git add"],
+  "mock/**/*.{ts,js}": ["eslint --fix", "git add"],
+  "vite.config.ts": ["eslint --fix", "git add"]
+}
