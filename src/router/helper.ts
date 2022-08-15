@@ -1,12 +1,37 @@
-import type { ComponentType } from 'react'
 import type { RouteRecordCase, RouteRecord } from '@/router/type'
 import { validateURL } from '@/utils/validate'
+import Config from '@/config'
+import loadable from '@loadable/component'
+import { RouterLoading } from './loading'
 
-const pagesModules = import.meta.glob('@/pages/**/index.tsx')
+let layoutModules: IAnyObject | null = null
 
-export function asyncImportPages(component: string) {
-  const keys = '../pages/' + component + '/index.tsx'
-  return pagesModules[keys] as () => Promise<ComponentType>
+export function asyncImportLayout() {
+  let asynLayout = null
+  if(Config.mode === 'development') {
+    asynLayout = () => import('../layout' + '' + '/index.tsx')
+  } else {
+    layoutModules = layoutModules || import.meta.glob('@/layout/index.tsx')
+    asynLayout = layoutModules['../layout/index.tsx']
+  }
+  return loadable(asynLayout, {
+    fallback: RouterLoading
+  })
+}
+
+let pagesModules: IAnyObject | null = null
+
+export function asyncImportPage(component: string) {
+  let asynPage = null
+  if(Config.mode === 'development') {
+    asynPage = () => import('../pages/' + component + '/index.tsx')
+  } else {
+    pagesModules = pagesModules || import.meta.glob('@/pages/**/index.tsx')
+    asynPage = pagesModules['../pages/' + component + '/index.tsx']
+  }
+  return loadable(asynPage, {
+    fallback: RouterLoading
+  })
 }
 
 /**

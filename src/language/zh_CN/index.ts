@@ -30,7 +30,7 @@ const zh_CN = {
     'intorDes': '指标说明'
   },
   'menus': {
-    'dashboard': '首页',
+    'dashboard': '仪表盘',
     'menus': '多级菜单',
     'menusMenu1': '菜单1',
     'menusMenu1-1': '菜单1-1',

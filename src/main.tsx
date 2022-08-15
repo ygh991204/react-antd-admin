@@ -2,8 +2,8 @@ import 'virtual:svg-icons-register'
 import config from './config'
 import { setupProdMockServer } from '../mock/_prodServer'
 
-// 非开发环境下 添加 mock
-if (config.env !== 'development') {
+// 非开发模式下 添加 mock
+if (config.mode !== 'development') {
   setupProdMockServer()
 }
 

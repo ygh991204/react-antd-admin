@@ -42,7 +42,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 0,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/no-explicit-any': 0, // 允许 any
-    '@typescript-eslint/no-unused-vars': 2,
+    '@typescript-eslint/no-unused-vars': 1,
     // 大括号风格 允许块的开括号和闭括号在 同一行
     '@typescript-eslint/brace-style': [
       2,

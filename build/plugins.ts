@@ -5,11 +5,11 @@ import { viteMockServe } from 'vite-plugin-mock'
 import { VitePWA } from 'vite-plugin-pwa'
 import { createStyleImportPlugin } from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import eslint from 'vite-plugin-eslint'
+// import eslint from 'vite-plugin-eslint'
 import path from 'path'
 
 export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
-  const plugins = [react(), legacy(), eslint()]
+  const plugins = [react(), legacy()]
   plugins.push(
     createHtmlPlugin({
       minify: isBuild,

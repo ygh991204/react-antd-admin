@@ -1,47 +1,28 @@
 import type { RouteRecord } from '@/router/type'
 import { Navigate, Outlet, RouteObject } from 'react-router-dom'
-import { Spin } from 'antd'
-import styled from 'styled-components'
-import loadable from '@loadable/component'
 import { RouterGuard } from '@/router/permission'
 import { BasicLayout } from '@/router/constant'
-import Layout from '@/layout'
-import { asyncImportPages } from './helper'
+import { asyncImportPage, asyncImportLayout } from './helper'
+import React from 'react'
 
-const RouterLoadingWrapper = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: 100px 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+let Layout: React.ComponentType | null = null
 
-export function RouterLoading() {
-  return (
-    <RouterLoadingWrapper>
-      <Spin size='large' />
-    </RouterLoadingWrapper>
-  )
+function getLayout() {
+  if(!Layout) {
+    const LayoutComponent = asyncImportLayout()
+    Layout = () => <RouterGuard render={<LayoutComponent/>} />
+  }
+  return Layout
 }
 
-function routerLazy(path: string) {
-  return loadable(asyncImportPages(path), {
-    fallback: <RouterLoading />
-  })
-}
-
-export function RoutesRender(routes: RouteRecord[], isComponent = true): RouteObject[] {
+export function RoutesRender(routes: RouteRecord[], isComponentRender = true): RouteObject[] {
   return routes.map((route) => {
     if (route.component && route.redirect) {
       const children = route.children || []
       route.children = [
         {
           index: true,
-          component: isComponent ? <Navigate to={route.redirect} replace /> : null,
+          component: isComponentRender ? <Navigate to={route.redirect} replace /> : null,
           path: '',
           fullPath: '',
           meta: {}
@@ -49,37 +30,35 @@ export function RoutesRender(routes: RouteRecord[], isComponent = true): RouteOb
         ...children
       ]
     }
-    const RouterElement: React.FC = () => {
-      if (!isComponent) {
-        return <>{null}</>
-      }
-      const component = route.component
-      if (route.index) return <>{component}</>
-      if (route.component && route.component !== BasicLayout) {
-        if (typeof route.component === 'string') {
-          const PageComponent = routerLazy(route.component)
-          return (
-            <RouterGuard>
-              <PageComponent />
-            </RouterGuard>
-          )
+    let ElementComponent: React.ComponentType | null = null
+    if(isComponentRender) {
+      if(route.component) {
+        if(typeof route.component === 'string') {
+          if(route.component === BasicLayout) {
+            ElementComponent = getLayout()
+          } else {
+            const PageComponent = asyncImportPage(route.component)
+            ElementComponent = () => <RouterGuard render={<PageComponent/>}/>
+          }
         } else {
-          return <>{route.component}</>
+          ElementComponent = () => <RouterGuard render={route.component} />
+        }
+      } else {
+        const redirect = route.redirect
+        if(redirect) {
+          if(route.children) {
+            ElementComponent = Outlet
+          } else {
+            ElementComponent = () => <Navigate to={redirect} replace />
+          }
+        } else {
+          ElementComponent = Outlet
         }
       }
-      return route.redirect ? route.children ? <Outlet /> : <Navigate to={route.redirect} replace /> : <Outlet />
     }
     return {
-      children: route.children ? RoutesRender(route.children, isComponent) : undefined,
-      element: isComponent ? (
-        route.component === BasicLayout ? (
-          <RouterGuard>
-            <Layout />
-          </RouterGuard>
-        ) : (
-          <RouterElement />
-        )
-      ) : null,
+      children: route.children ? RoutesRender(route.children, isComponentRender) : undefined,
+      element: ElementComponent ? <ElementComponent/> : null,
       index: route.index || false,
       path: route.path
     }

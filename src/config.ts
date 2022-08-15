@@ -5,7 +5,8 @@ const Config = {
   tokenExpires: Number(import.meta.env.VITE_TOKEN_EXPIRES),
   language: import.meta.env.VITE_LANGUAGE,
   baseUrl: import.meta.env.VITE_BASE_URL,
-  env: import.meta.env.VITE_NODE
+  env: import.meta.env.VITE_ENV,
+  mode: import.meta.env.VITE_MODE
 }
 
 export default Config

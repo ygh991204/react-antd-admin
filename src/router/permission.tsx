@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { notification } from 'antd'
 import { setPageTitle } from '@/utils'
 import { getToken } from '@/utils/auth'
-import { RouterLoading } from '@/router'
+import { RouterLoading } from '@/router/loading'
 import { RouteLocation, RouterOptions, useRoute, useRouter } from '@/router/hook'
 import { logout, setLoadMenus, userInfo } from '@/store/modules/userSlice'
 import { loadAsyncMenus } from '@/store/modules/permissionSlice'
 import store from '@/store'
+import React from 'react'
 
 const whiteList = ['/login']
 
@@ -62,7 +63,9 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
   }
 }
 
-export function RouterGuard({ children }: PropsWithChildren) {
+export function RouterGuard({ children, render }: PropsWithChildren<{
+  render?: React.ReactNode
+}>) {
   const route = useRoute()
   const router = useRouter()
   const { t } = useTranslation()
@@ -85,5 +88,5 @@ export function RouterGuard({ children }: PropsWithChildren) {
     routerBeforeEach(route, next)
   }, [])
 
-  return <>{auth ? children || <RouterLoading/> : <RouterLoading/>}</>
+  return <>{auth ? children || render || RouterLoading : RouterLoading}</>
 }

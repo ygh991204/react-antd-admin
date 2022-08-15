@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "vite --mode development",
-    "build": "npm run type:lint && vite build --mode production",
+    "build": "vite build --mode production",
     "build:test": "npm run type:lint && vite build --mode test",
     "type:lint": "tsc --noEmit",
     "preview": "vite preview",

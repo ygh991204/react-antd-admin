@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly NODE_ENV: 'development' | 'production'
-  readonly VITE_NODE: 'development' | 'production' | 'test'
+  readonly VITE_MODE: 'development' | 'production'
+  readonly VITE_ENV: 'development' | 'production' | 'test'
   readonly VITE_TITLE: string
   readonly VITE_SHORT_TITLE: string
   readonly VITE_PROT: string
