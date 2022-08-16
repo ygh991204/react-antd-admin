@@ -1,20 +1,18 @@
 import { useMemo } from 'react'
 import Cookies from 'js-cookie'
 import store, { useAppSelector } from '@/store'
-import Config from '@/config'
+import { EnvConfig } from '@/env'
 
 export function getToken() {
-  return Cookies.get(Config.tokenKey)
+  return Cookies.get(EnvConfig.APP_TOKEN_KEY)
 }
 
-export function setToken(token: string, rememberMe?: boolean) {
-  return rememberMe ?
-    Cookies.set(Config.tokenKey, token, { expires: Config.tokenExpires }) :
-    Cookies.set(Config.tokenKey, token)
+export function setToken(token: string) {
+  return Cookies.set(EnvConfig.APP_TOKEN_KEY, token)
 }
 
 export function removeToken() {
-  return Cookies.remove(Config.tokenKey)
+  return Cookies.remove(EnvConfig.APP_TOKEN_KEY)
 }
 
 export function checkAuth(permissions: string[], userPermissions?: string[]) {

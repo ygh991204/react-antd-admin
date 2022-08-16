@@ -1,7 +1,7 @@
 
 import styled from 'styled-components'
 
-export const LanguageWrapper = styled.div` 
+export const ActionsWrapper = styled.div` 
   position: fixed;
   top: 30px;
   right: 30px;

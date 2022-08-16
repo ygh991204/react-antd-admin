@@ -1,21 +1,23 @@
-import react from '@vitejs/plugin-react'
-import legacy from '@vitejs/plugin-legacy'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
 import { VitePWA } from 'vite-plugin-pwa'
 import { createStyleImportPlugin } from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-// import eslint from 'vite-plugin-eslint'
+import react from '@vitejs/plugin-react'
+import legacy from '@vitejs/plugin-legacy'
+import eslint from 'vite-plugin-eslint'
+import visualizer from 'rollup-plugin-visualizer'
 import path from 'path'
+import { isBuild, Env } from './constant'
 
-export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
-  const plugins = [react(), legacy()]
+export function createPlugins() {
+  const plugins = [react(), legacy(), eslint()]
   plugins.push(
     createHtmlPlugin({
       minify: isBuild,
       inject: {
         data: {
-          title: env.VITE_TITLE
+          title: Env.APP_TITLE
         }
       }
     })
@@ -28,12 +30,22 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
       prodEnabled: isBuild
     })
   )
-  if (isBuild) {
+  if(Env.visualizer && isBuild) {
+    plugins.push(
+      visualizer({
+        filename: './node_modules/.cache/visualizer/stats.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true
+      })
+    )
+  }
+  if (Env.APP_PWA && isBuild) {
     plugins.push(
       VitePWA({
         manifest: {
-          name: env.VITE_TITLE,
-          short_name: env.VITE_SHORT_TITLE,
+          name: Env.APP_TITLE,
+          short_name: Env.APP_SHORT_TITLE,
           icons: [
             {
               src: '/logo.png',
@@ -41,7 +53,7 @@ export function createPlugins(isBuild: boolean, env: ImportMetaEnv) {
               type: 'image/png'
             },
             {
-              src: '/logo-2.png',
+              src: '/logo-big.png',
               sizes: '512x512',
               type: 'image/png'
             }

@@ -93,6 +93,8 @@ module.exports = {
     '@typescript-eslint/space-before-function-paren': [2, 'never'],
     // 操作符周围 一致的空格
     '@typescript-eslint/space-infix-ops': 2,
+    // 允许 request
+    '@typescript-eslint/no-var-requires': 0,
 
     'comma-dangle': 0,
     'brace-style': 0,

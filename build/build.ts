@@ -1,4 +1,5 @@
 import type { BuildOptions } from 'vite'
+import { isBuild } from './constant'
 
 const assetFileExts: ITypeObject<RegExp> = {
   media: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i,
@@ -8,7 +9,7 @@ const assetFileExts: ITypeObject<RegExp> = {
   js: /\.(js)$/i
 }
 
-export function createBuild(isBuild: boolean): BuildOptions {
+export function createBuild(): BuildOptions {
   return {
     target: 'es2015',
     cssTarget: 'chrome80',
@@ -22,7 +23,7 @@ export function createBuild(isBuild: boolean): BuildOptions {
       output: {
         manualChunks: {
           lib: ['react', 'react-router-dom', 'react-dom'],
-          vendor: ['lodash', 'qs', 'axios']
+          vendor: ['lodash-es', 'qs', 'axios']
         },
         chunkFileNames: (chunkInfo) => {
           const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : []

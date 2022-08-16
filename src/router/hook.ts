@@ -3,7 +3,7 @@ import type { RouteRecord, RouteMeta } from '@/router/type'
 import { useMemo, useCallback } from 'react'
 import { useLocation, useParams, matchRoutes, useNavigate } from 'react-router-dom'
 import qs from 'qs'
-import { cloneDeep, omitBy } from 'lodash'
+import { cloneDeep, omitBy } from 'lodash-es'
 import { useAppSelector } from '@/store'
 import { RoutesRender } from '@/router'
 

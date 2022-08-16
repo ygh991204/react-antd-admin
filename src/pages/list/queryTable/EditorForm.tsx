@@ -1,7 +1,7 @@
 import React, { useState, useRef, useImperativeHandle, useCallback } from 'react'
 import { edit, add } from '@/api/list'
 import { Form, notification, Modal, Input, Switch } from 'antd'
-import { merge } from 'lodash'
+import { merge } from 'lodash-es'
 
 interface EditorFormProps {
   onRefresh?: () => void

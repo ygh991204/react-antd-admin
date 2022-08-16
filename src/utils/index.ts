@@ -1,4 +1,4 @@
-import Config from '@/config'
+import { EnvConfig } from '@/env'
 import { isArray } from './validate'
 
 /**
@@ -16,7 +16,7 @@ export function wait(delay = 1000) {
  * 设置页面标题 meta
  */
 export function setPageTitle(title: string) {
-  const _title = (!title) ? Config.title : (title + ' - ' + Config.title)
+  const _title = (!title) ? EnvConfig.APP_TITLE : (title + ' - ' + EnvConfig.APP_TITLE)
   document.title = _title
   return _title
 }

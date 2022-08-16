@@ -1,17 +1,19 @@
-import { defineConfig, loadEnv } from 'vite'
-import { createPlugins, createModifyVars, createBuild } from './build'
+import { defineConfig } from 'vite'
+import { createBuild } from './build/build'
+import { createModifyVars } from './build/modifyVars'
+import { envPrefix, Env } from './build/constant'
+import { createPlugins } from './build/plugins'
 import path from 'path'
 
-export default defineConfig(({ command, mode }) => {
-  const isBuild = command === 'build'
-  const env = loadEnv(mode, process.cwd()) as any as ImportMetaEnv
+export default defineConfig(() => {
   return {
-    plugins: createPlugins(isBuild, env),
+    plugins: createPlugins(),
+    envPrefix,
     base: '/',
     server: {
       host: '127.0.0.1',
-      port: 3000,
-      open: true,
+      port: Env.APP_PROT,
+      open: Env.APP_OPEN,
       proxy: {}
     },
     resolve: {
@@ -27,7 +29,7 @@ export default defineConfig(({ command, mode }) => {
         }
       }
     },
-    build: createBuild(isBuild),
+    build: createBuild(),
     optimizeDeps: {
       include: [
         '@ant-design/icons',

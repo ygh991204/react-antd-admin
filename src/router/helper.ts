@@ -1,6 +1,6 @@
 import type { RouteRecordCase, RouteRecord } from '@/router/type'
 import { validateURL } from '@/utils/validate'
-import Config from '@/config'
+import { EnvConfig } from '@/env'
 import loadable from '@loadable/component'
 import { RouterLoading } from './loading'
 
@@ -8,7 +8,7 @@ let layoutModules: IAnyObject | null = null
 
 export function asyncImportLayout() {
   let asynLayout = null
-  if(Config.mode === 'development') {
+  if(EnvConfig.APP_NODE_ENV === 'development') {
     asynLayout = () => import('../layout' + '' + '/index.tsx')
   } else {
     layoutModules = layoutModules || import.meta.glob('@/layout/index.tsx')
@@ -23,7 +23,7 @@ let pagesModules: IAnyObject | null = null
 
 export function asyncImportPage(component: string) {
   let asynPage = null
-  if(Config.mode === 'development') {
+  if(EnvConfig.APP_NODE_ENV === 'development') {
     asynPage = () => import('../pages/' + component + '/index.tsx')
   } else {
     pagesModules = pagesModules || import.meta.glob('@/pages/**/index.tsx')

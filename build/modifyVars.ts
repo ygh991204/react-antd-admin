@@ -1,4 +1,4 @@
-import { getThemeVariables } from 'antd/dist/theme'
+const { getThemeVariables } = require('antd/dist/theme')
 
 export function createModifyVars(dark = false) {
   const modifyVars = getThemeVariables({ dark })

@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next'
-import { Form, Input, Button, notification } from 'antd'
-import { UserOutlined, LockOutlined, GlobalOutlined } from '@ant-design/icons'
-import Config from '@/config'
-import { LanguageWrapper, LoginHeader, LoginLogo, LoginMain, LoginTitle, LoginWrapper } from './style'
+import { Form, Input, Button, notification, Space } from 'antd'
+import { GlobalOutlined, GithubOutlined, QuestionCircleOutlined } from '@ant-design/icons'
+import { EnvConfig } from '@/env'
+import { ActionsWrapper, LoginHeader, LoginLogo, LoginMain, LoginTitle, LoginWrapper } from './style'
 import { login } from '@/store/modules/userSlice'
 import { useRouter } from '@/router/hook'
 import Language from '@/components/Language'
-import Logo from '/logo.png'
 import { ApiLoginData } from '@/api/user'
 import { useAppDispatch } from '@/store'
+import Logo from '/logo.png'
 
 function getTimeState() {
   const timeNow = new Date()
@@ -44,24 +44,28 @@ function Login() {
   }
   return (
     <>
-      <Language>
-        <LanguageWrapper>
-          <GlobalOutlined style={{ fontSize: '20px' }} />
-        </LanguageWrapper>
-      </Language>
+      <ActionsWrapper>
+        <Space size='large'>
+          <GithubOutlined style={{ fontSize: '20px' }}/>
+          <QuestionCircleOutlined style={{ fontSize: '20px' }}/>
+          <Language>
+            <GlobalOutlined style={{ fontSize: '20px' }} />
+          </Language>
+        </Space>
+      </ActionsWrapper>
 
       <LoginWrapper>
         <LoginMain>
           <LoginHeader>
             <LoginLogo src={Logo}/>
-            <LoginTitle>{Config.title}</LoginTitle>
+            <LoginTitle>{EnvConfig.APP_TITLE}</LoginTitle>
           </LoginHeader>
           <Form size='large' form={form} name='normal_login' onFinish={onFinish}>
             <Form.Item name='username' rules={[{ required: true, message: t('login.usernameRequiredMsg') }]}>
-              <Input prefix={<UserOutlined />} placeholder={t('login.usernamePlaceholder')} />
+              <Input placeholder={t('login.usernamePlaceholder')} />
             </Form.Item>
             <Form.Item name='password' rules={[{ required: true, message: t('login.passwordRequiredMsg') }]}>
-              <Input prefix={<LockOutlined />} type='password' placeholder={t('login.passwordPlaceholder')} />
+              <Input type='password' placeholder={t('login.passwordPlaceholder')} />
             </Form.Item>
             <Form.Item>
               <Button type='primary' block htmlType='submit'>

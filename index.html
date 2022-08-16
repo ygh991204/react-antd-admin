@@ -5,9 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%- title %></title>
+    <link rel="stylesheet" href="/root.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="root-loading">
+        <div class="root-loading-wrapper">
+          <div class="root-loading-logo">
+            <img src="/logo-big.png" alt="Logo" />
+          </div>
+          <div class="root-loading-spin">
+            <span class="root-loading-spin_dot"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <div class="root-loading-title"><%- title %></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

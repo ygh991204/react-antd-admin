@@ -1,6 +1,6 @@
 import type { RouteRecordCase } from '@/router/type'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash-es'
 import { formatRoutes, getShowRoutes } from '@/router/helper'
 import { ErrorRoute, constantRoutes } from '@/router/constant'
 import { getMenus } from '@/api/user'

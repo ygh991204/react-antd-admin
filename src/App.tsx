@@ -1,7 +1,6 @@
 import { useRoutes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
-import { cloneDeep } from 'lodash'
-
+import { cloneDeep } from 'lodash-es'
 import { RoutesRender } from '@/router'
 import { RouterGuard } from '@/router/permission'
 import { useAppSelector } from '@/store'

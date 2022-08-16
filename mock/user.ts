@@ -27,7 +27,7 @@ const getUserInfo = createApi('/api/v1/userinfo', 'post', ({ headers }) => {
 })
 
 /** 菜单 */
-const anthMenus = (menus: CaseRoute[], permissions: string[] = []) => {
+const anthMenus = (menus: Api.MenuDb[], permissions: string[] = []) => {
   return menus.filter((menu) => {
     if (menu.meta && menu.meta.permission && permissions.indexOf(menu.meta.permission) !== -1) {
       if (menu.children && menu.children.length) {

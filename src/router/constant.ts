@@ -1,6 +1,6 @@
 
 import type { RouteRecordCase, RouteRecord, RouteMetaTitle } from '@/router/type'
-import Config from '@/config'
+import { EnvConfig } from '@/env'
 
 export const BasicLayout = 'BasicLayout'
 
@@ -172,7 +172,7 @@ export const constantRoutes: RouteRecordCase[] = [
     component: BasicLayout,
     children: menusRoutes,
     meta: {
-      title: Config.title as RouteMetaTitle
+      title: EnvConfig.APP_TITLE as RouteMetaTitle
     }
   },
   {

@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { notification } from 'antd'
 import { getToken } from '@/utils/auth'
-import Config from '@/config'
+import { EnvConfig } from '@/env'
 import Storage from './storage'
 
 const service = axios.create({
-  baseURL: Config.baseUrl,
+  baseURL: EnvConfig.APP_BASE_URL,
   timeout: 6000
 })
 
@@ -15,7 +15,7 @@ service.interceptors.request.use(
     if (config.headers) {
       if (token) config.headers['Authorization'] = 'Bearer ' + token
       config.headers['Content-Type'] = 'application/json'
-      config.headers['Accept-Language'] = Storage.get('language') || Config.language
+      config.headers['Accept-Language'] = Storage.get('language') || EnvConfig.APP_LANGUAGE
     }
     return config
   },
