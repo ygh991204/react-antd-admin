@@ -59,7 +59,8 @@ const zh_CN = {
     'navigate': '跳转',
     'navigateRouter': '路由',
     'navigateLink': '外链githup',
-    'navigateTest': '路由测试页'
+    'navigateTest': '路由测试页',
+    'adbout': '关于'
   },
   'componentImageCropper': {
     'see': '查看结果'

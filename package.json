@@ -1,7 +1,7 @@
 {
   "name": "react-antd-admin",
   "version": "0.0.1",
-  "description": "react 后台管理模板",
+  "description": "一个开箱即用的后台管理前端模板",
   "keywords": [
     "react",
     "admin",
@@ -19,6 +19,7 @@
   "bugs": {
     "url": "https://github.com/ygh991204/react-antd-admin/issues"
   },
+  "homepage": "https://github.com/ygh991204/wxapp-pro#readme",
   "scripts": {
     "dev": "vite --mode development",
     "build": "npm run type:lint && vite build --mode production",

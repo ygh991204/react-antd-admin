@@ -157,6 +157,11 @@ export const menusRoutes: RouteRecordCase[] = [
         meta: { title: 'menus.navigateTest', hidden: true }
       }
     ]
+  },
+  {
+    path: 'about',
+    component: 'about',
+    meta: { title: 'menus.adbout', icon: 'about' }
   }
 ]
 

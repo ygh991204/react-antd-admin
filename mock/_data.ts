@@ -37,8 +37,7 @@ export const rolesDb: Api.RoleDb[] = [
       'user',
       'permission:list',
       'permission:component:list',
-      'permission:user:list',
-      'permission:component:button'
+      'permission:user:list'
     ]
   }
 ]

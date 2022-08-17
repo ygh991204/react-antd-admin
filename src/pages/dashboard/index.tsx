@@ -1,27 +1,14 @@
+import type { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Row, Col, Card, Tooltip } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { Row, Col, Card, Statistic } from 'antd'
 import SalesCategoryChart from './SalesCategoryChart'
 import UserSourceChart from './UserSourceChart'
 import SalesChart from './SalesChart'
 
-function CardHeader({ title, data }: {
-  title: string
-  data: string
-}) {
-  const { t } = useTranslation()
+function StatisticsCard({ children }: PropsWithChildren) {
   return (
     <Col xxl={6} xl={6} lg={12} md={12} sm={12} xs={24}>
-      <Card bordered={false}>
-        <div
-          style={{ color: 'rgba(0,0,0,.5)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span>{title}</span>
-          <Tooltip title={t('dashboard.intorDes')}>
-            <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
-          </Tooltip>
-        </div>
-        <div style={{ fontSize: '32px', paddingTop: '6px', paddingLeft: '5px' }}>{data}</div>
-      </Card>
+      <Card bordered={false}>{children}</Card>
     </Col>
   )
 }
@@ -31,10 +18,18 @@ function DashboardAnalyze() {
   return (
     <>
       <Row gutter={[20, 20]}>
-        <CardHeader title={t('dashboard.totalSales')} data='¥ 199,120' />
-        <CardHeader title={t('dashboard.paysCount')} data='4,012' />
-        <CardHeader title={t('dashboard.totalUserCount')} data='21,999' />
-        <CardHeader title={t('dashboard.operEffect')} data='87%' />
+        <StatisticsCard>
+          <Statistic title={t('dashboard.totalSales')} prefix='￥' valueStyle={{ fontSize: '32px' }} value={199120} />
+        </StatisticsCard>
+        <StatisticsCard>
+          <Statistic title={t('dashboard.paysCount')} valueStyle={{ fontSize: '32px' }} value={4012} />
+        </StatisticsCard>
+        <StatisticsCard>
+          <Statistic title={t('dashboard.totalUserCount')} valueStyle={{ fontSize: '32px' }} value={21999} />
+        </StatisticsCard>
+        <StatisticsCard>
+          <Statistic title={t('dashboard.operEffect')} valueStyle={{ fontSize: '32px' }} suffix='%' value={87} />
+        </StatisticsCard>
       </Row>
       <SalesChart />
       <Row gutter={[20, 20]} style={{ marginTop: '20px' }}>

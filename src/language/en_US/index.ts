@@ -61,7 +61,8 @@ const en_US: TranslationLocale = {
     'navigate': 'Jump',
     'navigateRouter': 'Routing',
     'navigateLink': 'External chain github',
-    'navigateTest': 'Route test page'
+    'navigateTest': 'Route test page',
+    'adbout': 'About'
   },
   'componentImageCropper': {
     'see': 'View Results'
