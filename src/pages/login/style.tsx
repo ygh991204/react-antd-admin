@@ -6,35 +6,47 @@ export const ActionsWrapper = styled.div`
   top: 30px;
   right: 30px;
   cursor: pointer;
+  z-index: 99;
 `
 
 export const LoginWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  padding-top: 100px;
-  display: flex;
-  justify-content: center;
-`
-
-export const LoginMain = styled.div`
-  width: 350px;
+  width: 420px;
+  height: auto;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  padding-bottom: 88px;
 `
 
 export const LoginHeader = styled.div`
    display: flex;
    align-items: center;
-   justify-content: center;
-   padding-bottom: 60px;
+   padding-top: 12px;
+   padding-bottom: 36px;
 `
 
 export const LoginLogo = styled.img`
    width: 50px;
    height: 50px;
-   margin-right: 16px;
 `
 
 export const LoginTitle = styled.div`
-  font-size: 32px;
+  font-size: 22px;
   font-weight: bold;
   color: black;
+  padding-left: 18px;
+`
+
+export const FooterWrapper = styled.div`
+  font-size: 12px;
+  position: fixed;
+  z-index: 99;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: #666;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
 `

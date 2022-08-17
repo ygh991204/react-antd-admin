@@ -18,6 +18,8 @@ declare global {
     readonly APP_BASE_URL: string
     readonly APP_PWA: boolean
     readonly APP_OPEN: boolean
+    readonly APP_FOOTER: string
+    readonly APP_PASSWORD_EXPIRES: number
   }
 
 }

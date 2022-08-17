@@ -61,7 +61,7 @@ export function useRoute<Q extends IAnyObject = IAnyObject, P extends IAnyObject
   }, [routes, location])
 
   const match = useMemo(() => {
-    return matched[matched.length - 1]
+    return matched[matched.length - 1] || {}
   }, [matched])
 
   return {
@@ -70,7 +70,7 @@ export function useRoute<Q extends IAnyObject = IAnyObject, P extends IAnyObject
     path: location.pathname,
     query,
     params,
-    meta: match.meta,
+    meta: match.meta || {},
     matched,
     match
   }

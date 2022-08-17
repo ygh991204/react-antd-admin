@@ -7,6 +7,7 @@ import NavBar from './Navbar'
 import TabsPages from './TabsPages'
 import Setting from './Settting'
 import { useAppDispatch, useAppSelector } from '@/store'
+import { EnvConfig } from '@/env'
 import './index.less'
 
 const MobileWidth = 992
@@ -44,10 +45,13 @@ function Layout() {
           {tabs ? <TabsPages /> : null}
         </div>
         <div className='app-main'>
-          <Setting />
-          <Outlet />
+          <div className='app-main-container'>
+            <Outlet />
+          </div>
+          <div className='app-main-footer' dangerouslySetInnerHTML={{ __html: EnvConfig.APP_FOOTER }} />
         </div>
       </div>
+      <Setting />
     </div>
   )
 }

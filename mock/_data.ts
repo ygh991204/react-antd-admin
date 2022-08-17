@@ -1,7 +1,7 @@
 
 export const usersDb: Api.UserDb[] = [
   {
-    nikename: '管理员',
+    nikename: '管理员账号',
     username: 'admin',
     password: '123456',
     role: 'admin',
@@ -9,7 +9,7 @@ export const usersDb: Api.UserDb[] = [
     token: 'admin_token_123456'
   },
   {
-    nikename: '普通用户',
+    nikename: '普通账号',
     username: 'user',
     password: '123456',
     role: 'user',
@@ -32,7 +32,7 @@ export const rolesDb: Api.RoleDb[] = [
   },
   {
     roleValue: 'user',
-    roleName: '用户',
+    roleName: '普通用户',
     permissions: [
       'user',
       'permission:list',

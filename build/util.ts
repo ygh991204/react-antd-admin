@@ -22,7 +22,9 @@ export function formatAppEnv(env: AppEnv) {
     APP_NODE_ENV: 'development',
     APP_TOKEN_KEY: 'token',
     APP_PWA: false,
-    APP_OPEN: false
+    APP_OPEN: false,
+    APP_FOOTER: '',
+    APP_PASSWORD_EXPIRES: 7
   }
   const appEnv = env as IAnyObject
   return Object.assign({}, defaultAppEnv, Object.keys(appEnv).reduce((prev, key) => {
