@@ -10,8 +10,6 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { EnvConfig } from '@/env'
 import './index.less'
 
-const MobileWidth = 992
-
 function Layout() {
   const { sideBarOpend, device } = useAppSelector((state) => state.app)
   const { tabs } = useAppSelector((state) => state.setting)
@@ -20,8 +18,8 @@ function Layout() {
 
   useLayoutEffect(() => {
     if (!document.hidden) {
-      const isMobile = windowWidth < MobileWidth
-      const newDevice = isMobile ? 'mobile' : 'desktop'
+      const isMobile = windowWidth < EnvConfig.APP_MOBILE_WIDTH
+      const newDevice: AppDevice = isMobile ? 'mobile' : 'desktop'
       if (device !== newDevice) {
         dispatch(toogleDevice(newDevice))
       }

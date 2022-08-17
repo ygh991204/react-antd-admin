@@ -1,9 +1,6 @@
 const { getThemeVariables } = require('antd/dist/theme')
 
-export function createModifyVars(dark = false) {
-  const modifyVars = getThemeVariables({ dark })
-  return {
-    ...modifyVars,
-    '@menu-collapsed-width': '50px'
-  }
+export const modifyVars = {
+  ...getThemeVariables({ dark: false }),
+  '@menu-collapsed-width': '50px'
 }

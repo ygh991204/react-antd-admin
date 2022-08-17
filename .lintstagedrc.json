@@ -1,7 +1,7 @@
 {
-  "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "git add"],
-  "types/**/*.{ts,js}": ["eslint --fix", "git add"],
-  "build/**/*.{ts,js}": ["eslint --fix", "git add"],
-  "mock/**/*.{ts,js}": ["eslint --fix", "git add"],
-  "vite.config.ts": ["eslint --fix", "git add"]
+  "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix"],
+  "types/**/*.{ts,js}": ["eslint --fix"],
+  "build/**/*.{ts,js}": ["eslint --fix"],
+  "mock/**/*.{ts,js}": ["eslint --fix"],
+  "vite.config.ts": ["eslint --fix"]
 }

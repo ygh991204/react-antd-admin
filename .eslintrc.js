@@ -25,6 +25,11 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended'
   ],
+  settings: {
+    react: {
+      'version': 'detect'
+    }
+  },
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
     'react/display-name': 0,

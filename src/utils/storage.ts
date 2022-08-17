@@ -1,11 +1,9 @@
 /** 存储数据类型 */
 
-import type { LanguageType } from '@/language'
-
 export interface StorageData {
   sideBarOpend: boolean
-  language: LanguageType
-  device: 'mobile' | 'desktop'
+  language: AppLanguage
+  device: AppDevice
   settingLogo: boolean
   settingTabs: boolean
 }

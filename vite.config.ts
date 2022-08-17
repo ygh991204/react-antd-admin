@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite'
-import { createBuild } from './build/build'
-import { createModifyVars } from './build/modifyVars'
+import { build } from './build/build'
+import { modifyVars } from './build/modifyVars'
 import { envPrefix, Env } from './build/constant'
-import { createPlugins } from './build/plugins'
+import { plugins } from './build/plugins'
 import path from 'path'
 
 export default defineConfig(() => {
   return {
-    plugins: createPlugins(),
+    plugins: plugins,
     envPrefix,
     base: '/',
     server: {
@@ -25,11 +25,11 @@ export default defineConfig(() => {
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
-          modifyVars: createModifyVars()
+          modifyVars: modifyVars
         }
       }
     },
-    build: createBuild(),
+    build: build,
     optimizeDeps: {
       include: [
         '@ant-design/icons',

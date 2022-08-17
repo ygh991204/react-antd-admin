@@ -21,13 +21,14 @@
   },
   "scripts": {
     "dev": "vite --mode development",
-    "build": "vite build --mode production",
-    "build:test": "vite build --mode test",
+    "build": "npm run type:lint && vite build --mode production",
+    "build:test": "npm run type:lint && vite build --mode test",
     "type:lint": "tsc --noEmit",
     "preview": "vite preview",
     "prepare": "husky install",
     "lint:staged": "lint-staged",
-    "visualizer": "cross-env visualizer=true npm run build"
+    "visualizer": "cross-env visualizer=true npm run build",
+    "clear:cache": "rimraf node_modules/.cache && rimraf node_modules/.vite"
   },
   "dependencies": {
     "@ant-design/charts": "^1.3.6",

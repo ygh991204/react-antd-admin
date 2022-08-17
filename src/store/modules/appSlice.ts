@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 import Storage, { StorageData } from '@/utils/storage'
-import i18n, { getSpecifiedLanguage, defalutLanguage, LanguageType } from '@/language'
+import i18n, { getSpecifiedLanguage } from '@/language'
+import { defalutLanguage } from '@/env'
 
-export const changeAppLange = createAsyncThunk('app/changeAppLange', async(lang: LanguageType) => {
+export const changeAppLange = createAsyncThunk('app/changeAppLange', async(lang: AppLanguage) => {
   await i18n.changeLanguage(lang)
   const language = getSpecifiedLanguage(lang)
   dayjs.locale(language.dayjs)
   Storage.set('language', lang)
+  //   location.reload()
   return lang
 })
 

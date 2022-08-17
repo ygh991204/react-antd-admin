@@ -1,5 +1,4 @@
 import type { RouteRecord } from '@/router/type'
-
 import { useMemo, useState, useLayoutEffect, useEffect } from 'react'
 import { Translation } from 'react-i18next'
 import { Menu } from 'antd'

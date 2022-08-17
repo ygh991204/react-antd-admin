@@ -4,7 +4,6 @@ import { GlobalOutlined, GithubOutlined, QuestionCircleOutlined } from '@ant-des
 import CryptoJS from 'crypto-js'
 import Cookies from 'js-cookie'
 import { EnvConfig } from '@/env'
-import { ActionsWrapper, LoginHeader, LoginLogo, LoginTitle, LoginWrapper, FooterWrapper } from './style'
 import { login } from '@/store/modules/userSlice'
 import { useRouter } from '@/router/hook'
 import Language from '@/components/Language'
@@ -13,6 +12,7 @@ import { useAppDispatch } from '@/store'
 import Logo from '/logo.png'
 import { useEffect } from 'react'
 import { usersDb as USER_LIST } from '../../../mock/_data'
+import { ActionsWrapper, LoginHeader, LoginLogo, LoginTitle, LoginWrapper, FooterWrapper } from './style'
 
 function getTimeState() {
   const timeNow = new Date()
@@ -36,9 +36,9 @@ export type LoginForm = ApiLoginData & {
 
 function Login() {
   const { t } = useTranslation()
-  const [form] = Form.useForm()
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const [form] = Form.useForm()
 
   useEffect(() => {
     let password = Cookies.get('password')
