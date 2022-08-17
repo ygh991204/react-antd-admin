@@ -25,6 +25,9 @@ declare global {
     readonly APP_FOOTER: string
     readonly APP_PASSWORD_EXPIRES: number
     readonly APP_MOBILE_WIDTH: number
+    readonly APP_MOCK: boolean
+    readonly APP_LEGACY: boolean
+    readonly APP_COMPRESSION: boolean
   }
 
 }

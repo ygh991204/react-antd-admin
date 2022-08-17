@@ -1,7 +1,8 @@
 import 'virtual:svg-icons-register'
 import { setupProdMockServer } from '../mock/_prodServer'
 import { EnvConfig } from './env'
-if (EnvConfig.APP_NODE_ENV !== 'development') {
+
+if (EnvConfig.APP_NODE_ENV === 'production' && EnvConfig.APP_MOCK) {
   setupProdMockServer()
 }
 

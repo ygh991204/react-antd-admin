@@ -1,5 +1,5 @@
 import { loadEnv } from 'vite'
-import { formatEnvVal, formatAppEnv } from './util'
+import { formatEnvVal, formatAppEnv } from '../src/env'
 
 export const mode = process.argv[process.argv.length - 1] as AppEnv['APP_MODE']
 export const envPrefix = 'APP'
