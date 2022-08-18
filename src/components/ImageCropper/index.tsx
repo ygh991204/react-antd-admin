@@ -12,7 +12,7 @@ export type { ImageCropperDialogRef } from './dialog'
 
 export interface ImageCropperProps {
   url?: string
-  onReady?: () => void
+  onReady?: (cropper:Cropper) => void
   aspectRatio?: number
 }
 
@@ -58,7 +58,7 @@ const InternalImageCropper: ForwardRefRenderFunction<ImageCropperRef, ImageCropp
 
   const cropperReady = useCallback(() => {
     setLoading(false)
-    onReady && onReady()
+    onReady && cropper.current && onReady(cropper.current)
   }, [])
 
   const cropperRotateRight = useCallback(() => {

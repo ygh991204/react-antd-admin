@@ -49,8 +49,8 @@ declare namespace Api {
     nikename: string
     username: string
     password: string
-    role: string
-    avater?: string
+    roles: string[]
+    avater: string
     token: string
   }
 

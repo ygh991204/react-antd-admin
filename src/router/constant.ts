@@ -44,11 +44,6 @@ export const menusRoutes: RouteRecordCase[] = [
     ]
   },
   {
-    path: 'i18n',
-    meta: { title: 'menus.i18n', icon: 'globalization' },
-    component: 'i18n'
-  },
-  {
     path: 'menus',
     meta: { title: 'menus.menus', icon: 'menu' },
     children: [
@@ -135,10 +130,6 @@ export const menusRoutes: RouteRecordCase[] = [
     component: 'personal'
   },
   {
-    path: 'https://ant.design-cn',
-    meta: { title: 'Ant Design' as RouteMetaTitle, icon: 'ant-design' }
-  },
-  {
     path: 'navigate',
     meta: { title: 'menus.navigate', icon: 'link' },
     children: [
@@ -157,6 +148,11 @@ export const menusRoutes: RouteRecordCase[] = [
         meta: { title: 'menus.navigateTest', hidden: true }
       }
     ]
+  },
+  {
+    path: 'i18n',
+    meta: { title: 'menus.i18n', icon: 'globalization' },
+    component: 'i18n'
   },
   {
     path: 'about',

@@ -2,17 +2,17 @@ import type { RouteRecordCase } from '@/router/type'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { cloneDeep } from 'lodash-es'
 import { formatRoutes, getShowRoutes } from '@/router/helper'
-import { ErrorRoute, constantRoutes } from '@/router/constant'
+import { ErrorRoute, constantRoutes, BasicLayout } from '@/router/constant'
 import { getMenus } from '@/api/user'
 
 function createRoutes(menus: RouteRecordCase[] = []) {
   const _constantRoutes = cloneDeep(constantRoutes)
-  const menuRoutes = _constantRoutes.filter((v => v.path === '/'))[0].children
+  const menuRoutes = _constantRoutes.filter((v => v.component === BasicLayout))[0].children
   if (menuRoutes) {
     menuRoutes.push(...menus)
   }
   const routes = formatRoutes(_constantRoutes)
-  const _menuRoutes = routes.filter((v) => v.path === '/')[0].children || []
+  const _menuRoutes = routes.filter((v) => v.component === BasicLayout)[0].children || []
   return {
     routes,
     menuRoutes: getShowRoutes(cloneDeep(_menuRoutes))

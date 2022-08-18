@@ -3,6 +3,7 @@ import { build } from './build/build'
 import { modifyVars } from './build/modifyVars'
 import { envPrefix, Env } from './build/constant'
 import { plugins } from './build/plugins'
+import { proxy } from './build/proxy'
 import path from 'path'
 
 export default defineConfig(() => {
@@ -14,7 +15,7 @@ export default defineConfig(() => {
       host: '127.0.0.1',
       port: Env.APP_PROT,
       open: Env.APP_OPEN,
-      proxy: {}
+      proxy: proxy
     },
     resolve: {
       alias: {

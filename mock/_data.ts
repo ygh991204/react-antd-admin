@@ -1,19 +1,19 @@
 
 export const usersDb: Api.UserDb[] = [
   {
-    nikename: '管理员账号',
+    nikename: '枫',
     username: 'admin',
     password: '123456',
-    role: 'admin',
-    avater: '',
+    roles: ['admin'],
+    avater: '/avatar-admin.jpg',
     token: 'admin_token_123456'
   },
   {
-    nikename: '普通账号',
+    nikename: '小枫',
     username: 'user',
     password: '123456',
-    role: 'user',
-    avater: '',
+    roles: ['user'],
+    avater: '/avatar-user.jpg',
     token: 'user_token_123456'
   }
 ]

@@ -42,7 +42,7 @@ const columns: ColumnsType<Commodity> = [
   {
     title: '单价',
     dataIndex: 'price',
-    render: (_, { price }) => '￥' + price + '.00',
+    render: (_, { price }) => '￥' + price,
     onCell: (_, index) => ({
       colSpan: (index as number) < data.commoditys.length - 1 ? 1 : 0
     })

@@ -27,10 +27,19 @@ export function getUserInfoByToken(headers: IAnyObject) {
   if (token) {
     const user = usersDb.filter((v) => v.token === token)[0]
     if (user) {
-      const role = rolesDb.filter((v) => v.roleValue === user.role)[0]
+      const roles = rolesDb.filter((v) => user.roles.includes(v.roleValue))
+      const permissions = [
+        ...new Set([
+          ...roles.reduce((prev, role) => {
+            prev = prev.concat(role.permissions)
+            return prev
+          }, [] as string[])
+        ])
+      ]
       return {
         ...user,
-        ...role
+        permissions,
+        roles
       }
     } else {
       return null

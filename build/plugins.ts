@@ -19,6 +19,7 @@ const plugins = [
   })
 ]
 
+// html 模板替换
 plugins.push(
   createHtmlPlugin({
     minify: isBuild,
@@ -30,7 +31,7 @@ plugins.push(
   })
 )
 
-// 动态引入
+// 按需引入样式
 plugins.push(
   createStyleImportPlugin({
     libs: [
@@ -63,8 +64,10 @@ Env.APP_MOCK && plugins.push(
   })
 )
 
+// 浏览器兼容
 Env.APP_LEGACY && isBuild && plugins.push(legacy())
 
+// 打包分析
 Env.visualizer && isBuild && plugins.push(
   visualizer({
     filename: './node_modules/.cache/visualizer/stats.html',
@@ -74,6 +77,7 @@ Env.visualizer && isBuild && plugins.push(
   })
 )
 
+// 打包压缩
 Env.APP_COMPRESSION && isBuild && plugins.push(
   viteCompression({
     algorithm: 'gzip',
@@ -83,6 +87,7 @@ Env.APP_COMPRESSION && isBuild && plugins.push(
   })
 )
 
+// pwa
 Env.APP_PWA && isBuild && plugins.push(
   VitePWA({
     manifest: {

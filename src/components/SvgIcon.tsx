@@ -1,12 +1,12 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, DOMAttributes } from 'react'
 import styled from 'styled-components'
 
-export interface SvgIconProps {
+export type SvgIconProps = {
   name: string
   prefix?: string,
   style?: CSSProperties,
   className?: string
-}
+} & DOMAttributes<SVGSVGElement>
 
 const Svg = styled.svg`
   width: 1em;

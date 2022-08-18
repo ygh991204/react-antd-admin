@@ -1,4 +1,7 @@
 
+/**
+ * vite env，默认值
+ */
 const defaultAppEnv: AppEnv = {
   APP_BASE_URL: '',
   APP_LANGUAGE: 'zh_CN',
@@ -18,6 +21,9 @@ const defaultAppEnv: AppEnv = {
   APP_COMPRESSION: false
 }
 
+/**
+ * 合并默认值
+ */
 export function formatAppEnv(env: AppEnv) {
   const appEnv = env as IAnyObject
   return Object.assign({}, defaultAppEnv, Object.keys(appEnv).reduce((prev, key) => {
@@ -26,6 +32,9 @@ export function formatAppEnv(env: AppEnv) {
   }, {} as IAnyObject)) as AppEnv
 }
 
+/**
+ * 处理 环境变量 boolen 数字 的情况
+ */
 export function formatEnvVal(val: any) {
   if(val === 'true') {
     return true

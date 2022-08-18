@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { Row, Col, Card, Avatar, Tabs, List, Form, Input, Button, Space } from 'antd'
+import { Row, Col, Card, Avatar, Tabs, List, Form, Input, Button, Space, Tag } from 'antd'
 import { useAppSelector } from '@/store'
 const { TabPane } = Tabs
 
 function ChangeInfo() {
-  const user = useAppSelector(state => state.user.user)
+  const user = useAppSelector((state) => state.user.user)
   const [form] = Form.useForm()
 
   function formFinish(value: IAnyObject) {
@@ -27,9 +27,11 @@ function ChangeInfo() {
           <Button type='primary' htmlType='submit'>
             提交
           </Button>
-          <Button htmlType='button' onClick={() => {
-            form.resetFields()
-          }}>
+          <Button
+            htmlType='button'
+            onClick={() => {
+              form.resetFields()
+            }}>
             重置
           </Button>
         </Space>
@@ -47,7 +49,6 @@ function ChangePassWord() {
 
   return (
     <Form form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 10 }} onFinish={formFinish}>
-
       <Form.Item name='oldPassword' label='密码' rules={[{ required: true, message: '输入密码' }]}>
         <Input placeholder='输入密码' />
       </Form.Item>
@@ -63,12 +64,14 @@ function ChangePassWord() {
       <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
         <Space>
           <Button type='primary' htmlType='submit'>
-              提交
+            提交
           </Button>
-          <Button htmlType='button' onClick={() => {
-            form.resetFields()
-          }}>
-              重置
+          <Button
+            htmlType='button'
+            onClick={() => {
+              form.resetFields()
+            }}>
+            重置
           </Button>
         </Space>
       </Form.Item>
@@ -77,24 +80,25 @@ function ChangePassWord() {
 }
 
 function Personal() {
-  const user = useAppSelector(state => state.user.user)
+  const user = useAppSelector((state) => state.user.user)
   return (
     <Row gutter={[20, 20]}>
       <Col xxl={8} xl={8} lg={24} md={24} sm={24} xs={24}>
         <Card bordered={false} title='个人信息'>
           {/* 基本信息 */}
           <div style={{ padding: '26px', textAlign: 'center' }}>
-            <Avatar size={88} src={ user.avater }/>
-            <div style={{ padding: '20px 0', fontWeight: 'bold', fontSize: '16px' }}>{ user.nikename }</div>
+            <Avatar size={88} src={user.avater} />
+            <div style={{ padding: '20px 0', fontWeight: 'bold', fontSize: '16px' }}>{user.nikename}</div>
           </div>
-          <List.Item extra={ user.username }>
-            <List.Item.Meta title ='用户名'/>
+          <List.Item extra={user.username}>
+            <List.Item.Meta title='用户名' />
           </List.Item>
-          <List.Item extra={ user.nikename }>
-            <List.Item.Meta title='昵称'/>
+          <List.Item extra={user.nikename}>
+            <List.Item.Meta title='昵称' />
           </List.Item>
-          <List.Item extra={ user.roleName }>
-            <List.Item.Meta title='角色'/>
+          <List.Item
+            extra={user.roles ? user.roles.map((role) => <Tag key={role.roleValue}>{role.roleName}</Tag>) : null}>
+            <List.Item.Meta title='角色' />
           </List.Item>
         </Card>
       </Col>
@@ -102,10 +106,10 @@ function Personal() {
         <Card>
           <Tabs defaultActiveKey='base'>
             <TabPane tab='基本设置' key='base'>
-              <ChangeInfo/>
+              <ChangeInfo />
             </TabPane>
             <TabPane tab='密码修改' key='paw'>
-              <ChangePassWord/>
+              <ChangePassWord />
             </TabPane>
           </Tabs>
         </Card>

@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { login as userLogin, logout as userLogout, getUserInfo, ApiLoginData } from '@/api/user'
+import { login as userLogin, logout as userLogout, getUserInfo, ApiLoginData, UserData } from '@/api/user'
 import { setToken, removeToken } from '@/utils/auth'
-import AdminAvater from '@/assets/images/admin_avater.png'
-import UserAvater from '@/assets/images/user_avater.png'
 
 export const login = createAsyncThunk('user/login', async(data: ApiLoginData) => {
   const res = await userLogin(data)
@@ -20,7 +18,7 @@ export const userInfo = createAsyncThunk('user/userInfo', async() => {
 })
 
 interface UserState {
-  user: Partial<Api.UserDb & Api.RoleDb>
+  user: Partial<UserData>
   token: string | null
   permissions: string[]
   loadMenus: boolean
@@ -43,7 +41,7 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.user = { ...payload, avater: payload.role === 'admin' ? AdminAvater : UserAvater }
+      state.user = { ...payload, roles: [] }
       state.token = payload.token
       setToken(payload.token)
       state.loadMenus = true
@@ -59,7 +57,7 @@ export const userSlice = createSlice({
       removeToken()
     })
     builder.addCase(userInfo.fulfilled, (state, { payload }) => {
-      state.user = { ...payload, avater: payload.role === 'admin' ? AdminAvater : UserAvater }
+      state.user = { ...payload }
       state.permissions = payload.permissions
     })
   }

@@ -22,9 +22,14 @@ export function getMenus() {
   })
 }
 
+export interface UserData extends Omit<Api.UserDb, 'roles'> {
+  roles: Api.RoleDb[],
+  permissions: string[]
+}
+
 /** 获取用户数据 */
 export function getUserInfo() {
-  return request<Api.RoleDb & Api.UserDb>({
+  return request<UserData>({
     url: '/api/v1/userinfo',
     method: 'post'
   })
