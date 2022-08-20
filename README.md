@@ -1,4 +1,4 @@
-<div align="center"> <a href="https://github.com/ygh991204/react-antd-admin"> <img alt="React Antd Admin Logo" width="150" height="150" src="http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminLogo"> </a> <br> <br>
+<div align="center"> <a href="https://github.com/ygh991204/react-antd-admin"> <img alt="React Antd Admin Logo" width="150" height="150" src="http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminLogo.png"> </a> <br> <br>
 <h1>React Antd Admin</h1>
 </div>
 
@@ -7,9 +7,8 @@
 react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `react18`、`vite`、`typeScript`、`antd` 开发；根据权限动态加载路由，权限可控制到按钮级别；内置一些 常用的功能组件 和 典型的业务模型；集成了 `i18next` 国际化方案
 
 - [在线预览](#)
-- [文档地址](#)
-- [Gitee](#) 在线预览
-- [Gitee](#) 文档地址
+- [文档地址](http://xiaofengproject.gitee.io/raect-antd-admin-doc)
+- - [Gitee](https://gitee.com/xiaofengproject/react-antd-admin.git)
 
 如果你发现问题，欢迎提 [issues](https://github.com/ygh991204/react-antd-admin/issues)
 
@@ -21,9 +20,7 @@ react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `reac
 - 项目技术栈 [Vite](https://vitejs.dev/)、[React18](https://reactjs.org/)、[TypeScript](https://www.typescriptlang.org/)、[Redux-Toolkit](https://redux-toolkit.js.org/)、[React-Router-v6](https://reactrouter.com/)、[Ant-Design](https://ant.design/index-cn)
 - 项目请求数据使用 [Mock.js](https://github.com/nuysoft/Mock) 模拟
 
-<p align="center">
-<img alt="React Antd Admin Home" width="100%" src="http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminHome">
-</p>
+![reactAntdAdminHome](http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminHome2.png)
 
 ## 开发
 
