@@ -6,10 +6,10 @@
 
 react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `react18`、`vite`、`typeScript`、`antd` 开发；根据权限动态加载路由，权限可控制到按钮级别；内置一些 常用的功能组件 和 典型的业务模型；集成了 `i18next` 国际化方案
 
-- [在线预览]()
-- [文档地址]()
-- [Gitee]() 在线预览
-- [Gitee]() 文档地址
+- [在线预览](#)
+- [文档地址](#)
+- [Gitee](#) 在线预览
+- [Gitee](#) 文档地址
 
 如果你发现问题，欢迎提 [issues](https://github.com/ygh991204/react-antd-admin/issues)
 
@@ -59,6 +59,11 @@ npm run preview
 如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持
 
 ![donate](http://rglaex5y3.hn-bkt.clouddn.com/myPayCode.png)
+
+## 借鉴项目
+
+- [vue-vben-admin](https://github.com/vbenjs/vue-vben-admin)
+- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
 
 ## 交流
 
