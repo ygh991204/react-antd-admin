@@ -123,7 +123,7 @@ function Login() {
                 <p style={{ fontWeight: 'bolder' }}>账号和密码</p>
                 {
                   USER_LIST.map(user => (
-                    <p key={user.password}>{user.nikename}：{user.username}  {user.password}</p>
+                    <p key={user.username}>{user.nikename}：{user.username}  {user.password}</p>
                   ))
                 }
               </div>

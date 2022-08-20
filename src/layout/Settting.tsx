@@ -49,7 +49,7 @@ function Setting() {
               }}
             />
           }>
-          <List.Item.Meta title='logo' />
+          <List.Item.Meta title='侧边栏 logo' />
         </List.Item>
         <List.Item
           extra={
@@ -61,7 +61,7 @@ function Setting() {
               }}
             />
           }>
-          <List.Item.Meta title='tabs' />
+          <List.Item.Meta title='标签 tabs' />
         </List.Item>
       </Drawer>
     </>

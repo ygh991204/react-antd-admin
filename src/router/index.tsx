@@ -8,21 +8,22 @@ import React from 'react'
 let Layout: React.ComponentType | null = null
 
 function getLayout() {
-  if(!Layout) {
+  if (!Layout) {
     const LayoutComponent = asyncImportLayout()
-    Layout = () => <RouterGuard render={<LayoutComponent/>} />
+    Layout = () => <RouterGuard render={<LayoutComponent />} />
   }
   return Layout
 }
 
 export function RoutesRender(routes: RouteRecord[], isComponentRender = true): RouteObject[] {
   return routes.map((route) => {
-    if (route.component && route.redirect) {
-      const children = route.children || []
-      route.children = [
+    const { index, component, redirect } = route
+    let children = route.children || []
+    if (children.length) {
+      children = [
         {
           index: true,
-          component: isComponentRender ? <Navigate to={route.redirect} replace /> : null,
+          redirect: redirect || children[0].fullPath,
           path: '',
           fullPath: '',
           meta: {}
@@ -31,36 +32,31 @@ export function RoutesRender(routes: RouteRecord[], isComponentRender = true): R
       ]
     }
     let ElementComponent: React.ComponentType | null = null
-    if(isComponentRender) {
-      if(route.component) {
-        if(typeof route.component === 'string') {
-          if(route.component === BasicLayout) {
-            ElementComponent = getLayout()
-          } else {
-            const PageComponent = asyncImportPage(route.component)
-            ElementComponent = () => <RouterGuard render={<PageComponent/>}/>
-          }
+    if (isComponentRender) {
+      if (index && redirect) {
+        ElementComponent = () => <Navigate to={redirect} replace/>
+      } else if (component) {
+        if (component === BasicLayout) {
+          ElementComponent = getLayout()
         } else {
-          ElementComponent = () => <RouterGuard render={route.component} />
+          const PageComponent = asyncImportPage(component)
+          ElementComponent = () => <RouterGuard render={<PageComponent />} />
+        }
+      } else if (redirect) {
+        if (children.length) {
+          ElementComponent = Outlet
+        } else {
+          ElementComponent = () => <Navigate to={redirect} replace />
         }
       } else {
-        const redirect = route.redirect
-        if(redirect) {
-          if(route.children) {
-            ElementComponent = Outlet
-          } else {
-            ElementComponent = () => <Navigate to={redirect} replace />
-          }
-        } else {
-          ElementComponent = Outlet
-        }
+        ElementComponent = Outlet
       }
     }
     return {
-      children: route.children ? RoutesRender(route.children, isComponentRender) : undefined,
-      element: ElementComponent ? <ElementComponent/> : null,
-      index: route.index || false,
-      path: route.path
+      children: children.length ? RoutesRender(children, isComponentRender) : undefined,
+      element: ElementComponent ? <ElementComponent /> : undefined,
+      index: route.index || undefined,
+      path: route.path || undefined
     }
   })
 }

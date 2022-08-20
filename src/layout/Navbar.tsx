@@ -6,7 +6,8 @@ import {
   MenuFoldOutlined,
   FullscreenOutlined,
   FullscreenExitOutlined,
-  GlobalOutlined
+  GlobalOutlined,
+  SearchOutlined
 } from '@ant-design/icons'
 import screenfull from 'screenfull'
 import { useRoute, useRouter } from '@/router/hook'
@@ -14,22 +15,27 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { toogleSideBar } from '@/store/modules/appSlice'
 import { logout } from '@/store/modules/userSlice'
 import Language from '@/components/Language'
+import SearchMenus from '@/components/SearchMenus'
 
 function NavBar() {
   const { t } = useTranslation()
   const sideBarOpened = useAppSelector((state) => state.app.sideBarOpend)
-  const user = useAppSelector(state => state.user.user)
+  const user = useAppSelector((state) => state.user.user)
   const dispatch = useAppDispatch()
   const [isScreenfull, setIsScreenfull] = useState(false)
+  const [searchHide, setSeacrchHide] = useState(true)
   const route = useRoute()
   const router = useRouter()
 
-  const screenfullChange = useCallback(() => {
+  function screenfullChange() {
     setIsScreenfull(screenfull.isFullscreen)
-  }, [])
+  }
 
-  const screenfullToogle = useCallback(() => {
+  function screenfullToogle() {
     screenfull.toggle()
+  }
+  const handleSearchHide = useCallback(() => {
+    setSeacrchHide(true)
   }, [])
 
   useEffect(() => {
@@ -44,17 +50,31 @@ function NavBar() {
     }
   }, [])
 
+  useEffect(() => {
+    if(searchHide) {
+      document.body.removeEventListener('click', handleSearchHide)
+    } else {
+      document.body.addEventListener('click', handleSearchHide)
+    }
+    return () => {
+      document.body.removeEventListener('click', handleSearchHide)
+    }
+  }, [searchHide])
+
   function logoutConfirm() {
     Modal.confirm({
       title: t('app.modalConfirmTitle'),
       type: 'warning',
       content: t('app.logoutTip'),
       onOk() {
-        dispatch(logout()).unwrap().then(() => {
-          location.reload()
-        }).catch(() => {
-          location.reload()
-        })
+        dispatch(logout())
+          .unwrap()
+          .then(() => {
+            location.reload()
+          })
+          .catch(() => {
+            location.reload()
+          })
       },
       onCancel() {
         console.log('Cancel')
@@ -64,22 +84,21 @@ function NavBar() {
 
   return (
     <div className='app-navbar-header'>
-
       <div
         className='app-navbar-header-item'
         onClick={() => {
           dispatch(toogleSideBar())
         }}>
         {sideBarOpened ? (
-          <MenuFoldOutlined style={{ fontSize: '20px' }}/>
+          <MenuFoldOutlined style={{ fontSize: '18px' }} />
         ) : (
-          <MenuUnfoldOutlined style={{ fontSize: '20px' }}/>
+          <MenuUnfoldOutlined style={{ fontSize: '18px' }} />
         )}
       </div>
 
       <div style={{ paddingLeft: '10px' }}>
         <Breadcrumb>
-          {route.matched.map(v => (
+          {route.matched.map((v) => (
             <Breadcrumb.Item key={v.fullPath}>
               <>{v.meta.title ? t(v.meta.title) : ''}</>
             </Breadcrumb.Item>
@@ -87,37 +106,75 @@ function NavBar() {
         </Breadcrumb>
       </div>
 
-      <div className='app-navbar-header-file'/>
+      <div className='app-navbar-header-file' />
 
-      <div onClick={screenfullToogle} className='app-navbar-header-item'>
-        {
-          isScreenfull ? <FullscreenExitOutlined style={{ fontSize: '20px' }}/> :
-            <FullscreenOutlined style={{ fontSize: '20px' }}/>
-        }
+      <div className='app-navbar-header-item' onClick={(event) => {
+        setSeacrchHide(!searchHide)
+        event.stopPropagation()
+      }}>
+        <SearchOutlined
+          style={{ fontSize: '18px' }}
+        />
       </div>
 
-      <Dropdown overlay={<Menu onClick={({ key }) => {
-        if (key === '3') {
-          logoutConfirm()
-        } else {
-          router.push('/personal')
-        }
-      }} items={[{
-        label: t('menus.personal'),
-        key: '1'
-      }, { type: 'divider' }, { label: t('app.logout'), key: '3' }]}/>}>
+      <div
+        onClick={(event) => {
+          event.stopPropagation()
+        }}
+        className={
+          'app-navbar-header-item app-navbar-header_search' + (searchHide ? '' : 'app-navbar-header_search_active')
+        }>
+        <SearchMenus
+          onChange={(path) => {
+            router.push({
+              path
+            })
+            setTimeout(() => {
+              setSeacrchHide(true)
+            }, 300)
+          }}
+        />
+      </div>
+
+      <div onClick={screenfullToogle} className='app-navbar-header-item'>
+        {isScreenfull ? (
+          <FullscreenExitOutlined style={{ fontSize: '18px' }} />
+        ) : (
+          <FullscreenOutlined style={{ fontSize: '18px' }} />
+        )}
+      </div>
+
+      <Dropdown
+        overlay={
+          <Menu
+            onClick={({ key }) => {
+              if (key === '3') {
+                logoutConfirm()
+              } else {
+                router.push('/personal')
+              }
+            }}
+            items={[
+              {
+                label: t('menus.personal'),
+                key: '1'
+              },
+              { type: 'divider' },
+              { label: t('app.logout'), key: '3' }
+            ]}
+          />
+        }>
         <div className='app-navbar-header-item'>
-          <Avatar size={30} src={user.avater}/>
+          <Avatar size={30} src={user.avater} />
           <span style={{ paddingLeft: '5px' }}>{user.nikename}</span>
         </div>
       </Dropdown>
 
       <Language>
         <div className='app-navbar-header-item'>
-          <GlobalOutlined style={{ fontSize: '18px' }}/>
+          <GlobalOutlined style={{ fontSize: '18px' }} />
         </div>
       </Language>
-
     </div>
   )
 }

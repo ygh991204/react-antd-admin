@@ -52,7 +52,7 @@
   }
 
   .app-sidebar {
-    background: #001529;
+    background: @menu-dark-bg;
     z-index: 901;
     height: 100vh;
     transition: all 0.2s;
@@ -140,7 +140,7 @@
     }
 
     .ant-tabs-tab-active {
-      background-color: #1890ff !important;
+      background-color: @primary-color !important;
       border-bottom-color: #f0f0f0 !important;
     }
 
@@ -220,6 +220,17 @@
     line-height: 44px;
     color: #666666;
     text-align: center;
+  }
+
+  .app-navbar-header_search{
+    width: 0;
+    overflow-x: hidden;
+    padding: 0 !important;
+    transition: all .3s ease-in-out !important;
+  }
+
+  .app-navbar-header_search_active{
+    width: auto;
   }
 
 }

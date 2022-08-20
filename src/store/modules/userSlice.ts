@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { login as userLogin, logout as userLogout, getUserInfo, ApiLoginData, UserData } from '@/api/user'
+import {
+  login as userLogin,
+  logout as userLogout,
+  getUserInfo as _getUserInfo,
+  ApiLoginData,
+  UserData
+} from '@/api/user'
 import { setToken, removeToken } from '@/utils/auth'
 
 export const login = createAsyncThunk('user/login', async(data: ApiLoginData) => {
@@ -12,8 +18,8 @@ export const logout = createAsyncThunk('user/logout', async() => {
   return res
 })
 
-export const userInfo = createAsyncThunk('user/userInfo', async() => {
-  const res = await getUserInfo()
+export const getuserInfo = createAsyncThunk('user/userInfo', async() => {
+  const res = await _getUserInfo()
   return res.data
 })
 
@@ -56,7 +62,7 @@ export const userSlice = createSlice({
       state.permissions = []
       removeToken()
     })
-    builder.addCase(userInfo.fulfilled, (state, { payload }) => {
+    builder.addCase(getuserInfo.fulfilled, (state, { payload }) => {
       state.user = { ...payload }
       state.permissions = payload.permissions
     })

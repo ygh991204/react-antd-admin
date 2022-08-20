@@ -1,6 +1,6 @@
 
 import type { ReactNode, PropsWithChildren } from 'react'
-import { useAuth } from '@/utils/auth'
+import useAuth from '@/hooks/useAuth'
 
 export type AuthProps = PropsWithChildren<{
   permissions: string[]

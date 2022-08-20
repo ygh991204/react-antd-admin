@@ -1,5 +1,3 @@
-
-import type { ReactNode } from 'react'
 import type { TFunction, Namespace } from 'react-i18next'
 
 export type RouteMetaTitle = Parameters<TFunction<Namespace, undefined>>[0]
@@ -14,7 +12,7 @@ export interface RouteMeta {
 export interface RouteRecordCase {
   path: string
   meta: RouteMeta,
-  component?: ReactNode
+  component?: string
   redirect?: string
   children?: RouteRecordCase[]
 }
@@ -23,7 +21,7 @@ export interface RouteRecord {
   path: string
   meta: RouteMeta
   fullPath: string
-  component?: ReactNode
+  component?: string
   redirect?: string
   children?: RouteRecord[]
   index?: boolean

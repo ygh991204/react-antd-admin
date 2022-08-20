@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import { build } from './build/build'
-import { modifyVars } from './build/modifyVars'
 import { envPrefix, Env } from './build/constant'
+import { modifyVars } from './build/theme'
 import { plugins } from './build/plugins'
 import { proxy } from './build/proxy'
 import path from 'path'

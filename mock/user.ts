@@ -16,6 +16,28 @@ const userLogout = createApi('/api/v1/logout', 'post', () => {
   return response(null)
 })
 
+const resetPassword = createApi('/api/v1/password/reset', 'post', ({ body, headers }) => {
+  const user = getUserInfoByToken(headers)
+  if (user) {
+    if (body.oldPassword === user.password) {
+      return response(null)
+    } else {
+      return response(null, 501, '密码输入错误')
+    }
+  } else {
+    return response(null, 401, 'token 错误')
+  }
+})
+
+const updateUserInfo = createApi('/api/v1/userinfo/update', 'post', ({ headers }) => {
+  const user = getUserInfoByToken(headers)
+  if (user) {
+    return response(null)
+  } else {
+    return response(null, 401, 'token 错误')
+  }
+})
+
 /** 获取用户信息 */
 const getUserInfo = createApi('/api/v1/userinfo', 'post', ({ headers }) => {
   const user = getUserInfoByToken(headers)
@@ -49,4 +71,4 @@ const getMenus = createApi('/api/v1/menus', 'post', ({ headers }) => {
   }
 })
 
-export default [userLogin, userLogout, getUserInfo, getMenus]
+export default [userLogin, userLogout, getUserInfo, getMenus, resetPassword, updateUserInfo]

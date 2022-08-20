@@ -1,6 +1,5 @@
-import { useMemo } from 'react'
 import Cookies from 'js-cookie'
-import store, { useAppSelector } from '@/store'
+import store from '@/store'
 import { EnvConfig } from '@/env'
 
 export function getToken() {
@@ -28,10 +27,3 @@ export function checkAuth(permissions: string[], userPermissions?: string[]) {
   })
 }
 
-export function useAuth(permissions: string[]) {
-  const userPermissions = useAppSelector((state) => state.user.permissions)
-  const isAuth = useMemo(() => {
-    return checkAuth(permissions, userPermissions)
-  }, [permissions, userPermissions])
-  return isAuth
-}

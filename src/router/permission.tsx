@@ -5,7 +5,7 @@ import { setPageTitle } from '@/utils'
 import { getToken } from '@/utils/auth'
 import { RouterLoading } from '@/router/loading'
 import { RouteLocation, RouterOptions, useRoute, useRouter } from '@/router/hook'
-import { logout, setLoadMenus, userInfo } from '@/store/modules/userSlice'
+import { logout, setLoadMenus, getuserInfo } from '@/store/modules/userSlice'
 import { loadAsyncMenus } from '@/store/modules/permissionSlice'
 import store from '@/store'
 import React from 'react'
@@ -42,7 +42,7 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
       const state = store.getState()
       if (state.user.permissions.length === 0) {
         try {
-          await store.dispatch(userInfo()).unwrap()
+          await store.dispatch(getuserInfo()).unwrap()
           loadMenus(route, next)
         } catch (e) {
           store.dispatch(logout())
@@ -84,7 +84,7 @@ export function RouterGuard({ children, render }: PropsWithChildren<{
   }, [])
 
   useEffect(() => {
-    setPageTitle(route.meta.title ? t(route.meta.title as any) : '')
+    setPageTitle((route.meta.title ? t(route.meta.title) : '') as any)
     routerBeforeEach(route, next)
   }, [])
 

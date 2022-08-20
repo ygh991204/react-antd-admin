@@ -74,7 +74,7 @@ function TabsPages() {
           onChange={(activeKey) => {
             const tag = tabsPages.filter((v) => v.path === activeKey)[0]
             if (tag) {
-              router.push(tag.fullPath || '/')
+              router.push(tag.fullPath)
             }
           }}
           onEdit={tabDel}>

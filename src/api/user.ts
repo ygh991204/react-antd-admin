@@ -42,3 +42,28 @@ export function logout() {
     method: 'post'
   })
 }
+
+export interface ResetPasswordParams {
+  oldPassword: string,
+  newPassword: string
+}
+
+export function resetPassword(data: ResetPasswordParams) {
+  return request({
+    url: '/api/v1/password/reset',
+    method: 'post',
+    data
+  })
+}
+
+export interface UpdateUserInfoParams {
+  nikename: string
+}
+
+export function updateUserInfo(data: UpdateUserInfoParams) {
+  return request({
+    url: '/api/v1/userinfo/update',
+    method: 'post',
+    data
+  })
+}

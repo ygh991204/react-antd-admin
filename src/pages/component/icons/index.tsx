@@ -1,24 +1,13 @@
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Card, Tabs, Typography, Col, Row, notification, Alert } from 'antd'
-import SvgIcon from '@/components/SvgIcon'
+import SvgIcon, { svgNames } from '@/components/SvgIcon'
+import { useState } from 'react'
 
 const { TabPane } = Tabs
 const { Link } = Typography
 
-const modulesFiles = import.meta.globEager('@/assets/icons/*.svg')
-const svgNames = Object.keys(modulesFiles)
-  .sort()
-  .reduce((modules, modulePath) => {
-    modules.push(
-      modulePath
-        .replace(/^\.\/(.*)\.\w+$/, '$1')
-        .replace('../../../assets/icons/', '')
-        .replace('.svg', '')
-    )
-    return modules
-  }, [] as string[])
-
 function ComponentIcons() {
+  const [icon, setIcon] = useState<string>()
   return (
     <>
       <Alert
@@ -30,9 +19,14 @@ function ComponentIcons() {
         }
         type='info'
       />
-
       <Card bordered={false} style={{ marginTop: '20px' }}>
-        <Tabs defaultActiveKey='base'>
+        <SvgIcon.Select
+          value={icon}
+          onChange={(iconName) => {
+            setIcon(iconName)
+          }}
+        />
+        <Tabs defaultActiveKey='base' style={{ marginTop: '10px' }}>
           <TabPane tab='icons' key='icons'>
             <Row gutter={[20, 20]} style={{ marginTop: '20px' }}>
               {svgNames.map((v) => (
