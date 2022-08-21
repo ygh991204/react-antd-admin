@@ -139,7 +139,7 @@ export const menusRoutes: RouteRecordCase[] = [
         meta: { title: 'menus.navigateRouter' }
       },
       {
-        path: 'link',
+        path: 'https://github.com/ygh991204/react-antd-admin.git',
         meta: { title: 'menus.navigateLink' }
       },
       {

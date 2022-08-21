@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/ygh991204/react-antd-admin/issues"
   },
-  "homepage": "https://github.com/ygh991204/wxapp-pro#readme",
+  "homepage": "http://xiaofengproject.gitee.io/raect-antd-admin-doc",
   "scripts": {
     "dev": "vite --mode development",
     "build": "npm run type:lint && vite build --mode production",

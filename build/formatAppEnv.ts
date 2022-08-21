@@ -18,7 +18,10 @@ const defaultAppEnv: AppEnv = {
   APP_MOBILE_WIDTH: 992,
   APP_MOCK: false,
   APP_LEGACY: false,
-  APP_COMPRESSION: false
+  APP_COMPRESSION: false,
+  APP_GITEE: '',
+  APP_GITHUP: '',
+  APP_DOC: ''
 }
 
 /**

@@ -34,6 +34,9 @@ declare global {
     readonly APP_MOCK: boolean
     readonly APP_LEGACY: boolean
     readonly APP_COMPRESSION: boolean
+    readonly APP_GITHUP: string
+    readonly APP_GITEE: string
+    readonly APP_DOC: string
   }
 
 }

@@ -13,6 +13,7 @@ import Logo from '/logo.png'
 import { useEffect } from 'react'
 import { usersDb as USER_LIST } from '../../../mock/_data'
 import { ActionsWrapper, LoginHeader, LoginLogo, LoginTitle, LoginWrapper, FooterWrapper } from './style'
+import SvgIcon from '@/components/SvgIcon'
 
 function getTimeState() {
   const timeNow = new Date()
@@ -43,7 +44,7 @@ function Login() {
   useEffect(() => {
     let password = Cookies.get('password')
     let username = Cookies.get('username')
-    if(password && username) {
+    if (password && username) {
       const _password = CryptoJS.enc.Base64.parse(password)
       password = _password.toString(CryptoJS.enc.Utf8)
       const _userName = CryptoJS.enc.Base64.parse(username)
@@ -57,11 +58,13 @@ function Login() {
   }, [])
 
   async function handleFish(value: LoginForm) {
-    const userInfo = await dispatch(login({
-      username: value.username,
-      password: value.password
-    })).unwrap()
-    if(value.remember) {
+    const userInfo = await dispatch(
+      login({
+        username: value.username,
+        password: value.password
+      })
+    ).unwrap()
+    if (value.remember) {
       const _username = CryptoJS.enc.Utf8.parse(value.username)
       const _password = CryptoJS.enc.Utf8.parse(value.password)
       const username = CryptoJS.enc.Base64.stringify(_username)
@@ -87,18 +90,18 @@ function Login() {
     <>
       <ActionsWrapper>
         <Space size='large'>
-          <GithubOutlined style={{ fontSize: '18px' }}/>
-          <QuestionCircleOutlined style={{ fontSize: '18px' }}/>
+          <GithubOutlined onClick={() => router.push(EnvConfig.APP_GITHUP)} style={{ fontSize: '18px' }} />
+          <SvgIcon name='gitee' onClick={() => router.push(EnvConfig.APP_GITEE)} style={{ fontSize: '18px' }} />
+          <QuestionCircleOutlined onClick={() => router.push(EnvConfig.APP_DOC)} style={{ fontSize: '18px' }} />
           <Language>
             <GlobalOutlined style={{ fontSize: '18px' }} />
           </Language>
         </Space>
       </ActionsWrapper>
-
       <LoginWrapper>
         <Card bordered={false}>
           <LoginHeader>
-            <LoginLogo src={Logo}/>
+            <LoginLogo src={Logo} />
             <LoginTitle>{EnvConfig.APP_TITLE}</LoginTitle>
           </LoginHeader>
           <Form size='large' form={form} name='normal_login' onFinish={handleFish}>
@@ -109,7 +112,7 @@ function Login() {
               <Input.Password placeholder={t('login.passwordPlaceholder')} />
             </Form.Item>
             <Form.Item name='remember' valuePropName='checked'>
-              <Checkbox>{t('login.rememberMe') }</Checkbox>
+              <Checkbox>{t('login.rememberMe')}</Checkbox>
             </Form.Item>
             <Form.Item>
               <Button type='primary' block htmlType='submit'>
@@ -121,18 +124,17 @@ function Login() {
             message={
               <div style={{ lineHeight: 1.5 }}>
                 <p style={{ fontWeight: 'bolder' }}>账号和密码</p>
-                {
-                  USER_LIST.map(user => (
-                    <p key={user.username}>{user.nikename}：{user.username}  {user.password}</p>
-                  ))
-                }
+                {USER_LIST.map((user) => (
+                  <p key={user.username}>
+                    {user.nikename}：{user.username} {user.password}
+                  </p>
+                ))}
               </div>
             }
             type='info'
           />
         </Card>
       </LoginWrapper>
-
       <FooterWrapper dangerouslySetInnerHTML={{ __html: EnvConfig.APP_FOOTER }} />
     </>
   )

@@ -4,11 +4,11 @@
 
 ## 简介
 
-react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `react18`、`vite`、`typeScript`、`antd` 开发；根据权限动态加载路由，权限可控制到按钮级别；内置一些 常用的功能组件 和 典型的业务模型；集成了 `i18next` 国际化方案
+react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `react18`、`vite2`、`typeScript`、`antd` 开发；根据权限动态加载路由，权限可控制到按钮级别；内置一些 常用的功能组件 和 典型的业务模型；集成了 `i18next` 国际化方案
 
 - [在线预览](#)
 - [文档地址](http://xiaofengproject.gitee.io/raect-antd-admin-doc)
-- - [Gitee](https://gitee.com/xiaofengproject/react-antd-admin.git)
+- [Gitee](https://gitee.com/xiaofengproject/react-antd-admin.git)
 
 如果你发现问题，欢迎提 [issues](https://github.com/ygh991204/react-antd-admin/issues)
 
@@ -17,12 +17,12 @@ react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `reac
 ## 准备
 
 - 在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)
-- 项目技术栈 [Vite](https://vitejs.dev/)、[React18](https://reactjs.org/)、[TypeScript](https://www.typescriptlang.org/)、[Redux-Toolkit](https://redux-toolkit.js.org/)、[React-Router-v6](https://reactrouter.com/)、[Ant-Design](https://ant.design/index-cn)
-- 项目请求数据使用 [Mock.js](https://github.com/nuysoft/Mock) 模拟
+- 项目技术栈 [vite2](https://vitejs.dev/)、[react18](https://reactjs.org/)、[typescript](https://www.typescriptlang.org/)、[redux-toolkit](https://redux-toolkit.js.org/)、[react-router-v6](https://reactrouter.com/)、[ant-design](https://ant.design/index-cn)、[react-i18next](https://react.i18next.com/)
+- 项目请求数据使用 [mock.js](https://github.com/nuysoft/Mock) 模拟
 
 ![reactAntdAdminHome](http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminHome2.png)
 
-## 开发
+## 开始
 
 ```bash
 # 克隆项目

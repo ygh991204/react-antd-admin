@@ -4,7 +4,6 @@ import { Translation } from 'react-i18next'
 import { Menu } from 'antd'
 import { useRoute, useRouter } from '@/router/hook'
 import { closeSideBar } from '@/store/modules/appSlice'
-import { validateURL } from '@/utils/validate'
 import { wait } from '@/utils'
 import SvgIcon from '@/components/SvgIcon'
 import Logo from '/logo.png'
@@ -90,16 +89,8 @@ function SideBar() {
             selectedKeys={selectedKeys}
             defaultOpenKeys={openkeys}
             openKeys={openkeys}
-            onOpenChange={(keys) => {
-              setOpenKeys([...keys])
-            }}
-            onClick={({ key }) => {
-              if (validateURL(key)) {
-                window.open(key, '_blank')
-              } else {
-                router.push(key)
-              }
-            }}
+            onOpenChange={(keys) => setOpenKeys([...keys])}
+            onClick={({ key }) => router.push(key)}
             subMenuCloseDelay={0.3}
             subMenuOpenDelay={0.3}
             mode='inline'

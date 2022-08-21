@@ -5,6 +5,7 @@ import qs from 'qs'
 import { cloneDeep, omitBy } from 'lodash-es'
 import { useAppSelector } from '@/store'
 import { RoutesRender } from '@/router'
+import { validateURL } from '@/utils/validate'
 
 export interface RouteLocation<Q extends IAnyObject = IAnyObject, P extends IAnyObject = IAnyObject> {
   readonly fullPath: string
@@ -98,15 +99,17 @@ export function useRouter<Q extends IAnyObject = IAnyObject, P extends IAnyObjec
 
   const customNavigate = useCallback((options: RouterOptions | string, replace = false) => {
     if (typeof options === 'string') {
-      navigate(options, { replace })
+      validateURL(options) ? window.open(options, '_blank') : navigate(options, { replace })
     } else {
       const navigateQuery = filterQuery(options.query)
       const navigateParams = filterQuery(options.params)
       const navigatePath = options.path + (navigateQuery ? '?' + qs.stringify(navigateQuery) : '')
-      navigate(navigatePath, {
-        replace,
-        state: navigateParams
-      })
+      validateURL(navigatePath) ?
+        window.open(navigatePath, '_blank') :
+        navigate(navigatePath, {
+          replace,
+          state: navigateParams
+        })
     }
   }, [])
 

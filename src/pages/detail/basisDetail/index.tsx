@@ -54,7 +54,7 @@ const columns: ColumnsType<Commodity> = [
   {
     title: '金额',
     dataIndex: 'totalPrice',
-    render: (_, { totalPrice }) => totalPrice + '.00'
+    render: (_, { totalPrice }) => totalPrice
   }
 ]
 
@@ -76,7 +76,7 @@ function DetailBasis() {
         <Descriptions.Item label='备注'>{data.user.remark || '无'}</Descriptions.Item>
       </Descriptions>
       <Divider />
-      <Table columns={columns} pagination={false} dataSource={data.commoditys} />
+      <Table columns={columns} pagination={false} rowKey='id' dataSource={data.commoditys} />
     </Card>
   )
 }

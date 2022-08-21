@@ -25,7 +25,7 @@ export default function About() {
             }
           </Descriptions.Item>
           <Descriptions.Item label='文档地址'>
-            <Button type='link' href={ pkg.homepage }>文档地址</Button>
+            <Button type='link' href={ pkg.homepage } target='_blank'>文档地址</Button>
           </Descriptions.Item>
         </Descriptions>
       </Card>
