@@ -8,7 +8,7 @@ let layoutModules: IAnyObject | null = null
 
 export function asyncImportLayout() {
   let asynLayout = null
-  if(EnvConfig.APP_NODE_ENV === 'development') {
+  if(EnvConfig.APP_NODE_ENV === 'server') {
     asynLayout = () => import('../layout' + '' + '/index.tsx')
   } else {
     layoutModules = layoutModules || import.meta.glob('@/layout/index.tsx')
@@ -23,7 +23,7 @@ let pagesModules: IAnyObject | null = null
 
 export function asyncImportPage(component: string) {
   let asynPage = null
-  if(EnvConfig.APP_NODE_ENV === 'development') {
+  if(EnvConfig.APP_NODE_ENV === 'server') {
     asynPage = () => import('../pages/' + component + '/index.tsx')
   } else {
     pagesModules = pagesModules || import.meta.glob('@/pages/**/index.tsx')

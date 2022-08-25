@@ -14,8 +14,12 @@ export const login = createAsyncThunk('user/login', async(data: ApiLoginData) =>
 })
 
 export const logout = createAsyncThunk('user/logout', async() => {
-  const res = await userLogout()
-  return res
+  try {
+    const res = await userLogout()
+    return res
+  } catch(e) {
+    return null
+  }
 })
 
 export const getuserInfo = createAsyncThunk('user/userInfo', async() => {

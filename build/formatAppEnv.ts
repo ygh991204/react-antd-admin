@@ -9,7 +9,7 @@ const defaultAppEnv: AppEnv = {
   APP_PROT: 300,
   APP_TITLE: '',
   APP_SHORT_TITLE: '',
-  APP_NODE_ENV: 'development',
+  APP_NODE_ENV: 'server',
   APP_TOKEN_KEY: 'token',
   APP_PWA: false,
   APP_OPEN: false,
@@ -27,7 +27,7 @@ const defaultAppEnv: AppEnv = {
 /**
  * 合并默认值
  */
-export function formatAppEnv(env: AppEnv) {
+export function formatAppEnv(env: AppEnvOrigin) {
   const appEnv = env as IAnyObject
   return Object.assign({}, defaultAppEnv, Object.keys(appEnv).reduce((prev, key) => {
     prev[key] = formatEnvVal(appEnv[key])

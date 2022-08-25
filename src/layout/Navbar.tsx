@@ -67,14 +67,9 @@ function NavBar() {
       type: 'warning',
       content: t('app.logoutTip'),
       onOk() {
-        dispatch(logout())
-          .unwrap()
-          .then(() => {
-            location.reload()
-          })
-          .catch(() => {
-            location.reload()
-          })
+        dispatch(logout()).unwrap().then(() => {
+          location.reload()
+        })
       },
       onCancel() {
         console.log('Cancel')

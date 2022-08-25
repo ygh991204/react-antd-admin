@@ -1,4 +1,5 @@
 import type { AxiosRequestConfig } from 'axios'
+import type { TranslationLocale } from '@/language/zh_CN'
 
 declare module 'axios' {
   export interface AxiosInstance {
@@ -12,3 +13,13 @@ declare module 'axios' {
     patch<T = any, R = Api.Response<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>
   }
 }
+
+declare module 'react-i18next' {
+  interface CustomTypeOptions {
+    resources: {
+      [key in AppLanguage]: TranslationLocale
+    }
+  }
+}
+
+export {}

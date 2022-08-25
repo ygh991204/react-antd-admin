@@ -8,10 +8,10 @@ export const mode = process.argv[process.argv.length - 1] as AppEnv['APP_MODE']
 export const envPrefix = 'APP'
 
 // viet env
-export const appEnv = formatAppEnv(loadEnv(mode, process.cwd(), envPrefix) as unknown as AppEnv)
+export const appEnv = formatAppEnv(loadEnv(mode, process.cwd(), envPrefix) as unknown as AppEnvOrigin)
 
 // 是否 build
-export const isBuild = appEnv.APP_NODE_ENV === 'production'
+export const isBuild = appEnv.APP_NODE_ENV === 'build'
 
 /**
  * cross-env 变量

@@ -97,7 +97,7 @@ export const menusRoutes: RouteRecordCase[] = [
     meta: { title: 'menus.component', icon: 'component' },
     children: [
       {
-        path: 'imagecropper',
+        path: 'image/cropper',
         component: 'component/imageCropper',
         meta: { title: 'menus.componentImageCropper' }
       },

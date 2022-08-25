@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+
 interface ImportMeta {
-  readonly env: AppEnv
+  readonly env: AppEnvOrigin
 }

@@ -9,6 +9,10 @@ import { logout, setLoadMenus, getuserInfo } from '@/store/modules/userSlice'
 import { loadAsyncMenus } from '@/store/modules/permissionSlice'
 import store from '@/store'
 import React from 'react'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+NProgress.configure({ showSpinner: false })
 
 const whiteList = ['/login']
 
@@ -25,7 +29,7 @@ async function loadMenus(route: RouteLocation, next: RouterGuardNext) {
     store.dispatch(setLoadMenus(false))
     await store.dispatch(loadAsyncMenus()).unwrap()
     next({ replace: true, path: route.fullPath })
-  } catch(e) {
+  } catch (e) {
     notification.error({
       message: '路由菜单加载失败',
       description: '您可以尝试刷新浏览器，重新加载路由'
@@ -34,7 +38,13 @@ async function loadMenus(route: RouteLocation, next: RouterGuardNext) {
   }
 }
 
+let isNProgress = true
+
 export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNext) {
+  if (isNProgress) {
+    NProgress.start()
+    isNProgress = false
+  }
   if (getToken()) {
     if (route.path === '/login') {
       next('/')
@@ -43,13 +53,13 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
       if (state.user.permissions.length === 0) {
         try {
           await store.dispatch(getuserInfo()).unwrap()
-          loadMenus(route, next)
+          await loadMenus(route, next)
         } catch (e) {
-          store.dispatch(logout())
+          await store.dispatch(logout()).unwrap()
           location.reload()
         }
       } else if (state.user.loadMenus) {
-        loadMenus(route, next)
+        await loadMenus(route, next)
       } else {
         next()
       }
@@ -58,12 +68,27 @@ export async function routerBeforeEach(route: RouteLocation, next: RouterGuardNe
     if (whiteList.indexOf(route.path) !== -1) {
       next()
     } else {
-      next({ path: '/login' })
+      next({
+        path: '/login'
+      })
+    }
+  }
+  if (route.match) {
+    const children = route.match.children || []
+    if (!children.length) {
+      NProgress.done()
+      isNProgress = true
     }
   }
 }
 
-export function RouterGuard({ children, render }: PropsWithChildren<{
+/**
+ * 路由守卫组件
+ */
+export function RouterGuard({
+  children,
+  render
+}: PropsWithChildren<{
   render?: React.ReactNode
 }>) {
   const route = useRoute()

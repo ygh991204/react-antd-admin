@@ -1,26 +1,20 @@
 
-/**  */
 declare namespace Api {
-  /**
-   * 响应格式
-   */
+
+  // 响应格式
   export interface Response<T = any> {
     code: number
     msg: string
     data: T
   }
 
-  /**
-   * 分页请求
-   */
+  // 分页请求
   export type PageListRequest<T extends IAnyObject = IAnyObject> = {
     pageIndex: number
     pageSize?: number
   } & T
 
-  /**
-   * 分页响应
-   */
+  // 分页响应
   export interface PageListResponse<T extends IAnyObject = IAnyObject> {
     count: number
     list: T[]
@@ -37,6 +31,7 @@ declare namespace Api {
     icon?: string
   }
 
+  // 路由菜单
   export interface MenuDb {
     path: string
     meta: MenuMetaDb,
@@ -45,6 +40,7 @@ declare namespace Api {
     children?: MenuDb[]
   }
 
+  // 角色
   export interface UserDb {
     nikename: string
     username: string
@@ -54,12 +50,14 @@ declare namespace Api {
     token: string
   }
 
+  // 角色
   export interface RoleDb {
     roleValue: string
     roleName: string
     permissions: string[]
   }
 
+  // 基本列表
   export interface BasisListDb {
     id: string,
     name: string,
