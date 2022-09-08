@@ -12,6 +12,6 @@ git add -A
 git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:ygh991204/react-antd-admin.git master:gh-pages
+git push -f git@github.com:ygh991204/react-antd-admin.git main:gh-pages
 
 cd -
