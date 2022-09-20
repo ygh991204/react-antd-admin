@@ -1,0 +1,1 @@
+System.register(["./index-legacy-5416c353.js"],(function(e){"use strict";var n;return{setters:[function(e){n=e.E}],execute:function(){e("a",n("success","processing","error","default","warning")),e("P",n("pink","red","yellow","orange","cyan","green","blue","purple","geekblue","magenta","volcano","gold","lime"))}}}));

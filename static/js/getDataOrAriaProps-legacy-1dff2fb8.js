@@ -1,0 +1,1 @@
+System.register([],(function(t){"use strict";return{execute:function(){t("g",(function(t){return Object.keys(t).reduce((function(e,r){return!r.startsWith("data-")&&!r.startsWith("aria-")&&"role"!==r||r.startsWith("data-__")||(e[r]=t[r]),e}),{})}))}}}));

@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f0f2f5 !important;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+#root {
+  background: #f0f2f5 !important;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.root-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1 !important;
+}
+
+.root-loading-wrapper {
+  text-align: center;
+}
+
+.root-loading-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  font-size: 0;
+}
+
+.root-loading-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.root-loading-title {
+  font-size: 20px;
+  font-weight: bolder;
+  padding-bottom: 0px;
+}
+
+.root-loading-spin {
+  padding: 50px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.root-loading-spin_dot {
+  animation: dotRotate 1.2s infinite linear;
+  transform: rotate(45deg);
+  position: relative;
+  display: inline-block;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.root-loading-spin_dot i {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  display: block;
+  background-color: #165DFF;
+  border-radius: 100%;
+  transform: scale(0.75);
+  transform-origin: 50% 50%;
+  opacity: 0.3;
+  animation: dotIMove 1s infinite linear alternate;
+}
+
+.root-loading-spin_dot i:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+.root-loading-spin_dot i:nth-child(2) {
+  top: 0;
+  right: 0;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.root-loading-spin_dot i:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.root-loading-spin_dot i:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+
+@keyframes dotRotate {
+  to {
+    -webkit-transform: rotate(405deg);
+    transform: rotate(405deg);
+  }
+}
+@-webkit-keyframes dotRotate {
+  to {
+    -webkit-transform: rotate(405deg);
+    transform: rotate(405deg);
+  }
+}
+
+@keyframes dotIMove {
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes dotIMove {
+  to {
+    opacity: 1;
+  }
+}
