@@ -10,7 +10,7 @@ export default defineConfig(() => {
   return {
     plugins: plugins,
     envPrefix,
-    base: '/',
+    base: '/react-antd-admin/',
     server: {
       host: '127.0.0.1',
       port: Env.APP_PROT,
