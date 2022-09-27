@@ -1,0 +1,1 @@
+import{I as t,a as e}from"./index-bc6b992f.js";import{A as r}from"./index-fbd319bf.js";import"./lib-4d799710.js";import"./vendor-8c87efda.js";import"./getDataOrAriaProps-140767b0.js";function i(){const{t:s}=t();return e(r,{message:s("menus.menusMenu1-2"),type:"success"})}export{i as default};
