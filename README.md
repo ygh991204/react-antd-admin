@@ -1,4 +1,4 @@
-<div align="center"> <a href="https://github.com/ygh991204/react-antd-admin"> <img alt="React Antd Admin Logo" width="150" height="150" src="http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminLogo.png"> </a> <br> <br>
+<div align="center"> <a href="https://github.com/ygh991204/react-antd-admin"> <img alt="React Antd Admin Logo" width="150" height="150" src="http://www.yghblog.cn/reactAntdAdminLogo.png"> </a> <br> <br>
 <h1>React Antd Admin</h1>
 </div>
 
@@ -20,7 +20,7 @@ react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `reac
 - 项目技术栈 [vite2](https://vitejs.dev/)、[react18](https://reactjs.org/)、[typescript](https://www.typescriptlang.org/)、[redux-toolkit](https://redux-toolkit.js.org/)、[react-router-v6](https://reactrouter.com/)、[ant-design](https://ant.design/index-cn)、[react-i18next](https://react.i18next.com/)
 - 项目请求数据使用 [mock.js](https://github.com/nuysoft/Mock) 模拟
 
-![reactAntdAdminHome](http://rglaex5y3.hn-bkt.clouddn.com/reactAntdAdminHome2.png)
+![reactAntdAdminHome](http://www.yghblog.cn/reactAntdAdminHome2.png)
 
 ## 开始
 
@@ -55,7 +55,7 @@ npm run preview
 
 如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持
 
-![donate](http://rglaex5y3.hn-bkt.clouddn.com/myPayCode.png)
+![donate](http://www.yghblog.cn/myPayCode.png)
 
 ## 借鉴项目
 

@@ -5,7 +5,7 @@ export const usersDb: Api.UserDb[] = [
     username: 'admin',
     password: '123456',
     roles: ['admin'],
-    avater: '/avatar-admin.jpg',
+    avater: 'http://www.yghblog.cn/avatar-admin.jpg',
     token: 'admin_token_123456'
   },
   {
@@ -13,7 +13,7 @@ export const usersDb: Api.UserDb[] = [
     username: 'user',
     password: '123456',
     roles: ['user'],
-    avater: '/avatar-user.jpg',
+    avater: 'http://www.yghblog.cn/avatar-user.jpg',
     token: 'user_token_123456'
   }
 ]
