@@ -7,7 +7,7 @@
 react-antd-admin 是一个开箱即用的后台管理前端模板。基于 `react18`、`vite2`、`typeScript`、`antd` 开发；根据权限动态加载路由，权限可控制到按钮级别；内置一些 常用的功能组件 和 典型的业务模型；集成了 `i18next` 国际化方案
 
 - [在线预览](http://xiaofengproject.gitee.io/react-antd-admin)
-- [文档地址](http://xiaofengproject.gitee.io/raect-antd-admin-doc)
+- [文档地址](http://xiaofengproject.gitee.io/react-antd-admin-doc)
 - [Gitee](https://gitee.com/xiaofengproject/react-antd-admin.git)
 
 如果你发现问题，欢迎提 [issues](https://github.com/ygh991204/react-antd-admin/issues)
