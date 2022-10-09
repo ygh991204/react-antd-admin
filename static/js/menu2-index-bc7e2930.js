@@ -1,1 +1,0 @@
-import{I as r,a as s}from"./index-bc6b992f.js";import{A as e}from"./index-fbd319bf.js";import"./lib-4d799710.js";import"./vendor-8c87efda.js";import"./getDataOrAriaProps-140767b0.js";function i(){const{t}=r();return s(e,{message:t("menus.menusMenu2")})}export{i as default};

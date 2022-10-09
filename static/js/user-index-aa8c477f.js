@@ -1,0 +1,1 @@
+import{a as r}from"./index-cfe04051.js";import{C as o}from"./index-7fd9bfe8.js";import"./index-d2be0613.js";import"./lib-4d799710.js";import"./vendor-8c87efda.js";function a(){return r(o,{bordered:!1,children:"admin, user \u90FD\u53EF\u89C1"})}export{a as default};
